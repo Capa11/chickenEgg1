@@ -4,7 +4,6 @@ import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 
 import chickenEggs.interfaces.*;
-import chickenEggs.objects.*;
 
 import static chickenEggs.interfaces.variables.*;
 
@@ -17,7 +16,7 @@ public class CustomScreen extends drawable {
     public CustomScreen() {
     }
     void drawBackground(){
-        DrawSprite(0,0, (int) (xaxis*2), (int) (yaxis*2), backgrounds[0]);
+        //DrawSprite(0,0, (int) (xaxis*2), (int) (yaxis*2), backgrounds[0]);
        // DrawSprite(0,0, (1200), (800), backgrounds[1]);
     }
 
