@@ -67,9 +67,6 @@ public abstract class variables implements GLEventListener {
         prepareimage(folderalphabet,iman,man,gl);
         //____________________________
         prepareimage(folderchicken,ibaskets,baskets,gl);
-
-
-
     }
 
 
