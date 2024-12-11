@@ -2,14 +2,14 @@ package chickenEggs;
 
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
-
+import chickenEggs.objects.Game.*;
 import chickenEggs.interfaces.*;
 import chickenEggs.objects.*;
 public class SimpleGLEventListener extends variables {
     drawable mons;
     drawable[] str1;
     drawable[] str;
-
+    OrdinaryChicken chicken;
     public void init(GLAutoDrawable gld) {
         gl = gld.getGL();
         init(gl);
@@ -26,6 +26,9 @@ public class SimpleGLEventListener extends variables {
             str[i].path=baskets[1];
         }
         initGrid(str,-xaxis,xaxis,yaxis,100,100,20,20);
+         chicken = new OrdinaryChicken(0,0,200,200,3,-1000,1000,-600,600);
+        chicken.makeegg();
+        chicken.eggs.get(0).draw();
     }
     public void display(GLAutoDrawable gld) {
         gl = gld.getGL();
@@ -34,7 +37,12 @@ public class SimpleGLEventListener extends variables {
         mons.draw();
         drawArray(str1);
         drawArray(str);
-
+        chicken.draw();
+        chicken.eggDuration();
+        for (int i = 0; i < chicken.eggs.size(); i++) {
+            if(!(chicken.eggs.get(i).is_inside())){chicken.eggs.remove(i);}
+            else chicken.eggs.get(i).draw();
+        }
     }
     void drawBackground(){
         DrawSprite(0,0, (int) (xaxis*2), (int) (yaxis*2),backninjastarDigitsDotBlank[0]);
