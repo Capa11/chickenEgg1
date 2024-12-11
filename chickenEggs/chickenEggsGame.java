@@ -14,10 +14,31 @@ import java.awt.*;
 
     public class chickenEggsGame extends JFrame {
         public static void main(String[] args) {
-            showOnScreen(1,new chickenEggsGame());
-            animator.start();
+            new chickenEggsGame();
         }
-        public static void showOnScreen(int screen, JFrame frame ) throws RuntimeException {
+        static Animator animator;
+        public chickenEggsGame() {
+            GLCanvas glcanvas;
+            SimpleGLEventListener listener = new SimpleGLEventListener();
+            glcanvas = new GLCanvas();
+            glcanvas.addGLEventListener(listener);
+            getContentPane().add(glcanvas, BorderLayout.CENTER);
+            animator = new FPSAnimator(glcanvas,60);
+            animator.start();
+            glcanvas.addKeyListener(new key());
+            glcanvas.addMouseMotionListener(new mousemotion());
+            glcanvas.addMouseListener(new mousebutton());
+            glcanvas.addMouseWheelListener(new mouseWheel());
+            setTitle("chickenEggs");
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            setSize(600, 600);
+            setLocationRelativeTo(null);
+            setVisible(true);
+            setFocusable(true);
+            glcanvas.requestFocus();
+
+        }
+       /* public static void showOnScreen(int screen, JFrame frame ) throws RuntimeException {
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             GraphicsDevice[] gd = ge.getScreenDevices();
             int width = 0, height = 0;
@@ -32,50 +53,7 @@ import java.awt.*;
             } else {
                 throw new RuntimeException( "No Screens Found" );
             }
-        }
-        static Animator animator;
-        public chickenEggsGame() {
-            GLCanvas glcanvas;
-            SimpleGLEventListener listener = new SimpleGLEventListener();
-            glcanvas = new GLCanvas();
-            glcanvas.addGLEventListener(listener);
-            getContentPane().add(glcanvas, BorderLayout.CENTER);
-            animator = new FPSAnimator(glcanvas,60);
-//
-//        JPanel controlPanel = new JPanel();
-//        JButton toggleButton = new JButton("Start");
-//
-//        toggleButton.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                if (animator.isAnimating()) {
-//                    animator.stop();
-//                    listener.stopGame();
-//                    toggleButton.setText("Start");
-//                } else {
-//                    animator.start();
-//                    listener.startGame();
-//                    glcanvas.requestFocus();
-//                    toggleButton.setText("Stop");
-//                }
-//            }
-//        });
-//
-//        controlPanel.add(toggleButton);
-//        getContentPane().add(controlPanel, BorderLayout.SOUTH);
-            //animator.start();
-            glcanvas.addKeyListener(new key());
-            glcanvas.addMouseMotionListener(new mousemotion());
-            glcanvas.addMouseListener(new mousebutton());
-            glcanvas.addMouseWheelListener(new mouseWheel());
-            setTitle("chickenEggs");
-            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            setSize(600, 600);
-            setLocationRelativeTo(null);
-            setVisible(true);
-            setFocusable(true);
-            glcanvas.requestFocus();
-
-        }
+        }*/
 
 
     }
