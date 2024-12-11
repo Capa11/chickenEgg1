@@ -26,19 +26,20 @@ public class SimpleGLEventListener extends variables {
             str[i].path=baskets[1];
         }
         initGrid(str,-xaxis,xaxis,yaxis,100,100,20,20);
+
     }
     public void display(GLAutoDrawable gld) {
         gl = gld.getGL();
         gl.glClear(GL.GL_COLOR_BUFFER_BIT);
-        drawBackground();
+//        drawBackground();
         mons.draw();
         drawArray(str1);
         drawArray(str);
 
     }
-    void drawBackground(){
-        DrawSprite(0,0, (int) (xaxis*2), (int) (yaxis*2),backninjastarDigitsDotBlank[0]);
-    }
+//    void drawBackground(){
+//        DrawSprite(0,0, (int) (xaxis*2), (int) (yaxis*2),backninjastarDigitsDotBlank[0]);
+//    }
 
     @Override
     public void reshape(GLAutoDrawable glAutoDrawable, int i, int i1, int i2, int i3) {
