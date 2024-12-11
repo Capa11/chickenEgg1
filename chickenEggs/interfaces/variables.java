@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import Texture.TextureReader;
 import chickenEggs.interfaces.Pages.Page;
+import chickenEggs.objects.Pages.CustomScreen;
 
 public abstract class variables implements GLEventListener {
     public static Page runningPage;
@@ -36,7 +37,7 @@ public abstract class variables implements GLEventListener {
     private static String folderchicken = "chickenEggs//Assets//chickenEggObjects//";
 
     private static String[] inumbers = {"0.png", "1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "9.png"};
-    private static String[] iman = {"Man1.png", "Man2.png", "Man3.png", "Man4.png"};
+    private static String[] iman = {"Man1.png", "Man2.png", "Man3.png", "Man4.png","back.png"};
     private static String[] iletters = {"a.png", "b.png", "c.png", "d.png", "e.png", "f.png", "g.png", "h.png", "i.png", "j.png", "k.png", "l.png", "m.png", "n.png", "o.png", "p.png", "q.png", "r.png", "s.png", "t.png", "u.png", "v.png", "w.png", "x.png", "y.png", "z.png","blank.png"};
     private static String[] ihealth = {"HealthB.png", "Health.png"};
     //private static String[] ibackgrounds= {"Back.png",};
