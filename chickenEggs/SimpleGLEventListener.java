@@ -4,7 +4,7 @@ import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 
 import chickenEggs.interfaces.*;
-import chickenEggs.objects.*;
+import chickenEggs.objects.Pages.CustomScreen;
 import chickenEggs.objects.Pages.HomeScreen;
 
 public class SimpleGLEventListener extends variables {
@@ -12,24 +12,13 @@ public class SimpleGLEventListener extends variables {
     drawable[] str1;
     drawable[] str;
     HomeScreen homeScreen;
+    CustomScreen customScreen;
 
     public void init(GLAutoDrawable gld) {
         gl = gld.getGL();
         init(gl);
-        mons = new monst(300,0,200,200);
-        str1 = new drawable[20];
-        for (int i = 0; i < 20; i++) {
-            str1[i] = new drawable();
-            str1[i].path=baskets[0];
-        }
-        initGrid(str1,-xaxis,xaxis,0,300,100,20,20);
-        str = new drawable[20];
-        for (int i = 0; i < 20; i++) {
-            str[i] = new drawable();
-            str[i].path=baskets[1];
-        }
-        initGrid(str,-xaxis,xaxis,yaxis,100,100,20,20);
         homeScreen = new HomeScreen();
+        customScreen = new CustomScreen();
 
     }
     public void display(GLAutoDrawable gld) {

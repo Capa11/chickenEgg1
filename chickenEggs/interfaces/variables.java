@@ -185,7 +185,7 @@ public abstract class variables implements GLEventListener {
             if(j == s.length)j--;
             while(i<=j) {
                 arr[i] = new drawable();
-                if (s[i] == ' ') arr[i].path = backgrounds[backgrounds.length - 1];
+                if (s[i] == ' ') arr[i].path = ninja[ninja.length - 1];
                 else if (s[i] <= '9' && s[i] >= '0') arr[i].path = numbers[s[i] - '0'];
                 else arr[i].path = Letters[s[i] - 'a'];
                 i++;
