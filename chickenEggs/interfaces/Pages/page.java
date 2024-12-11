@@ -1,4 +1,7 @@
 package chickenEggs.interfaces.Pages;
 
-public class page {
+import chickenEggs.interfaces.*;
+
+public class page extends drawable {
+
 }
