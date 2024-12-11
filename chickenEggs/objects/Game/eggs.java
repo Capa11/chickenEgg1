@@ -5,10 +5,8 @@ import static chickenEggs.interfaces.variables.*;
 public class eggs extends drawable implements Egg{
 
     float xmingame , xmaxgame ,ymingame , ymaxgame;
-    int speed = 4;
-    public eggs(int x, int y, int w, int h, float xmingame, float xmaxgame, float ymingame, float ymaxgame){this.path = egg[0];}
-
-    public eggs(int x, int y, int w, int h, int xmingame, int xmaxgame, int ymingame, int ymaxgame) {
+    int speed = 3;
+    public eggs(int x, int y, int w, int h, float xmingame, float xmaxgame, float ymingame, float ymaxgame) {
         super(x, y, w, h, egg[0]);
         this.xmingame = xmingame;
         this.xmaxgame = xmaxgame;
@@ -17,9 +15,9 @@ public class eggs extends drawable implements Egg{
     }
 
     public boolean is_inside() {
-        return !(this.y == ymingame);
+        return !(y == ymingame);
     }
     public void fall(){
-        this.y-=speed;
+        y-=speed;
     }
 }
