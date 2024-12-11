@@ -14,7 +14,12 @@ import java.awt.*;
 
     public class chickenEggsGame extends JFrame {
         public static void main(String[] args) {
+<<<<<<< Updated upstream
             new chickenEggsGame();
+=======
+            showOnScreen(0,new chickenEggsGame());
+            animator.start();
+>>>>>>> Stashed changes
         }
         static Animator animator;
         public chickenEggsGame() {

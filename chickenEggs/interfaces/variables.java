@@ -32,6 +32,7 @@ public abstract class variables implements GLEventListener {
     private static String folderalphabet = "chickenEggs//Assets//Alphabet//";
     private static String foldermonster = "chickenEggs//Assets//monsters//";
     private static String folderchicken = "chickenEggs//Assets//chickenEggObjects//";
+    private static String foldercustom = "chickenEggs//Assets//Custom//";
 
     private static String[] inumbers = {"0.png", "1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "9.png"};
     private static String[] iman = {"Man1.png", "Man2.png", "Man3.png", "Man4.png"};
@@ -42,6 +43,7 @@ public abstract class variables implements GLEventListener {
     private static String[] inumbers2 = {"tile000.png", "tile001.png", "tile002.png", "tile003.png", "tile004.png", "tile005.png", "tile006.png", "tile007.png", "tile008.png", "tile009.png"};
     private static String[] imonsters = {"1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "9.png", "10.png", "11.png", "12.png", "13.png", "14.png", "15.png", "16.png", "17.png", "18.png", "19.png", "20.png", "21.png", "22.png", "23.png", "24.png", "25.png", "26.png", "27.png", "28.png", "29.png", "30.png", "31.png", "32.png", "33.png", "34.png", "35.png", "36.png", "37.png", "38.png", "39.png", "40.png"};
     private static String[] ibaskets = {"basket1.png","basket2.png","basket3.png","basket4.png"};
+    private static String[] icustom = {"add1.png","add2.png","minus1.png","minus2.png","right1.png","right2.png","left1.png","left2.png"};
     //texters
     public static int[] numbers = new int[inumbers.length];
     public static int[] man = new int[iman.length];
@@ -52,6 +54,7 @@ public abstract class variables implements GLEventListener {
     public static int[] numbers2 = new int[inumbers2.length];
     public static int[] monsters = new int[imonsters.length];
     public static int[] baskets = new int[ibaskets.length];
+    public static int[] iconsCustom = new int[icustom.length];
 
 
 
@@ -70,6 +73,7 @@ public abstract class variables implements GLEventListener {
         prepareimage(folderalphabet,iman,man,gl);
         //____________________________
         prepareimage(folderchicken,ibaskets,baskets,gl);
+        prepareimage(foldercustom,icustom,iconsCustom,gl);
 
 
 
