@@ -2,6 +2,12 @@ package chickenEggs;
 
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
+<<<<<<< Updated upstream
+=======
+import chickenEggs.objects.Game.*;
+import chickenEggs.interfaces.*;
+import chickenEggs.objects.Pages.CustomScreen;
+>>>>>>> Stashed changes
 
 import chickenEggs.interfaces.*;
 import chickenEggs.objects.*;
@@ -13,6 +19,7 @@ public class SimpleGLEventListener extends variables {
     public void init(GLAutoDrawable gld) {
         gl = gld.getGL();
         init(gl);
+<<<<<<< Updated upstream
         mons = new monst(300,0,200,200);
         str1 = new drawable[20];
         for (int i = 0; i < 20; i++) {
@@ -26,14 +33,21 @@ public class SimpleGLEventListener extends variables {
             str[i].path=baskets[1];
         }
         initGrid(str,-xaxis,xaxis,yaxis,100,100,20,20);
+=======
+        runningPage=new CustomScreen();
+>>>>>>> Stashed changes
     }
     public void display(GLAutoDrawable gld) {
         gl = gld.getGL();
         gl.glClear(GL.GL_COLOR_BUFFER_BIT);
         drawBackground();
+<<<<<<< Updated upstream
         mons.draw();
         drawArray(str1);
         drawArray(str);
+=======
+        runningPage.draw();
+>>>>>>> Stashed changes
 
     }
     void drawBackground(){
