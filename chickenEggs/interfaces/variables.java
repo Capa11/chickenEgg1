@@ -2,13 +2,18 @@ package chickenEggs.interfaces;
 import javax.media.opengl.GL;
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.glu.GLU;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.*;
 
 import Texture.TextureReader;
 import chickenEggs.interfaces.Pages.Page;
 import chickenEggs.objects.Pages.CustomScreen;
 
 public abstract class variables implements GLEventListener {
+    public static File scoreBoard = new File("D://learning//Graphics//team project//chickenEggs//Assets//scoreboard.txt");
     public static Page runningPage;
     public static float xtranslation=0,ytranslation=0;
     public static float xmouse=1000,ymouse=500;
@@ -217,7 +222,75 @@ public abstract class variables implements GLEventListener {
         }
         return arr;
     }
+    public static drawable[] initwriteString(ArrayList<Character> str, float xs, float xf, float ys, int w, int h, int gapY){
+        char[] arr = new char[str.size()];
+        for (int i = 0; i < str.size(); i++) {
+            arr[i]=str.get(i);
+        }
+        return initwriteString(new String(arr),xs,xf,ys,w,h,gapY);
+    }
+    public static class Pair{
+        String s;Integer in;
+        Pair(String s,Integer in){
+            this.s=s;this.in=in;
+        }
+    }
+    public static void clearScoreBoard(){
+        scoreBoard.delete();
+        try {
+            scoreBoard.createNewFile();
+        } catch (IOException e) {
+            System.out.println("file doesn't create new one");
+        }
+    }
+    public static ArrayList<Pair> getScoreBoard(){
+        ArrayList<Pair> arr = new ArrayList<>();
+        Scanner in = null;
+        try {
+            in = new Scanner(scoreBoard);
+            String str="";int sc;
+            boolean b=false;
+            while(in.hasNext()){
+                if(b){
+                    sc=in.nextInt();
+                    arr.add(new Pair(str,sc));
+                }
+                else{
+                    str=in.next();
+                }
+                b=!b;
+            }
+            in.close();
 
+        } catch (FileNotFoundException e) {
+            System.out.println("file scoreBoard doesn't exist");
+        }
+        return arr;
+
+    }
+    public static void updateScoreBoard(String s,int score){
+        try {
+            ArrayList<Pair> arr = getScoreBoard();
+            //making names distinct
+            boolean check=true;
+            for (int i = 0; i < arr.size(); i++) {
+                if(arr.get(i).s.equals(s)){
+                    check=false;
+                    arr.get(i).in=Math.max(score,arr.get(i).in);
+                }
+            }
+            if(check)arr.add(new Pair(s,score));
+            arr.sort((x,y)->y.in-x.in);//sort descending
+            PrintWriter printWriter = new PrintWriter(scoreBoard);
+            for (int i = 0; i < arr.size(); i++) {
+                printWriter.println(arr.get(i).s+" "+arr.get(i).in);
+            }
+            printWriter.close();
+        }
+        catch (Exception e){
+            System.out.println("file scoreBoard doesn't exist");
+        }
+    }
     static boolean isYouWinPrepared=false;
     static boolean isYouLosePrepared=false;
 
