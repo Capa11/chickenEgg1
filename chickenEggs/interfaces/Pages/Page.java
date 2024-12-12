@@ -8,6 +8,8 @@ import static chickenEggs.interfaces.variables.*;
 
 public class Page extends drawable {
     public ArrayList<Button> buttons;boolean isGame;
+    public Page(){
+    }
     public Page(int backgroundPath,ArrayList<Button> buttons){
         path=backgroundPath;
         this.buttons=buttons;
