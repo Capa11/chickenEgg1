@@ -14,7 +14,7 @@ import java.awt.*;
 
     public class chickenEggsGame extends JFrame {
         public static void main(String[] args) {
-            showOnScreen(1,new chickenEggsGame());
+            showOnScreen(0,new chickenEggsGame());
             animator.start();
         }
         public static void showOnScreen(int screen, JFrame frame ) throws RuntimeException {
