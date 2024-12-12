@@ -14,12 +14,11 @@ public class mousebutton implements MouseListener {
     @Override
     public void mousePressed(MouseEvent e) {
         if(Operations) {
-
             if (e.getButton() == MouseEvent.BUTTON1) {
                 dragging = true;
                 lastMouseX = xmouse;
                 lastMouseY = ymouse;
-
+                runningPage.checkclick();
             }
         }
     }
