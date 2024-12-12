@@ -41,7 +41,7 @@ public abstract class variables implements GLEventListener {
     private static String foldermonster = "chickenEggs//Assets//monsters//";
     private static String folderchicken = "chickenEggs//Assets//chickenEggObjects//";
     private static String folderIcons = "chickenEggs//Assets//Icons//";
-
+    private static String folderbullets = "chickenEggs//Assets//bullets//";
 
     private static String[] inumbers = {"0.png", "1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "9.png"};
     private static String[] iman = {"Man1.png", "Man2.png", "Man3.png", "Man4.png","back.png"};
@@ -54,7 +54,7 @@ public abstract class variables implements GLEventListener {
     private static String[] iegg = {"egg.png"};
     private static String[] ichicken = {"OrdinaryChicken.png","UnordinaryChicken.png","SuperChicken.png","UltimateChicken.png"};
     private static String[] iconsCustom ={"add1.png","add2.png","minus1.png","minus2.png","right1.png","right2.png","left1.png","left2.png"};
-
+    private static String[] ibullets = {"bullet1.png"};
     //texters
     public static int[] numbers = new int[inumbers.length];
     public static int[] man = new int[iman.length];
@@ -67,7 +67,7 @@ public abstract class variables implements GLEventListener {
     public static int[] egg = new int[iegg.length];
     public static int[] chicken = new int[ichicken.length];
     public static int[] icons = new int[iconsCustom.length];
-
+    public static int[] bullets = new int[ibullets.length];
 
 
     protected static  void init(GL gl) {
@@ -87,7 +87,7 @@ public abstract class variables implements GLEventListener {
         //____________________________
         prepareimage(folderchicken,ibaskets,baskets,gl);
         prepareimage(folderIcons,iconsCustom,icons,gl);
-
+        prepareimage(folderbullets , ibullets , bullets , gl);
 
 
 
