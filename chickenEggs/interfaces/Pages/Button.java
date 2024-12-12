@@ -18,8 +18,17 @@ public abstract class Button extends drawable{
         haveIcon=true;
         icon=new drawable(xicon,yicon,wicon,hicon,iconpath);
     }
-    public abstract boolean isClicked();
-    @Override
+    public void ifClicked(){
+
+    }
+    public boolean isClicked(){
+        if(lastMouseX<=x+w/2&&lastMouseX>=x-w/2&&lastMouseY<=y+h/2&&lastMouseY>=y-h/2){
+            ifClicked();
+            System.out.println("clicked");
+            return true;
+        }
+        else return false;
+    }    @Override
     public void draw(){
         super.draw();//draw background of button
         drawArray(buttonName);//writing button name on it
