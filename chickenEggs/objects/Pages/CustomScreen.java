@@ -5,6 +5,7 @@ import javax.media.opengl.GLAutoDrawable;
 
 import chickenEggs.interfaces.*;
 import chickenEggs.interfaces.Pages.Button;
+import chickenEggs.interfaces.Pages.NavBtn;
 import chickenEggs.interfaces.Pages.Page;
 
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class CustomScreen extends Page {
 //        drawArray(arr3);
 //        drawArray(arr4);
 //    }
-    Button b1 = new Button(0, 0, 500, 300, health[0], null, "yousef", 50);
+    Button b1 = new NavBtn(0, 0, 500, 300, health[0], null, "yousef", 50);
     ArrayList<Button> arr = new ArrayList<>();
 
     public CustomScreen() {
