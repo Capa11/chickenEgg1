@@ -28,9 +28,7 @@ public class key implements KeyListener {
         if(Operations) {
             int keyCode = e.getKeyCode();
             keyBits.set(keyCode);
-            if(keyCode==KeyEvent.VK_SPACE){
-                isGameRunning=!isGameRunning;
-            }
+            box.writeBox(e);
         }
     }
 

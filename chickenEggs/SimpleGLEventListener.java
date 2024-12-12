@@ -7,21 +7,21 @@ import chickenEggs.objects.Game.*;
 import chickenEggs.interfaces.*;
 import chickenEggs.objects.Pages.CustomScreen;
 
-import chickenEggs.objects.Game.*;
-import chickenEggs.interfaces.*;
+import chickenEggs.interfaces.Pages.*;
+
 
 public class SimpleGLEventListener extends variables {
     drawable mons;
     drawable[] str1;
     drawable[] str;
+
+    public static inputbox box;
     OrdinaryChicken chicken;
 
     public void init(GLAutoDrawable gld) {
         gl = gld.getGL();
         init(gl);
         runningPage=new CustomScreen();
-
-
     }
     public void display(GLAutoDrawable gld) {
         gl = gld.getGL();

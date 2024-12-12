@@ -2,13 +2,18 @@ package chickenEggs.interfaces;
 import javax.media.opengl.GL;
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.glu.GLU;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.*;
 
 import Texture.TextureReader;
 import chickenEggs.interfaces.Pages.Page;
 import chickenEggs.objects.Pages.CustomScreen;
 
 public abstract class variables implements GLEventListener {
+    public static File scoreBoard = new File("D://learning//Graphics//team project//chickenEggs//Assets//scoreboard.txt");
     public static Page runningPage;
     public static float xtranslation=0,ytranslation=0;
     public static float xmouse=1000,ymouse=500;
@@ -42,8 +47,13 @@ public abstract class variables implements GLEventListener {
     private static String foldermonster = "chickenEggs//Assets//monsters//";
     private static String folderchicken = "chickenEggs//Assets//chickenEggObjects//";
     private static String folderIcons = "chickenEggs//Assets//Icons//";
+
     private static String folderBackground = "chickenEggs//Assets//Backgrounds//";
 
+
+
+    private static String folderbullets = "chickenEggs//Assets//bullets//";
+    private static String folderRockets = "chickenEggs//Assets//Rockets//";
 
     private static String[] inumbers = {"0.png", "1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "9.png"};
     private static String[] iman = {"Man1.png", "Man2.png", "Man3.png", "Man4.png","back.png"};
@@ -55,8 +65,14 @@ public abstract class variables implements GLEventListener {
     private static String[] ibaskets = {"basket1.png","basket2.png","basket3.png","basket4.png"};
     private static String[] iegg = {"egg.png"};
     private static String[] ichicken = {"OrdinaryChicken.png","UnordinaryChicken.png","SuperChicken.png","UltimateChicken.png"};
+
     private static String[] iconsCustom ={"add1.png","add2.png","minus1.png","minus2.png","right1.png","right2.png","left1.png","left2.png","settings.jpg"};
     private static String[] ibackground ={"background1.jpg"};
+
+
+//    private static String[] iconsCustom ={"add1.png","add2.png","minus1.png","minus2.png","right1.png","right2.png","left1.png","left2.png"};
+    private static String[] ibullets = {"bullet1.png"};
+    private static String[] irockets = {"rocket1.png" , "rocket4.png" , "rocket5.png" , "rocket6.png"};
 
     //texters
     public static int[] numbers = new int[inumbers.length];
@@ -70,8 +86,13 @@ public abstract class variables implements GLEventListener {
     public static int[] egg = new int[iegg.length];
     public static int[] chicken = new int[ichicken.length];
     public static int[] icons = new int[iconsCustom.length];
+
     public static int[] background = new int[ibackground.length];
 
+
+
+    public static int[] bullets = new int[ibullets.length];
+    public static int[] rockets = new int[irockets.length];
 
 
     protected static  void init(GL gl) {
@@ -91,8 +112,13 @@ public abstract class variables implements GLEventListener {
         //____________________________
         prepareimage(folderchicken,ibaskets,baskets,gl);
         prepareimage(folderIcons,iconsCustom,icons,gl);
+
         prepareimage(folderBackground,ibackground,background,gl);
 
+
+
+        prepareimage(folderbullets , ibullets , bullets , gl);
+        prepareimage(folderRockets , irockets , rockets , gl);
 
 
 
@@ -227,7 +253,75 @@ public abstract class variables implements GLEventListener {
         }
         return arr;
     }
+    public static drawable[] initwriteString(ArrayList<Character> str, float xs, float xf, float ys, int w, int h, int gapY){
+        char[] arr = new char[str.size()];
+        for (int i = 0; i < str.size(); i++) {
+            arr[i]=str.get(i);
+        }
+        return initwriteString(new String(arr),xs,xf,ys,w,h,gapY);
+    }
+    public static class Pair{
+        String s;Integer in;
+        Pair(String s,Integer in){
+            this.s=s;this.in=in;
+        }
+    }
+    public static void clearScoreBoard(){
+        scoreBoard.delete();
+        try {
+            scoreBoard.createNewFile();
+        } catch (IOException e) {
+            System.out.println("file doesn't create new one");
+        }
+    }
+    public static ArrayList<Pair> getScoreBoard(){
+        ArrayList<Pair> arr = new ArrayList<>();
+        Scanner in = null;
+        try {
+            in = new Scanner(scoreBoard);
+            String str="";int sc;
+            boolean b=false;
+            while(in.hasNext()){
+                if(b){
+                    sc=in.nextInt();
+                    arr.add(new Pair(str,sc));
+                }
+                else{
+                    str=in.next();
+                }
+                b=!b;
+            }
+            in.close();
 
+        } catch (FileNotFoundException e) {
+            System.out.println("file scoreBoard doesn't exist");
+        }
+        return arr;
+
+    }
+    public static void updateScoreBoard(String s,int score){
+        try {
+            ArrayList<Pair> arr = getScoreBoard();
+            //making names distinct
+            boolean check=true;
+            for (int i = 0; i < arr.size(); i++) {
+                if(arr.get(i).s.equals(s)){
+                    check=false;
+                    arr.get(i).in=Math.max(score,arr.get(i).in);
+                }
+            }
+            if(check)arr.add(new Pair(s,score));
+            arr.sort((x,y)->y.in-x.in);//sort descending
+            PrintWriter printWriter = new PrintWriter(scoreBoard);
+            for (int i = 0; i < arr.size(); i++) {
+                printWriter.println(arr.get(i).s+" "+arr.get(i).in);
+            }
+            printWriter.close();
+        }
+        catch (Exception e){
+            System.out.println("file scoreBoard doesn't exist");
+        }
+    }
     static boolean isYouWinPrepared=false;
     static boolean isYouLosePrepared=false;
 
