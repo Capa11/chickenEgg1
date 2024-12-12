@@ -19,7 +19,7 @@ public class PrevHuman extends Button {
 
     @Override
     public void ifClicked(){
-        if (numHuman+numAi<numPlayers && numHuman>0){
+        if (numHuman>0){
             new Humans(--numHuman);
         }
         System.out.println("Number of humans is "+numHuman);

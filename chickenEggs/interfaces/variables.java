@@ -144,7 +144,7 @@ public abstract class variables implements GLEventListener {
                         texture[i].getPixels()
                 );
             } catch (IOException e) {
-                System.out.println(e);
+//                System.out.println(e);
                 e.printStackTrace();
             }
         }
@@ -218,7 +218,7 @@ public abstract class variables implements GLEventListener {
             }
             else {
                 lastxf=xs;
-                System.out.println(lastxf);
+//                System.out.println(lastxf);
                 ys-=h+gapY;
                 initGridindex(arr,lastxf,lastxf+(j-starting+1)*w,ys,w,h,0,gapY,starting,j);
 

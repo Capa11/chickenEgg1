@@ -20,7 +20,7 @@ public class PrevAi extends Button {
 
     @Override
     public void ifClicked(){
-        if (numHuman+numAi<numPlayers && numAi>0){
+        if (numAi>0){
             new Ais(--numAi);
         }
         System.out.println("Number of ai is "+numAi);

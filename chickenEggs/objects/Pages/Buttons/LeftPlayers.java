@@ -3,6 +3,8 @@ package chickenEggs.objects.Pages.Buttons;
 import chickenEggs.interfaces.Pages.Button;
 import chickenEggs.interfaces.Pages.Page;
 import chickenEggs.interfaces.drawable;
+import chickenEggs.objects.Pages.Data.Ais;
+import chickenEggs.objects.Pages.Data.Humans;
 import chickenEggs.objects.Pages.Data.Players;
 
 import static chickenEggs.interfaces.variables.*;
@@ -19,6 +21,10 @@ public class LeftPlayers extends Button {
 
     @Override
     public void ifClicked(){
+        if (numPlayers== numHuman+numAi){
+            new Humans(0);
+            new Ais(0);
+        }
         if (numPlayers>0){
             new Players(--numPlayers);
         }

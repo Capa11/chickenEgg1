@@ -58,7 +58,8 @@ public class CustomScreen extends Page {
     protected static Integer howManyAis = numAi;
     protected static String whatIsLevel = level;
 
-
+//Start
+NavBtn startGame = new NavBtn((int)((-xaxis+xaxis)/2),(int)(-yaxis+100),350,200,icons[2],null,"",0);
 
     ArrayList<Button> arr = new ArrayList<>();
 
@@ -74,6 +75,7 @@ public class CustomScreen extends Page {
         arr.add(rightLevels);
         arr.add(leftLevels);
         arr.add(settings);
+        arr.add(startGame);
 //        arr.add(incVol);
 //        arr.add(decVol);
         super.buttons = arr;
@@ -88,7 +90,7 @@ public class CustomScreen extends Page {
         drawArray(initwriteString(howManyPlayers.toString(),-100,100,400,200,200,0));
         drawArray(initwriteString(howManyHumans.toString(),-100,100,200,200,200,0));
         drawArray(initwriteString(howManyAis.toString(),-100,100,0,200,200,0));
-        drawArray(initwriteString(whatIsLevel,-150,150,-265,70,70,0));
+        drawArray(initwriteString(whatIsLevel,-240,240,-265,50,50,0));
     }
 }
 
