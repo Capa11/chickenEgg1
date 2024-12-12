@@ -42,7 +42,7 @@ public abstract class variables implements GLEventListener {
     private static String folderchicken = "chickenEggs//Assets//chickenEggObjects//";
     private static String folderIcons = "chickenEggs//Assets//Icons//";
     private static String folderbullets = "chickenEggs//Assets//bullets//";
-
+    private static String folderRockets = "chickenEggs//Assets//Rockets//";
     private static String[] inumbers = {"0.png", "1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "9.png"};
     private static String[] iman = {"Man1.png", "Man2.png", "Man3.png", "Man4.png","back.png"};
     private static String[] iletters = {"a.png", "b.png", "c.png", "d.png", "e.png", "f.png", "g.png", "h.png", "i.png", "j.png", "k.png", "l.png", "m.png", "n.png", "o.png", "p.png", "q.png", "r.png", "s.png", "t.png", "u.png", "v.png", "w.png", "x.png", "y.png", "z.png","blank.png"};
@@ -55,6 +55,7 @@ public abstract class variables implements GLEventListener {
     private static String[] ichicken = {"OrdinaryChicken.png","UnordinaryChicken.png","SuperChicken.png","UltimateChicken.png"};
     private static String[] iconsCustom ={"add1.png","add2.png","minus1.png","minus2.png","right1.png","right2.png","left1.png","left2.png"};
     private static String[] ibullets = {"bullet1.png"};
+    private static String[] irockets = {"rocket1.png" , "rocket4.png" , "rocket5.png" , "rocket6.png"};
     //texters
     public static int[] numbers = new int[inumbers.length];
     public static int[] man = new int[iman.length];
@@ -68,7 +69,7 @@ public abstract class variables implements GLEventListener {
     public static int[] chicken = new int[ichicken.length];
     public static int[] icons = new int[iconsCustom.length];
     public static int[] bullets = new int[ibullets.length];
-
+    public static int[] rockets = new int[irockets.length];
 
     protected static  void init(GL gl) {
         gl.glOrtho( -xaxis, xaxis, -yaxis, yaxis,-1.0, 1.0);
@@ -88,7 +89,7 @@ public abstract class variables implements GLEventListener {
         prepareimage(folderchicken,ibaskets,baskets,gl);
         prepareimage(folderIcons,iconsCustom,icons,gl);
         prepareimage(folderbullets , ibullets , bullets , gl);
-
+        prepareimage(folderRockets , irockets , rockets , gl);
 
 
     }
