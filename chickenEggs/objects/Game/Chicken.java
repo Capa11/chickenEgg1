@@ -8,11 +8,9 @@ public class Chicken extends singleGameObject {
      public int health , eggDuration , eggtimer , Speed  ,path;
      public boolean damaged = false;//omar was here...
      public ArrayList<eggs> eggs = new ArrayList<>();
-
-     public Chicken(int x, int y, int w, int h,int path, float xmingame, float xmaxgame, float ymingame, float ymaxgame) {
+     public Chicken(int x, int y, int w, int h,int path, int xmingame, int xmaxgame, int ymingame, int ymaxgame) {
           super(x, y, w, h , path, xmingame , xmaxgame , ymingame , ymaxgame);
      }
-
      public void moveleft() {
           this.x-=Speed;
           if(!isInside())x+=Speed;

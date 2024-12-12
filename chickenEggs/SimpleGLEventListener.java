@@ -14,31 +14,21 @@ public class SimpleGLEventListener extends variables {
     drawable mons;
     drawable[] str1;
     drawable[] str;
-<<<<<<< HEAD
-=======
+
     public static inputbox box;
     OrdinaryChicken chicken;
 
->>>>>>> Capa
     public void init(GLAutoDrawable gld) {
         gl = gld.getGL();
         init(gl);
         runningPage=new CustomScreen();
-<<<<<<< HEAD
-=======
-
->>>>>>> Capa
     }
     public void display(GLAutoDrawable gld) {
         gl = gld.getGL();
         gl.glClear(GL.GL_COLOR_BUFFER_BIT);
         runningPage.draw();
-<<<<<<< HEAD
-=======
-        box.draw();
 
 
->>>>>>> Capa
     }
     void drawBackground(){
         //DrawSprite(0,0, (int) (xaxis*2), (int) (yaxis*2),backninjastarDigitsDotBlank[0]);
