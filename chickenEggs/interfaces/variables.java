@@ -42,7 +42,7 @@ public abstract class variables implements GLEventListener {
     private static String[] iman = {"Man1.png", "Man2.png", "Man3.png", "Man4.png","back.png"};
     private static String[] iletters = {"a.png", "b.png", "c.png", "d.png", "e.png", "f.png", "g.png", "h.png", "i.png", "j.png", "k.png", "l.png", "m.png", "n.png", "o.png", "p.png", "q.png", "r.png", "s.png", "t.png", "u.png", "v.png", "w.png", "x.png", "y.png", "z.png","blank.png"};
     private static String[] ihealth = {"HealthB.png", "Health.png"};
-    //private static String[] ibackgrounds= {"Back.png",};
+//    private static String[] ibackgrounds= {"Back.png"};
     private static String[] inumbers2 = {"tile000.png", "tile001.png", "tile002.png", "tile003.png", "tile004.png", "tile005.png", "tile006.png", "tile007.png", "tile008.png", "tile009.png"};
     private static String[] imonsters = {"1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "9.png", "10.png", "11.png", "12.png", "13.png", "14.png", "15.png", "16.png", "17.png", "18.png", "19.png", "20.png", "21.png", "22.png", "23.png", "24.png", "25.png", "26.png", "27.png", "28.png", "29.png", "30.png", "31.png", "32.png", "33.png", "34.png", "35.png", "36.png", "37.png", "38.png", "39.png", "40.png"};
     private static String[] ibaskets = {"basket1.png","basket2.png","basket3.png","basket4.png"};
@@ -55,7 +55,7 @@ public abstract class variables implements GLEventListener {
     public static int[] man = new int[iman.length];
     public static int[] Letters = new int[iletters.length];
     public static int[] health = new int[ihealth.length];
-    //public static int[] background = new int[backgrounds.length];
+//    public static int[] background = new int[ibackgrounds.length];
     public static int[] numbers2 = new int[inumbers2.length];
     public static int[] monsters = new int[imonsters.length];
     public static int[] baskets = new int[ibaskets.length];
@@ -73,7 +73,7 @@ public abstract class variables implements GLEventListener {
         prepareimage(folderalphabet,inumbers,numbers,gl);
         prepareimage(folderalphabet,iletters,Letters,gl);
         prepareimage(folderalphabet,ihealth,health,gl);
-        //prepareimage(folderalphabet,ibackninjastarDigitsDotBlank,backninjastarDigitsDotBlank,gl);
+//        prepareimage(folderalphabet,ibackgrounds,background,gl);
         prepareimage(folderalphabet,inumbers2,numbers2,gl);
         prepareimage(foldermonster,imonsters,monsters,gl);
         prepareimage(folderalphabet,iman,man,gl);
