@@ -5,9 +5,9 @@ import javax.media.opengl.GLAutoDrawable;
 
 import chickenEggs.objects.Game.*;
 import chickenEggs.interfaces.*;
-import chickenEggs.objects.Pages.CustomScreen;
 
 import chickenEggs.interfaces.Pages.*;
+import chickenEggs.objects.Pages.Statement;
 
 
 public class SimpleGLEventListener extends variables {
@@ -21,7 +21,8 @@ public class SimpleGLEventListener extends variables {
     public void init(GLAutoDrawable gld) {
         gl = gld.getGL();
         init(gl);
-        runningPage=new CustomScreen();
+//        runningPage=new CustomScreen();
+        runningPage = new Statement();
     }
     public void display(GLAutoDrawable gld) {
         gl = gld.getGL();
