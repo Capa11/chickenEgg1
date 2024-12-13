@@ -17,6 +17,7 @@ public abstract class variables implements GLEventListener {
     public static Page runningPage;
     public static float xtranslation=0,ytranslation=0;
     public static float xmouse=1000,ymouse=500;
+    public static BitSet keyBits = new BitSet(256);
     public static float lastMouseX, lastMouseY;
     public static boolean dragging = false;
     public static float convertX(float x, float width) {
@@ -36,38 +37,63 @@ public abstract class variables implements GLEventListener {
     private static drawable[] youWin;
     private static drawable[] youLose;
 
+    public static int numPlayers =1;
+    public static int numHuman =1;
+    public static int numAi =0;
+    public static String level ="easy";
+
+
     //paths
     private static String folderalphabet = "chickenEggs//Assets//Alphabet//";
     private static String foldermonster = "chickenEggs//Assets//monsters//";
     private static String folderchicken = "chickenEggs//Assets//chickenEggObjects//";
     private static String folderIcons = "chickenEggs//Assets//Icons//";
+
+    private static String folderBackground = "chickenEggs//Assets//Backgrounds//";
+
+
+
     private static String folderbullets = "chickenEggs//Assets//bullets//";
+    private static String folderRockets = "chickenEggs//Assets//Rockets//";
 
     private static String[] inumbers = {"0.png", "1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "9.png"};
     private static String[] iman = {"Man1.png", "Man2.png", "Man3.png", "Man4.png","back.png"};
     private static String[] iletters = {"a.png", "b.png", "c.png", "d.png", "e.png", "f.png", "g.png", "h.png", "i.png", "j.png", "k.png", "l.png", "m.png", "n.png", "o.png", "p.png", "q.png", "r.png", "s.png", "t.png", "u.png", "v.png", "w.png", "x.png", "y.png", "z.png","blank.png"};
     private static String[] ihealth = {"HealthB.png", "Health.png"};
-    //private static String[] ibackgrounds= {"Back.png",};
+    //    private static String[] ibackgrounds= {"Back.png"};
     private static String[] inumbers2 = {"tile000.png", "tile001.png", "tile002.png", "tile003.png", "tile004.png", "tile005.png", "tile006.png", "tile007.png", "tile008.png", "tile009.png"};
     private static String[] imonsters = {"1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "9.png", "10.png", "11.png", "12.png", "13.png", "14.png", "15.png", "16.png", "17.png", "18.png", "19.png", "20.png", "21.png", "22.png", "23.png", "24.png", "25.png", "26.png", "27.png", "28.png", "29.png", "30.png", "31.png", "32.png", "33.png", "34.png", "35.png", "36.png", "37.png", "38.png", "39.png", "40.png"};
     private static String[] ibaskets = {"basket1.png","basket2.png","basket3.png","basket4.png"};
     private static String[] iegg = {"egg.png"};
     private static String[] ichicken = {"OrdinaryChicken.png","UnordinaryChicken.png","SuperChicken.png","UltimateChicken.png"};
-    private static String[] iconsCustom ={"add1.png","add2.png","minus1.png","minus2.png","right1.png","right2.png","left1.png","left2.png"};
+
+    private static String[] iconsCustom ={"add1.png","add2.png","minus1.png","minus2.png","right1.png","right2.png","left1.png","left2.png","settings.png","play.png","top3.png","reset.png"};
+    private static String[] ibackground ={"background1.jpg"};
+
+
+    //    private static String[] iconsCustom ={"add1.png","add2.png","minus1.png","minus2.png","right1.png","right2.png","left1.png","left2.png"};
     private static String[] ibullets = {"bullet1.png"};
+    private static String[] irockets = {"rocket1.png" , "rocket4.png" , "rocket5.png" , "rocket6.png"};
+
     //texters
     public static int[] numbers = new int[inumbers.length];
     public static int[] man = new int[iman.length];
     public static int[] Letters = new int[iletters.length];
     public static int[] health = new int[ihealth.length];
-    //public static int[] background = new int[backgrounds.length];
+    //    public static int[] background = new int[ibackgrounds.length];
     public static int[] numbers2 = new int[inumbers2.length];
     public static int[] monsters = new int[imonsters.length];
     public static int[] baskets = new int[ibaskets.length];
     public static int[] egg = new int[iegg.length];
     public static int[] chicken = new int[ichicken.length];
     public static int[] icons = new int[iconsCustom.length];
+
+    public static int[] background = new int[ibackground.length];
+
+
+
     public static int[] bullets = new int[ibullets.length];
+    public static int[] rockets = new int[irockets.length];
 
 
     protected static  void init(GL gl) {
@@ -78,7 +104,7 @@ public abstract class variables implements GLEventListener {
         prepareimage(folderalphabet,inumbers,numbers,gl);
         prepareimage(folderalphabet,iletters,Letters,gl);
         prepareimage(folderalphabet,ihealth,health,gl);
-        //prepareimage(folderalphabet,ibackninjastarDigitsDotBlank,backninjastarDigitsDotBlank,gl);
+//        prepareimage(folderalphabet,ibackgrounds,background,gl);
         prepareimage(folderalphabet,inumbers2,numbers2,gl);
         prepareimage(foldermonster,imonsters,monsters,gl);
         prepareimage(folderalphabet,iman,man,gl);
@@ -87,7 +113,13 @@ public abstract class variables implements GLEventListener {
         //____________________________
         prepareimage(folderchicken,ibaskets,baskets,gl);
         prepareimage(folderIcons,iconsCustom,icons,gl);
+
+        prepareimage(folderBackground,ibackground,background,gl);
+
+
+
         prepareimage(folderbullets , ibullets , bullets , gl);
+        prepareimage(folderRockets , irockets , rockets , gl);
 
 
 
@@ -139,7 +171,7 @@ public abstract class variables implements GLEventListener {
                         texture[i].getPixels()
                 );
             } catch (IOException e) {
-                System.out.println(e);
+//                System.out.println(e);
                 e.printStackTrace();
             }
         }
@@ -213,7 +245,7 @@ public abstract class variables implements GLEventListener {
             }
             else {
                 lastxf=xs;
-                System.out.println(lastxf);
+//                System.out.println(lastxf);
                 ys-=h+gapY;
                 initGridindex(arr,lastxf,lastxf+(j-starting+1)*w,ys,w,h,0,gapY,starting,j);
 
@@ -233,6 +265,14 @@ public abstract class variables implements GLEventListener {
         String s;Integer in;
         Pair(String s,Integer in){
             this.s=s;this.in=in;
+        }
+
+        public String getS() {
+            return s;
+        }
+
+        public Integer getIn() {
+            return in;
         }
     }
     public static void clearScoreBoard(){
@@ -299,7 +339,7 @@ public abstract class variables implements GLEventListener {
             prepareYouWin(y);
             isYouWinPrepared=true;
         }
-       drawArray(youWin);
+        drawArray(youWin);
     }
     public static void youLose(int y){
         if(!isYouLosePrepared) {
