@@ -6,7 +6,7 @@ import chickenEggs.interfaces.Game.*;
 import java.util.*;
 
 public class Rocket1 extends Rocket{
-    public Rocket1(int x, int y , int width, int height , float xminGame , float xmaxGame , float yminGame , float ymaxGame) {
+    public Rocket1(int x, int y , int width, int height , int xminGame , int xmaxGame , int yminGame , int ymaxGame) {
         super(x, y  ,width , height , rockets[0],xminGame ,xmaxGame , yminGame , ymaxGame);
     }
 }

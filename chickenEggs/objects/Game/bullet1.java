@@ -6,7 +6,7 @@ import chickenEggs.interfaces.Game.*;
 import java.util.*;
 
 public class bullet1 extends bullet{
-    public bullet1(int x, int y, int w, int h, float xmingame, float xmaxgame, float ymingame, float ymaxgame) {
+    public bullet1(int x, int y, int w, int h, int xmingame, int xmaxgame, int ymingame, int ymaxgame) {
         super(x, y, w, h , bullets[0], xmingame , xmaxgame , ymingame , ymaxgame);
     }
 }

@@ -7,7 +7,7 @@ import java.util.*;
 
 public class bullet extends singleGameObject {
     public int  Speed = 5  ,path;
-    public bullet(int x, int y, int w, int h,int path, float xmingame, float xmaxgame, float ymingame, float ymaxgame) {
+    public bullet(int x, int y, int w, int h,int path, int xmingame, int xmaxgame, int ymingame, int ymaxgame) {
         super(x, y, w, h , path, xmingame , xmaxgame , ymingame , ymaxgame);
     }
     public void moveup() {
