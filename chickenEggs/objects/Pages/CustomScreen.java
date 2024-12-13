@@ -90,7 +90,14 @@ NavBtn startGame = new NavBtn((int)((-xaxis+xaxis)/2),(int)(-yaxis+100),450,250,
         drawArray(initwriteString(howManyPlayers.toString(),-100,100,400,200,200,0));
         drawArray(initwriteString(howManyHumans.toString(),-100,100,200,200,200,0));
         drawArray(initwriteString(howManyAis.toString(),-100,100,0,200,200,0));
-        drawArray(initwriteString(whatIsLevel,-180,180,-275,60,60,0));
+        switch (whatIsLevel){
+            case "easy": drawArray(initwriteString(whatIsLevel,-135,135,-270,60,60,0));
+                break;
+            case "medium": drawArray(initwriteString(whatIsLevel,-180,180,-270,60,60,0));
+                break;
+            case "hard": drawArray(initwriteString(whatIsLevel,-135,135,-270,60,60,0));
+                break;
+        }
     }
 }
 
