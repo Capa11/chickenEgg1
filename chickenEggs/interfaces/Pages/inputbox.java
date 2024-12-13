@@ -26,17 +26,20 @@ public class inputbox extends drawable {
         str=new ArrayList<>();
         drawString=new drawable[0];
     }
-    public void writeBox(KeyEvent e){
-        System.out.println((char)e.getKeyCode());
+    public void ifKeyPressed(int e){
+        if (e<= KeyEvent.VK_Z && e >= KeyEvent.VK_A && str.size() < sizelimit) {
+            str.add((char) (e-'A'+'a'));
+        }
+        if (e == KeyEvent.VK_BACK_SPACE && str.size() > 0) {
+            str.remove(str.size() - 1);
+        }
+        float xEmpty = w - ((fontsize * str.size()));//to make the string written in middle of button in x axis
+        drawString = initwriteString(str, x - w / 2 + xEmpty / 2, x + w / 2, y+fontsize/2, fontsize, fontsize, 0);
+    }
+    public void keyPressed(int e){
+        System.out.println((char)e);
         if(isSelect) {
-            if (e.getKeyCode() <= KeyEvent.VK_Z && e.getKeyCode() >= KeyEvent.VK_A && str.size() < sizelimit) {
-                str.add((char) (e.getKeyCode()-'A'+'a'));
-            }
-            if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE && str.size() > 0) {
-                str.remove(str.size() - 1);
-            }
-            float xEmpty = w - ((fontsize * str.size()));//to make the string written in middle of button in x axis
-            drawString = initwriteString(str, x - w / 2 + xEmpty / 2, x + w / 2, y+fontsize/2, fontsize, fontsize, 0);
+           ifKeyPressed(e);
         }
     }
     public boolean isClicked(){
