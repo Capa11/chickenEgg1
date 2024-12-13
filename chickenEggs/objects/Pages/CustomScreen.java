@@ -7,6 +7,7 @@ import chickenEggs.interfaces.*;
 import chickenEggs.interfaces.Pages.Button;
 import chickenEggs.interfaces.Pages.NavBtn;
 import chickenEggs.interfaces.Pages.Page;
+import chickenEggs.interfaces.Pages.inputbox;
 
 import java.util.ArrayList;
 import static chickenEggs.interfaces.variables.*;
@@ -34,10 +35,13 @@ public class CustomScreen extends Page {
 //    }
     Button b1 = new NavBtn(0, 0, 500, 300, health[0], null, "yousef", 50);
     ArrayList<Button> arr = new ArrayList<>();
+    inputbox box = new inputbox(0,400,400,100,5,30);
 
     public CustomScreen() {
         super(man[man.length - 1]);
         arr.add(b1);
         super.buttons = arr;
+        box.draw();
+
     }
 }

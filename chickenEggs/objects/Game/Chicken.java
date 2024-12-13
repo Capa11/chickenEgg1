@@ -21,13 +21,10 @@ public class Chicken extends singleGameObject {
           if(!isInside())x-=Speed;
      }
 
-
      public void moveup() {
           this.y+=Speed;
           if(!isInside())y-=Speed;
      }
-
-
      public void movedown() {
           this.y-=Speed;
           if(!isInside())y+=Speed;
