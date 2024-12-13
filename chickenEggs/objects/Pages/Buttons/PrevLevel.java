@@ -21,10 +21,11 @@ public class PrevLevel extends Button {
     @Override
     public void ifClicked(){
         if (level.equals("hard")){
-            new Levels(arr[1]);
+            level = arr[1];
         } else if (level.equals("medium")) {
-            new Levels(arr[0]);
+            level = arr[0];
         }
+        new Levels(level);
     }
 }
 

@@ -22,6 +22,8 @@ public class LeftPlayers extends Button {
     @Override
     public void ifClicked(){
         if (numPlayers== numHuman+numAi){
+            numAi=0;
+            numHuman =0;
             new Humans(0);
             new Ais(0);
         }

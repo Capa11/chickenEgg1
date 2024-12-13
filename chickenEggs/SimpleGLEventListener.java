@@ -8,6 +8,7 @@ import chickenEggs.interfaces.*;
 import chickenEggs.objects.Pages.CustomScreen;
 
 import chickenEggs.interfaces.Pages.*;
+import chickenEggs.objects.Pages.ScoreBoard;
 
 
 public class SimpleGLEventListener extends variables {

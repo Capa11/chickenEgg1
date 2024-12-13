@@ -18,10 +18,11 @@ public class NextLevel extends Button {
     @Override
     public void ifClicked(){
         if (level.equals("easy")){
-            new Levels(arr[1]);
+            level = arr[1];
         } else if (level.equals("medium")) {
-            new Levels(arr[2]);
+            level = arr[2];
         }
+        new Levels(level);
     }
 }
 

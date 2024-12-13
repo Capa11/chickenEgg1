@@ -42,7 +42,7 @@ public class CustomScreen extends Page {
 
 
     //settings
-    NavBtn settings = new NavBtn((int)(-xaxis+150),(int)(yaxis-100),150,150,icons[8],null,"",0);
+    NavBtn settings = new NavBtn((int)(-xaxis+150),(int)(yaxis-100),250,200,icons[8],null,"",0);
 //    Buttons
     Button rightPlayers = new RightPlayers(300, (int)(yaxis-300), 130, 100, icons[4], null, "", 50);
     Button leftPlayers = new LeftPlayers(-300, (int)(yaxis-300), 130, 100, icons[4+2], null, "", 50);
@@ -59,7 +59,7 @@ public class CustomScreen extends Page {
     protected static String whatIsLevel = level;
 
 //Start
-NavBtn startGame = new NavBtn((int)((-xaxis+xaxis)/2),(int)(-yaxis+100),350,200,icons[2],null,"",0);
+NavBtn startGame = new NavBtn((int)((-xaxis+xaxis)/2),(int)(-yaxis+100),450,250,icons[9],null,"",0);
 
     ArrayList<Button> arr = new ArrayList<>();
 
@@ -90,7 +90,7 @@ NavBtn startGame = new NavBtn((int)((-xaxis+xaxis)/2),(int)(-yaxis+100),350,200,
         drawArray(initwriteString(howManyPlayers.toString(),-100,100,400,200,200,0));
         drawArray(initwriteString(howManyHumans.toString(),-100,100,200,200,200,0));
         drawArray(initwriteString(howManyAis.toString(),-100,100,0,200,200,0));
-        drawArray(initwriteString(whatIsLevel,-240,240,-265,50,50,0));
+        drawArray(initwriteString(whatIsLevel,-180,180,-275,60,60,0));
     }
 }
 

@@ -23,18 +23,12 @@ public class ScoreBoard extends Page {
 
 
     //settings
-    NavBtn play = new NavBtn((int)(-xaxis+150),(int)(yaxis-100),150,150,icons[8],null,"",0);
+    NavBtn play = new NavBtn((int)(-200),(int)(-yaxis+100),400,275,icons[9],null,"",0);
     //    Buttons
-    static Button btnClearScoreBord = new BtnClearScoreBoard(300, (int)(-yaxis+300), 130, 100, icons[4], null, "", 50);
+    static Button btnClearScoreBord = new BtnClearScoreBoard(200, (int)(-yaxis+100), 400, 275, icons[11], null, "", 50);
 
-    //  Data
-    protected static Integer howManyPlayers = numPlayers;
-    protected static Integer howManyHumans = numHuman;
-    protected static Integer howManyAis = numAi;
-    protected static String whatIsLevel = level;
+    //InputBox
 
-    //Start
-    static NavBtn startGame = new NavBtn((int)((-xaxis+xaxis)/2),(int)(-yaxis+100),350,200,icons[2],null,"",0);
 
     ArrayList<Button> arr = new ArrayList<>();
     ArrayList<Pair> scores = getScoreBoard();
@@ -42,22 +36,21 @@ public class ScoreBoard extends Page {
     public ScoreBoard() {
         super(background[0]);
         arr.add(btnClearScoreBord);
-        arr.add(startGame);
+        arr.add(play);
         super.buttons = arr;
     }
     @Override
     public void draw(){
-        for (int i = 0; i < scores.size(); i++) {
-
-        }
         super.draw();
-        drawArray(playersText);
-        drawArray(humansText);
-        drawArray(aiText);
-        drawArray(levelText);
-        drawArray(initwriteString(howManyPlayers.toString(),-100,100,400,200,200,0));
-        drawArray(initwriteString(howManyHumans.toString(),-100,100,200,200,200,0));
-        drawArray(initwriteString(howManyAis.toString(),-100,100,0,200,200,0));
-        drawArray(initwriteString(whatIsLevel,-240,240,-265,50,50,0));
+        DrawSprite(0,450,700,400,icons[10]);
+        DrawSprite(0,-350,1200,300,icons[2]);
+        drawScores(scores);
+    }
+    public void drawScores(ArrayList<Pair> arra){
+        for (int i = 0; i < arra.size() && i<3; i++) {
+            drawArray(initwriteString(i+"",-300,-200,100-i*150,50,50,0));
+            drawArray(initwriteString(arra.get(i).getS(),-180,180,100-i*150,50,50,0));
+            drawArray(initwriteString(arra.get(i).getIn().toString(),200,300,100-i*150,50,50,0));
+        }
     }
 }
