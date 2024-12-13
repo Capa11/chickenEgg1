@@ -17,6 +17,7 @@ public abstract class variables implements GLEventListener {
     public static Page runningPage;
     public static float xtranslation=0,ytranslation=0;
     public static float xmouse=1000,ymouse=500;
+    public static BitSet keyBits = new BitSet(256);
     public static float lastMouseX, lastMouseY;
     public static boolean dragging = false;
     public static float convertX(float x, float width) {

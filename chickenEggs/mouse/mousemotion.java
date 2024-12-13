@@ -26,10 +26,10 @@ public class mousemotion implements MouseMotionListener {
 
     @Override public void mouseMoved(MouseEvent e) {
         if (Operations) {
-
             xmouse = convertX(e.getX(), e.getComponent().getWidth());
             ymouse = convertY(e.getY(), e.getComponent().getHeight());
             // System.out.println(xmouse+" "+ymouse);
+            runningPage.mouseMoved();
         }
     }
 }
