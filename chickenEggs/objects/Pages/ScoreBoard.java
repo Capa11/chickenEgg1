@@ -48,7 +48,7 @@ public class ScoreBoard extends Page {
     @Override
     public void draw(){
         for (int i = 0; i < scores.size(); i++) {
-            
+
         }
         super.draw();
         drawArray(playersText);
