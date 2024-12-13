@@ -41,7 +41,9 @@ public class CustomScreen extends Page {
         super(man[man.length - 1]);
         arr.add(b1);
         super.buttons = arr;
-        box.draw();
-
+    }
+    @Override
+    public void keyPressed(int e){
+        if (e == 'A') System.out.println("hhhh");
     }
 }

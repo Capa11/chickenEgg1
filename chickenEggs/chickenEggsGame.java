@@ -14,8 +14,8 @@ import java.awt.*;
 
     public class chickenEggsGame extends JFrame {
         public static void main(String[] args) {
-            showOnScreen(0,new chickenEggsGame());
-            animator.start();
+            new chickenEggsGame();
+
         }
         public static void showOnScreen(int screen, JFrame frame ) throws RuntimeException {
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
