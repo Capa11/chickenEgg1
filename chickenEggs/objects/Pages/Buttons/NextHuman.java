@@ -19,10 +19,13 @@ public class NextHuman extends Button {
 
     @Override
     public void ifClicked(){
-        if (numHuman+numAi<numPlayers && numHuman<4){
+        if (numHuman<numPlayers){
             new Humans(++numHuman);
+            numAi = numPlayers-numHuman;
         }
-        System.out.println("Number of humans is "+numHuman);
+        System.out.println("Number of players is "+numPlayers);
+        System.out.println("Number of human is "+numHuman);
+        System.out.println("Number of Ai is "+numAi);
     }
 }
 

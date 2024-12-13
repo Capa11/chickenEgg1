@@ -21,8 +21,11 @@ public class PrevHuman extends Button {
     public void ifClicked(){
         if (numHuman>0){
             new Humans(--numHuman);
+            numAi = numPlayers-numHuman;
         }
-        System.out.println("Number of humans is "+numHuman);
+        System.out.println("Number of players is "+numPlayers);
+        System.out.println("Number of human is "+numHuman);
+        System.out.println("Number of Ai is "+numAi);
     }
 }
 

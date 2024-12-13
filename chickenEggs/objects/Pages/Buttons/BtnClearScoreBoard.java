@@ -2,13 +2,8 @@ package chickenEggs.objects.Pages.Buttons;
 
 import chickenEggs.interfaces.Pages.Button;
 import chickenEggs.interfaces.Pages.Page;
-import chickenEggs.interfaces.drawable;
-import chickenEggs.objects.Pages.Data.Ais;
-import chickenEggs.objects.Pages.Data.Humans;
-import chickenEggs.objects.Pages.Data.Players;
 
 import static chickenEggs.interfaces.variables.*;
-import static chickenEggs.interfaces.variables.drawArray;
 
 public class BtnClearScoreBoard extends Button {
     public BtnClearScoreBoard(){}

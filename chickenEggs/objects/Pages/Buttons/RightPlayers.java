@@ -21,8 +21,11 @@ public class RightPlayers extends Button {
     public void ifClicked(){
         if (numPlayers<4){
             new Players(++numPlayers);
+            numAi = numPlayers-numHuman;
         }
         System.out.println("Number of players is "+numPlayers);
+        System.out.println("Number of human is "+numHuman);
+        System.out.println("Number of Ai is "+numAi);
     }
 }
 
