@@ -8,6 +8,7 @@ import static chickenEggs.SimpleGLEventListener.*;
 
 public class key implements KeyListener {
 
+    public static BitSet keyBits = new BitSet(256);
 
     public void keyReleased(final KeyEvent event) {
         if (Operations) {
@@ -27,7 +28,7 @@ public class key implements KeyListener {
         if(Operations) {
             int keyCode = e.getKeyCode();
             keyBits.set(keyCode);
-            runningPage.keyPressed(keyCode);
+            box.writeBox(e);
         }
     }
 

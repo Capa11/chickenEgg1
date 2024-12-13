@@ -8,7 +8,6 @@ import chickenEggs.interfaces.*;
 import chickenEggs.objects.Pages.CustomScreen;
 
 import chickenEggs.interfaces.Pages.*;
-import chickenEggs.objects.Pages.ScoreBoard;
 
 
 public class SimpleGLEventListener extends variables {
@@ -16,25 +15,21 @@ public class SimpleGLEventListener extends variables {
     drawable[] str1;
     drawable[] str;
 
-
     public static inputbox box;
     OrdinaryChicken chicken;
 
     public void init(GLAutoDrawable gld) {
         gl = gld.getGL();
         init(gl);
-        runningPage = new CustomScreen();
-
+        runningPage=new CustomScreen();
     }
-
     public void display(GLAutoDrawable gld) {
         gl = gld.getGL();
         gl.glClear(GL.GL_COLOR_BUFFER_BIT);
         runningPage.draw();
 
+
     }
-
-
     void drawBackground(){
         //DrawSprite(0,0, (int) (xaxis*2), (int) (yaxis*2),backninjastarDigitsDotBlank[0]);
     }

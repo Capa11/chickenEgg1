@@ -18,7 +18,8 @@ public class mousebutton implements MouseListener {
                 dragging = true;
                 lastMouseX = xmouse;
                 lastMouseY = ymouse;
-                runningPage.isClicked();
+                runningPage.checkclick();
+                box.isClicked();
             }
         }
     }

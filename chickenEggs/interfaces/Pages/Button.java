@@ -2,7 +2,7 @@ package chickenEggs.interfaces.Pages;
 import chickenEggs.interfaces.*;
 import static chickenEggs.interfaces.variables.*;
 public abstract class Button extends drawable{
-    Page page;drawable[] buttonName;public boolean haveIcon=false,isSelect=false;drawable icon;
+    Page page;drawable[] buttonName;boolean haveIcon=false;drawable icon;
     public Button(){}
     public Button(int xbutton, int ybutton , int wbutton, int hbutton, int backGround,Page page,String s,int fontsize){
         super(xbutton,ybutton,wbutton,hbutton,backGround);
@@ -18,39 +18,20 @@ public abstract class Button extends drawable{
         haveIcon=true;
         icon=new drawable(xicon,yicon,wicon,hicon,iconpath);
     }
-    @Override
+    public void ifClicked(){
+
+    }
+    public boolean isClicked(){
+        if(lastMouseX<=x+w/2&&lastMouseX>=x-w/2&&lastMouseY<=y+h/2&&lastMouseY>=y-h/2){
+            ifClicked();
+            System.out.println("clicked");
+            return true;
+        }
+        else return false;
+    }    @Override
     public void draw(){
         super.draw();//draw background of button
         drawArray(buttonName);//writing button name on it
         if(haveIcon)icon.draw();
     }
-    public boolean isInside(float xcheck,float ycheck){
-        if(xcheck<=x+w/2&&xcheck>=x-w/2&&ycheck<=y+h/2&&ycheck>=y-h/2){
-            return true;
-        }
-        return false;
-    }
-    public void ifMouseMoved(){}//for calling subclasses when overriding
-    public void ifkeyPressed(int e) {}//for calling subclasses when overriding
-    public void ifClicked(){}
-    public void isClicked(){
-        if(isInside(lastMouseX,lastMouseY)){
-            isSelect=true;
-            ifClicked();
-        }
-        else {
-            isSelect=false;
-        }
-    }
-    public boolean mouseMoved(){
-        if(isInside(xmouse,ymouse)){
-            ifMouseMoved();
-            return true;
-        }
-        return false;
-    }
-    public void keyPressed(int e){
-        if(isSelect)ifkeyPressed(e);
-    }
-
 }
