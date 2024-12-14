@@ -7,7 +7,8 @@ public class OrdinaryChicken extends Chicken {
     public OrdinaryChicken ( ) {
         super(chicken[0],100,50);
         this.health = 1;
-        this.eggDuration = 100;
+        this.eggDuration = 2000;
         this.speed = 3;
     }
+    
 }
