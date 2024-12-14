@@ -28,6 +28,8 @@ public abstract class variables implements GLEventListener {
     public static float convertY(float y, float height) {
         return (1 - y / height) * yaxis *2- yaxis;
     }
+    public static int playerController = 1;
+
     public static GL gl;
     public static float xaxis =1000;
     public static float yaxis =600;

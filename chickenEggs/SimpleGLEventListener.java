@@ -36,6 +36,7 @@ public class SimpleGLEventListener extends variables {
 //        runningPage = new InstractionDefult();
         // runningPage = new chickencircle2();
 //        runningPage = new chickencircle();
+        runningPage = new ControllerScreen();
 
         // Store the component for later use
         component = (java.awt.Component) gld;
