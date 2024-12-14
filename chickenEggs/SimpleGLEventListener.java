@@ -5,12 +5,14 @@ import javax.media.opengl.GLAutoDrawable;
 
 import chickenEggs.objects.Game.*;
 import chickenEggs.interfaces.*;
+import chickenEggs.objects.Game.OrdinaryChicken;
+import chickenEggs.objects.Game.OrdinaryChicken;
 import chickenEggs.objects.Pages.CustomScreen;
 
 import chickenEggs.interfaces.Pages.*;
 import chickenEggs.objects.Pages.HomeScreen;
 import chickenEggs.objects.Pages.ScoreBoard;
-
+import chickenEggs.objects.Game.OrdinaryChicken;
 
 public class SimpleGLEventListener extends variables {
     drawable mons;
@@ -20,7 +22,6 @@ public class SimpleGLEventListener extends variables {
 
     public static inputbox box;
     OrdinaryChicken chicken;
-
     public void init(GLAutoDrawable gld) {
         gl = gld.getGL();
         init(gl);

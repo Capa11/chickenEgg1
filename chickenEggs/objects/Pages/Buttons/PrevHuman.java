@@ -27,13 +27,5 @@ public class PrevHuman extends Button {
         System.out.println("Number of human is "+numHuman);
         System.out.println("Number of Ai is "+numAi);
     }
-    @Override
-    public void ifMouseMoved(){
-        super.path = background[1];
-    }
-    @Override
-    public void ifMouseOutMoved(){
-        super.path = icons[6];
-    }
 }
 

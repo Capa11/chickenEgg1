@@ -31,7 +31,6 @@ public abstract class Button extends drawable{
         return false;
     }
     public void ifMouseMoved(){}//for calling subclasses when overriding
-    public void ifMouseOutMoved(){}//for calling subclasses when overriding
     public void ifkeyPressed(int e) {}//for calling subclasses when overriding
     public void ifClicked(){}
     public void isClicked(){
@@ -47,11 +46,8 @@ public abstract class Button extends drawable{
         if(isInside(xmouse,ymouse)){
             ifMouseMoved();
             return true;
-        }else {
-            ifMouseOutMoved();
-            return false;
         }
-
+        return false;
     }
     public void keyPressed(int e){
         if(isSelect)ifkeyPressed(e);
