@@ -31,17 +31,19 @@ public class SimpleGLEventListener extends variables {
         init(gl);
 //        runningPage=new CustomScreen();
 //        runningPage = new CustomGameInstraction();
-//        runningPage = new Statement();
+        runningPage = new Statement();
 //        runningPage = new HandelChickenMove();
 //        runningPage = new InstractionDefult();
         // runningPage = new chickencircle2();
-        runningPage = new chickencircle();
+//        runningPage = new chickencircle();
 
         // Store the component for later use
         component = (java.awt.Component) gld;
 
         // Set initial custom cursor
         setCustomCursor("chickenEgg1/chickenEggs/Assets/Man/Man1.png");
+        //BlueBoyAdventure.wav //the sound
+        //D:\practice code\304 file\project-game-jetbrains--main\chickenEgg1\chickenEggs\BlueBoyAdventure.wav
 
     }
     //cursor
