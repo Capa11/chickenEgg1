@@ -1,15 +1,20 @@
-package chickenEggs.objects.Game;
+package chickenEggs.interfaces.Game;
 import chickenEggs.interfaces.drawable;
 import static chickenEggs.interfaces.variables.*;
 import chickenEggs.interfaces.*;
 import chickenEggs.interfaces.Game.*;
+import chickenEggs.objects.Game.eggs;
+
 import java.util.*;
 public class Chicken extends singleGameObject {
-     public int health , eggDuration , eggtimer , Speed  ,path;
+     public int health , eggDuration , eggtimer , Speed  ,path,scoreIfDead,scoreIfdamage;
      public boolean damaged = false;//omar was here...
-     public ArrayList<eggs> eggs = new ArrayList<>();
-     public Chicken(int x, int y, int w, int h,int path, int xmingame, int xmaxgame, int ymingame, int ymaxgame) {
+     public ArrayList<chickenEggs.objects.Game.eggs> eggs = new ArrayList<>();
+     public static int defaultSize=30;
+     public Chicken(int x, int y, int w, int h,int path, int xmingame, int xmaxgame, int ymingame, int ymaxgame,int scoreIfDead,int scoreIfdamage) {
           super(x, y, w, h , path, xmingame , xmaxgame , ymingame , ymaxgame);
+          this.scoreIfDead=scoreIfDead;
+          this.scoreIfdamage=scoreIfdamage;
      }
      public void moveleft() {
           this.x-=Speed;

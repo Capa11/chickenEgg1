@@ -95,7 +95,16 @@ public abstract class variables implements GLEventListener {
     public static int[] bullets = new int[ibullets.length];
     public static int[] rockets = new int[irockets.length];
 
-
+    public static boolean isClickInside(int xmin,int xmax ,int ymin,int ymax) {
+        if (lastMouseX <= xmax && lastMouseX >= xmin && lastMouseY <= ymax && lastMouseY >= ymin) {
+            return true;
+        } else return false;
+    }
+    public static boolean isMouseInside(int xmin,int xmax ,int ymin,int ymax) {
+        if (xmouse <= xmax && xmouse >= xmin && ymouse <= ymax && ymouse >= ymin) {
+            return true;
+        } else return false;
+    }
     protected static  void init(GL gl) {
         gl.glOrtho( -xaxis, xaxis, -yaxis, yaxis,-1.0, 1.0);
         gl.glClearColor(1.0f, 1.0f, 1.0f, 1.0f); // This Will Clear The Background Color To White
@@ -200,6 +209,7 @@ public abstract class variables implements GLEventListener {
     public static void initGrid(drawable[] arr, float xs, float xf, float ys, int w, int h, int gapX, int gapY){
         initGridindex(arr,xs,xf,ys,w,h,gapX,gapY,0,arr.length-1);
     }
+
     public static void initGridindex(drawable[] arr, float xs, float xf, float ys, int w, int h, int gapX, int gapY,int sind,int eind){
         int maxEx= Math.min((int) ((xf-xs)/(w+gapX)),eind-sind+1);
         float xEmpty=(xf-xs)-((w*maxEx)+gapX*(maxEx-1));
@@ -221,6 +231,28 @@ public abstract class variables implements GLEventListener {
             else xs+=gapX+w;
             i++;
         }
+    }
+    public static void initGridNoWH(drawable[] arr, float xs, float xf, float ys,int yf, int gapX, int gapY){
+        int totalElements = arr.length;
+        float availableWidth = xf - xs;
+        float availableHeight = ys - yf;
+        int maxColumns = 1;
+        int maxRows = 1;
+        for (int cols = 1; cols <= totalElements; cols++) {
+            int rows = (int) Math.ceil((double) totalElements / cols);
+            float calculatedWidth = (availableWidth - gapX * (cols - 1)) / cols;
+            float calculatedHeight = (availableHeight - gapY * (rows - 1)) / rows;
+            if (calculatedWidth > 0 && calculatedHeight > 0) {
+                maxColumns = cols;
+                maxRows = rows;
+            }
+            else break;
+        }
+        float w = (availableWidth - gapX * (maxColumns - 1)) / maxColumns;
+        float h = (availableHeight - gapY * (maxRows - 1)) / maxRows;
+
+        initGridindex(arr, xs, xf, ys, (int) w, (int) h, gapX, gapY, 0, arr.length-1);
+
     }
 
     //numbers and letters(no caps) and blank only in string all words must satisfy the width given
