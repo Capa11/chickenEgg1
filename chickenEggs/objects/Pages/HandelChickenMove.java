@@ -10,7 +10,7 @@ public class HandelChickenMove extends Page {
     drawable[] leftToRightText;
     private float rightToLeftStart = 0; // Start from the middle of the screen
     private float rightToLeftEnd = -1000; // End position off-screen to the left
-    private float leftToRightStart = -1500; // Start from the left
+    private float leftToRightStart = -1000; // Start from the left
     private float leftToRightEnd = 0; // End position off-screen to the right
     private float speed = 4; // Speed of the animation
     private float textWidth = 1000; // Desired width of the text
