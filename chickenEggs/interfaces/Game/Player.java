@@ -11,12 +11,10 @@ import static chickenEggs.interfaces.variables.xmouse;
 public abstract class Player {
     public rocket r;
     public String name;
-    public int score=0;
-    public int xminGame= (int) -xaxis, xmaxGame= (int) xaxis, yminGame= (int) -yaxis, ymaxGame= (int) yaxis;
-    public Player(String name){
+    public int score=0;public Player(String name){
         this.name=name;
         int i=0;
-        r=new rocket(0,0,xminGame,xmaxGame,yminGame,ymaxGame);
+        r=new rocket(0,0);
         while(i<rocket.rocketSkin.length){
             if(rocket.rocketSkin[i]){
                 rocket.rocketSkin[i]=false;

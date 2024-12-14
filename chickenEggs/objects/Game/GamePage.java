@@ -17,7 +17,7 @@ import static chickenEggs.interfaces.variables.bullets;
 
 public class GamePage extends Page {
     float[] probilityChickens;
-    public int xminGame,xmaxGame,yminGame,ymaxGame,howManyPlayers,lives=5;int[] score;
+    public int howManyPlayers,lives=5;int[] score;
     public mousePlayer mousePlayer;
     public boolean isDead=false;
     public ArrayList<Egg> eggs=new ArrayList<>();
@@ -28,26 +28,18 @@ public class GamePage extends Page {
     public ArrayList<Player> players = new ArrayList<>();;
     public GamePage(mousePlayer mousePlayer, ArrayList<keyPlayer> keyPlayers, ArrayList<AiPlayer> AiPlayers, int level){//level 0 means not custom game
         path=background[0];
-        this.xminGame=(int) -xaxis;this.xmaxGame=(int) xaxis;
-        this.yminGame=(int) -yaxis;this.ymaxGame=(int) yaxis;
         this.keyPlayers=keyPlayers;
         this.AiPlayers=AiPlayers;
         this.mousePlayer=mousePlayer;
         if(mousePlayer!=null)players.add(mousePlayer);
         players.addAll(keyPlayers);
         players.addAll(AiPlayers);
-        for (int i = 0; i < players.size(); i++) {
-            players.get(i).xminGame=(int) -xaxis;
-            players.get(i).xmaxGame=(int)  xaxis;
-            players.get(i).yminGame=(int) -yaxis;
-            players.get(i).ymaxGame=(int)  yaxis;
-        }
 
     }
     public ArrayList<Chicken> initChicken(int level){
        chickens = new ArrayList<>(20);//how many chickens
         for (int i = 0; i < chickens.size(); i++) {
-            chickens.set(i,new Chicken(0,0,0,0,0,0,0,0,0,0,0));
+            chickens.set(i,new Chicken(0,0,0,0,0,0,0));
         }
         return chickens;
     }
@@ -98,13 +90,13 @@ public class GamePage extends Page {
         }
     }
     public void mouseMotion(){
-        if(isMouseInside(xminGame,xmaxGame,yminGame,ymaxGame)&&mousePlayer!=null){
+        if(isMouseInside()&&mousePlayer!=null){
             System.out.println("motion");
             mousePlayer.mouseMotion();
         }
     }
     public void mouseClicked(){
-        if(isClickInside(xminGame,xmaxGame,yminGame,ymaxGame)&&mousePlayer!=null) {
+        if(isClickInside()&&mousePlayer!=null) {
             System.out.println("click");
                 mousePlayer.mouseClicked();
 
@@ -118,7 +110,7 @@ public class GamePage extends Page {
     public void initChicken() {
         Chicken[] chickens1 = (Chicken[]) chickens.toArray();
         for (int i = 0; i < chickens.size(); i++) {
-            initGrid(chickens1,xminGame,xmaxGame,yminGame,Chicken.defaultSize,Chicken.defaultSize,20,20);
+            initGrid(chickens1,-xaxis,xaxis,-yaxis,Chicken.defaultSize,Chicken.defaultSize,20,20);
         }
     }
 }

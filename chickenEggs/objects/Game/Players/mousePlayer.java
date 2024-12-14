@@ -12,13 +12,13 @@ public class mousePlayer extends Player {
         super( name);
     }
     public void mouseClicked(){
-        if(isClickInside( xminGame, xmaxGame , yminGame, ymaxGame)) {
+        if(isClickInside()) {
             r.fire();
         }
     }
 
     public void mouseMotion(){
-        if(isMouseInside(xminGame, xmaxGame , yminGame, ymaxGame)){
+        if(isMouseInside()){
             if(xmouse!=r.x)r.x= (int) xmouse;
             if(ymouse!=r.y)r.y=(int)ymouse;
         }

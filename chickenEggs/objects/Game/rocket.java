@@ -10,17 +10,17 @@ public class rocket extends singleGameObject {
     public static boolean[] rocketSkin ={true,true,true,true};
     public static int wRocket=200;public static int hRocket=200;
 
-    public rocket(int x, int y,  int xminGame, int xmaxGame , int yminGame, int ymaxGame){
-        super(x,y,wRocket,hRocket,rockets[0],xminGame,xmaxGame ,yminGame,ymaxGame);
+    public rocket(int x, int y){
+        super(x,y,wRocket,hRocket,rockets[0]);
     }
-    public rocket(int xminGame, int xmaxGame , int yminGame, int ymaxGame){
-        super((xminGame+xmaxGame)/2,yminGame+20,wRocket,hRocket,xminGame,xmaxGame ,yminGame,ymaxGame);
+    public rocket(){
+        super(0, (int) (-yaxis+20),wRocket,hRocket);
     }
     public void distroy(){
         start();
     }
     public void start(){
-        y=yminGame+100;
+        y= (int) (-yaxis+100);
     }
     public void draw(){
 //        if(y<yminGame+h&& preparingRocket){

@@ -28,7 +28,7 @@ public class SimpleGLEventListener extends variables {
     ArrayList<AiPlayer> AiPlayers = new ArrayList<>(0);
 
     public static inputbox box;
-    rocket r = new rocket(0,0, (int) -xaxis, (int) xaxis, (int) -yaxis, (int) yaxis);
+    rocket r = new rocket(0,0);
 
     public void init(GLAutoDrawable gld) {
         gl = gld.getGL();
@@ -43,6 +43,7 @@ public class SimpleGLEventListener extends variables {
         gl = gld.getGL();
         gl.glClear(GL.GL_COLOR_BUFFER_BIT);
         runningPage.draw();
+        Operations=true;
 
     }
     void drawBackground(){

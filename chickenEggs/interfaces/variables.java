@@ -29,7 +29,7 @@ public abstract class variables implements GLEventListener {
     public static GL gl;
     public static float xaxis =1000;
     public static float yaxis =600;
-    public static boolean Operations = true;
+    public static boolean Operations = false;
     public static boolean isGameRunning=true;
     public static boolean showCoolEffect = false;
     public boolean winning=false;
@@ -94,13 +94,13 @@ public abstract class variables implements GLEventListener {
     public static int[] bullets = new int[ibullets.length];
     public static int[] rockets = new int[irockets.length];
 
-    public static boolean isClickInside(int xmin,int xmax ,int ymin,int ymax) {
-        if (lastMouseX <= xmax && lastMouseX >= xmin && lastMouseY <= ymax && lastMouseY >= ymin) {
+    public static boolean isClickInside() {
+        if (lastMouseX <= xaxis && lastMouseX >= -xaxis && lastMouseY <= yaxis && lastMouseY >= -yaxis) {
             return true;
         } else return false;
     }
-    public static boolean isMouseInside(int xmin,int xmax ,int ymin,int ymax) {
-        if (xmouse <= xmax && xmouse >= xmin && ymouse <= ymax && ymouse >= ymin) {
+    public static boolean isMouseInside() {
+        if (xmouse <= xaxis && xmouse >= -xaxis && ymouse <= yaxis && ymouse >= -yaxis) {
             return true;
         } else return false;
     }

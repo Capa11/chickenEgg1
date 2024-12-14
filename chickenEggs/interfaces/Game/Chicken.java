@@ -11,13 +11,13 @@ public class Chicken extends singleGameObject {
      public boolean damaged = false;//omar was here...
      public ArrayList<chickenEggs.objects.Game.eggs> eggs = new ArrayList<>();
      public static int defaultSize=30;
-     public Chicken(int x, int y, int w, int h,int path, int xmingame, int xmaxgame, int ymingame, int ymaxgame,int scoreIfDead,int scoreIfdamage) {
-          super(x, y, w, h , path, xmingame , xmaxgame , ymingame , ymaxgame);
+     public Chicken(int x, int y, int w, int h,int path ,int scoreIfDead,int scoreIfdamage) {
+          super(x, y, w, h , path);
           this.scoreIfDead=scoreIfDead;
           this.scoreIfdamage=scoreIfdamage;
      }
-     public Chicken(int path, int xmingame, int xmaxgame, int ymingame, int ymaxgame,int scoreIfDead,int scoreIfdamage) {
-          super(path, xmingame , xmaxgame , ymingame , ymaxgame);
+     public Chicken(int path,int scoreIfDead,int scoreIfdamage) {
+          super(path);
           this.scoreIfDead=scoreIfDead;
           this.scoreIfdamage=scoreIfdamage;
      }
@@ -42,7 +42,7 @@ public class Chicken extends singleGameObject {
 
 
      public void makeegg() {
-          eggs egg = new eggs(this.x , this.y-70 , 40 , 40 ,  xminGame,  xmaxGame,  yminGame,  ymaxGame);
+          eggs egg = new eggs(this.x , this.y-70 , 40 , 40 );
           egg.draw();
           eggs.add(egg);
      }
