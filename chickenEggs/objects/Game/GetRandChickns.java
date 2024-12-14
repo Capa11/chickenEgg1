@@ -1,8 +1,12 @@
+package chickenEggs.objects.Game;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-public class ChickenGame {
+public class GetRandChickns {
+
+    // Method to generate a random chicken distribution
     public static Map<String, Integer> generateChickenDistribution(int level) {
         // Define total points for each level
         int[] levelPoints = {400, 600, 800, 1000};
@@ -44,6 +48,7 @@ public class ChickenGame {
         return chickenDistribution;
     }
 
+    // Main method to test the function
     public static void main(String[] args) {
         // Run the test twice
         for (int testRun = 1; testRun <= 2; testRun++) {
