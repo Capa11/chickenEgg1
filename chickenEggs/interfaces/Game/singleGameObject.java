@@ -2,9 +2,13 @@ package chickenEggs.interfaces.Game;
 import chickenEggs.interfaces.drawable;
 
 public class singleGameObject extends drawable{
-    public float xminGame,xmaxGame,yminGame,ymaxGame,speed=5;
-    public singleGameObject(int x, int y, int w, int h, int path, float xminGame, float xmaxGame, float yminGame, float ymaxGame){
-        super(x,y,w,h,path);
+    public int xminGame,xmaxGame,yminGame,ymaxGame,speed=5,score=0;
+    public singleGameObject(int x, int y, int w, int h, int path, int xminGame, int xmaxGame, int yminGame, int ymaxGame){
+        this( x,  y,  w,  h,  xminGame,  xmaxGame,  yminGame,  ymaxGame);
+        this.path=path;
+    }
+    public singleGameObject(int x, int y, int w, int h, int xminGame, int xmaxGame, int yminGame, int ymaxGame){
+        super(x,y,w,h);
         this.xminGame=xminGame;
         this.xmaxGame=xmaxGame;
         this.yminGame=yminGame;
