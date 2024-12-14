@@ -30,7 +30,7 @@ public abstract class variables implements GLEventListener {
     public static GL gl;
     public static float xaxis =1000;
     public static float yaxis =600;
-    public static boolean Operations = true;
+    public static boolean Operations = false;
     public static boolean isGameRunning=true;
     public static boolean showCoolEffect = false;
     public boolean winning=false;
