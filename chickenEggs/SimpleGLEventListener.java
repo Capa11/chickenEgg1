@@ -7,11 +7,7 @@ import chickenEggs.objects.Game.*;
 import chickenEggs.interfaces.*;
 
 import chickenEggs.interfaces.Pages.*;
-import chickenEggs.objects.Pages.CustomGameInstraction;
-import chickenEggs.objects.Pages.Statement;
-import chickenEggs.objects.Pages.HandelChickenMove;
-import chickenEggs.objects.Pages.InstractionDefult;
-import chickenEggs.objects.Pages.chickencircle;
+import chickenEggs.objects.Pages.*;
 
 
 public class SimpleGLEventListener extends variables {
@@ -30,7 +26,8 @@ public class SimpleGLEventListener extends variables {
 //        runningPage = new Statement();
 //        runningPage = new HandelChickenMove();
 //        runningPage = new InstractionDefult();
-        runningPage = new chickencircle();
+//        runningPage = new chickencircle();
+        runningPage = new chickencircle2();
 
     }
     public void display(GLAutoDrawable gld) {

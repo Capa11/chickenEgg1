@@ -6,43 +6,102 @@ import chickenEggs.interfaces.Pages.Page;
 import static chickenEggs.interfaces.variables.*;
 
 public class chickencircle extends Page {
-    drawable[] line1;
-    drawable[] down; // Declare down array
-    private float yOffset = -500; // Start from the bottom
-    private float creditsOffset = -1500; // Start credits from the bottom
-    private float speed = 3; // Speed of the animation
+    drawable[] down;
+    private float centerX;
+    private float centerY;
+    private float radius = 500;
+    private float angle = 0;
+    private float rotationSpeed = 0.02f;
+    private float zoomFactor = 1.0f; // For 2D perspective effect
+    private float perspectiveAngle = 0; // Separate angle for perspective
+    private float oscillationSpeed = 0.1f; // Speed of oscillation (up and down)
+    private float oscillationOffset = 0; // Offset for oscillation effect
 
     public chickencircle() {
         super(background[0]);
 
-        // Initialize line1 text string
-//        line1 = initwriteString("in a galaxy far away the fate of earth hangs by a feather the " +
-//                "chickens have returned and this time they are not clucking around with their" +
-//                " cunning formations and relentless egg attacks it is up to you to defend the planet " +
-//                "take control of your spaceship dodge the incoming eggs and fry these feathered foes" +
-//                " in this fast paced action packed arcade adventure", -900, 900, yOffset, 50, 50, 8);
+        // Define screen boundaries
+        float screenLeft = -1000;
+        float screenRight = 1000;
+        float screenTop = 600;
+        float screenBottom = -600;
 
-        // Initialize down objects array
+        // Calculate center of the screen
+        centerX = (screenLeft + screenRight) / 2;
+        centerY = (screenTop + screenBottom) / 2;
 
-
+        // Initialize the down array
         down = new drawable[5];
         for (int i = 0; i < down.length; i++) {
             down[i] = new drawable();
-            down[i].setPath(numbers[i]); // Assuming 'numbers' array is defined elsewhere
+            down[i].setPath(numbers[i]);
         }
-        initGrid(down, -1000, -300, 500, 50, 50, 20, 10);
+
+        // Initial positioning of objects
+        initGrid(down, centerX, centerY, radius, 100, 100, 20, 10);
     }
 
     @Override
     public void draw() {
         super.drawBackground();
-        // Draw the background sprite
-//        DrawSprite(-100, (int) yOffset + 300, 1000, 600, background[1]);
 
-        // Draw the text and down objects
-//        drawArray(line1);
-        drawArray(down); // Draw the down array
+        // Update and draw with 2D circular positioning and vertical oscillation
+        drawFerrisWheelEffect(down);
     }
 
-    // Additional methods for initGrid and drawArray would be assumed to be in place
+    /**
+     * Draws the array with a Ferris wheel-like effect (circular + vertical oscillation)
+     */
+    private void drawFerrisWheelEffect(drawable[] array) {
+        // Update perspective angle slightly differently
+        perspectiveAngle += rotationSpeed * 0.5f;
+
+        // Apply vertical oscillation using sine wave
+        oscillationOffset = (float)Math.sin(oscillationSpeed) * 100; // Amplitude of oscillation
+
+        for (int i = 0; i < array.length; i++) {
+            // Calculate position offset
+            float offsetAngle = (2 * 3.14159f / array.length) * i;
+
+            // Calculate circular position
+            float x = centerX + (float)Math.cos(angle + offsetAngle) * radius;
+            float y = centerY + (float)Math.sin(angle + offsetAngle) * radius + oscillationOffset; // Add oscillation to vertical position
+
+            // Create 2D perspective effect
+            float scale = 1.0f - Math.abs((float)Math.sin(perspectiveAngle)) * 0.3f;
+
+            // Additional perspective distortion
+            float perspectiveX = x * scale;
+            float perspectiveY = y * scale;
+
+            // Reposition the object with perspective
+            initGrid(new drawable[]{array[i]}, perspectiveX, perspectiveY, 10, 100, 100, 20, 10);
+
+            // Draw the current object
+            array[i].draw();
+        }
+
+        // Update rotation angle
+        angle += rotationSpeed;
+        if (angle >= 2 * 3.14159f) {
+            angle -= 2 * 3.14159f;
+        }
+
+        // Update oscillation speed (optional for variation)
+        oscillationSpeed += 0.05f;
+    }
+
+    /**
+     * Adjust rotation speed
+     */
+    public void setRotationSpeed(float speed) {
+        this.rotationSpeed = speed;
+    }
+
+    /**
+     * Adjust circle radius
+     */
+    public void setRadius(float newRadius) {
+        this.radius = newRadius;
+    }
 }
