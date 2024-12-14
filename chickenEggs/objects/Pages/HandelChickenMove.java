@@ -13,11 +13,12 @@ public class HandelChickenMove extends Page {
     private float creditsOffsetStart = -1500; // Start from the left
     private float creditsOffsetEnd = 0; // End position off-screen to the right
     private float speed = 4; // Speed of the animation
+    private float textWidth = 1000; // Desired width of the text
 
     public HandelChickenMove() {
         super(background[0]);
-        line1 = initwriteString("this will go out of the screen", xOffsetStart, xOffsetEnd, 600, 100, 50, 8);
-        credits = initwriteString("this will be fixed at the middle of the screen", creditsOffsetStart, creditsOffsetEnd, 600, 100, 50, 8);
+        line1 = initwriteString("this will be fixed at the middle of the screen", xOffsetStart, xOffsetStart + textWidth, 600, 100, 50, 8);
+        credits = initwriteString("this will be fixed at the middle of the screen", creditsOffsetStart, creditsOffsetStart + textWidth, 600, 100, 50, 8);
     }
 
     @Override
@@ -32,11 +33,10 @@ public class HandelChickenMove extends Page {
         if (xOffsetStart > xOffsetEnd) {
             xOffsetStart -= speed;
         }
-        if (creditsOffsetStart < 0) {
+        if (creditsOffsetStart < creditsOffsetEnd) {
             creditsOffsetStart += speed;
-            creditsOffsetEnd += speed;
         }
-        line1 = initwriteString("this will go out of the screen", xOffsetStart, xOffsetEnd, 600, 100, 50, 8);
-        credits = initwriteString("this will be fixed at the middle of the screen", creditsOffsetStart, creditsOffsetEnd, 600, 100, 50, 8);
+        line1 = initwriteString("this will be fixed at the middle of the screen", xOffsetStart, xOffsetStart + textWidth, 600, 100, 50, 8);
+        credits = initwriteString("this will be fixed at the middle of the screen", creditsOffsetStart, creditsOffsetStart + textWidth, 600, 100, 50, 8);
     }
 }
