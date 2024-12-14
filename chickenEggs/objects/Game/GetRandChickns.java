@@ -1,6 +1,6 @@
 package chickenEggs.objects.Game;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
 
@@ -28,7 +28,7 @@ public class GetRandChickns {
 
         int[] chickenPoints = {20, 40, 60, 80};
         Random random = new Random();
-        Map<String, Integer> chickenDistribution = new HashMap<>();
+        Map<String, Integer> chickenDistribution = new LinkedHashMap<>(); // hashmap order
         int currentTotal = 0;
 
         while (true) {
@@ -46,11 +46,12 @@ public class GetRandChickns {
             }
         }
 
-        chickenDistribution.put("TotalPoints", currentTotal);
+        chickenDistribution.put("TotalPoints", currentTotal);  
         return chickenDistribution;
     }
 
     public static void main(String[] args) {
+        // Test for levels 1 to 4
         for (int level = 1; level <= 4; level++) {
             System.out.println("Level " + level + ":");
             Map<String, Integer> distribution = generateChickenDistribution(level);
@@ -58,6 +59,7 @@ public class GetRandChickns {
             System.out.println();
         }
 
+        // Additional test case for level 2
         System.out.println("Test Case - Level 2:");
         Map<String, Integer> testCaseResult = generateChickenDistribution(2);
         testCaseResult.forEach((key, value) -> System.out.println(key + ": " + value + " chickens"));
