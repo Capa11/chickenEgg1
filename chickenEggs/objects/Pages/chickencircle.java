@@ -1,5 +1,6 @@
 package chickenEggs.objects.Pages;
 
+import chickenEggs.SimpleGLEventListener;
 import chickenEggs.interfaces.*;
 import chickenEggs.interfaces.Pages.Page;
 
@@ -16,6 +17,8 @@ public class chickencircle extends Page {
     private float perspectiveAngle = 0; // Separate angle for perspective
     private float oscillationSpeed = 0.1f; // Speed of oscillation (up and down)
     private float oscillationOffset = 0; // Offset for oscillation effect
+
+    private boolean cursorChanged = false; // Set to false to allow cursor change
 
     public chickencircle() {
         super(background[0]);
@@ -39,14 +42,39 @@ public class chickencircle extends Page {
 
         // Initial positioning of objects
         initGrid(down, centerX, centerY, radius, 100, 100, 20, 10);
+
+        // Remove changeCursor() from constructor
+        // changeCursor();
     }
 
     @Override
     public void draw() {
         super.drawBackground();
 
+        // Change cursor if not already changed
+        if (!cursorChanged) {
+            changeCursor();
+        }
+
         // Update and draw with 2D circular positioning and vertical oscillation
         drawFerrisWheelEffect(down);
+    }
+
+    // Method to change the cursor
+    private void changeCursor() {
+        // Get the SimpleGLEventListener instance
+        SimpleGLEventListener listener = getListener();
+        if (listener != null) {
+            // Call setCustomCursor with the desired image path
+            listener.setCustomCursor("chickenEgg1/chickenEggs/Assets/Man/back.png");
+            cursorChanged = true; // Mark that the cursor has been changed
+        }
+    }
+
+    // Method to obtain the SimpleGLEventListener instance
+    private SimpleGLEventListener getListener() {
+        // Assuming you have access to the listener instance via variables or a singleton
+        return variables.simpleGLEventListenerInstance;
     }
 
     /**

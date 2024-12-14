@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.util.*;
 
 import Texture.TextureReader;
+import chickenEggs.SimpleGLEventListener;
 import chickenEggs.interfaces.Pages.Page;
 import chickenEggs.objects.Pages.CustomScreen;
 
@@ -42,6 +43,8 @@ public abstract class variables implements GLEventListener {
     public static int numAi =0;
     public static String level ="easy";
 
+    // Add this line to store the SimpleGLEventListener instance
+    public static SimpleGLEventListener simpleGLEventListenerInstance = null;
 
     //paths
     private static String folderalphabet = "chickenEggs//Assets//Alphabet//";
