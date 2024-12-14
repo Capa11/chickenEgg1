@@ -21,7 +21,7 @@ public class Statement extends Page {
         credits = initwriteString("game made by hazem capa omar youssef mahmoud", -900, 900, creditsOffset, 50, 50, 8);
 
         // Initialize the background sound and start looping
-        backgroundSound = Sound.loadFromFile("chickenEgg1/chickenEggs/BlueBoyAdventure.wav");
+        backgroundSound = Sound.loadFromFile("chickenEgg1/chickenEggs/Sounds/BlueBoyAdventure.wav");
         if (backgroundSound != null) {
             backgroundSound.playLooping();
         }
