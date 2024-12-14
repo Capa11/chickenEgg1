@@ -74,7 +74,8 @@ public class chickencircle extends Page {
     // Method to obtain the SimpleGLEventListener instance
     private SimpleGLEventListener getListener() {
         // Assuming you have access to the listener instance via variables or a singleton
-//        return variables.simpleGLEventListenerInstance;
+        return variables.simpleGLEventListenerInstance;
+
     }
 
     /**
@@ -132,4 +133,7 @@ public class chickencircle extends Page {
     public void setRadius(float newRadius) {
         this.radius = newRadius;
     }
+
 }
+
+

@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.util.*;
 
 import Texture.TextureReader;
+import chickenEggs.SimpleGLEventListener;
 import chickenEggs.interfaces.Pages.Page;
 import chickenEggs.objects.Pages.CustomScreen;
 
@@ -42,6 +43,8 @@ public abstract class variables implements GLEventListener {
     public static int numAi =0;
     public static String level ="easy";
 
+    // Add this line to store the SimpleGLEventListener instance
+    public static SimpleGLEventListener simpleGLEventListenerInstance = null;
 
     //paths
     private static String folderalphabet = "chickenEggs//Assets//Alphabet//";
@@ -67,8 +70,12 @@ public abstract class variables implements GLEventListener {
     private static String[] iegg = {"egg.png"};
     private static String[] ichicken = {"OrdinaryChicken.png","UnordinaryChicken.png","SuperChicken.png","UltimateChicken.png"};
 
+
     private static String[] iconsCustom ={"add1.png","add2.png","minus1.png","minus2.png","right1.png","right2.png","left1.png","left2.png","settings.png","play.png","top3.png","reset.png"};
     private static String[] ibackground ={"background1.jpg","hoverBlue.jpg"};
+    private static String[] iconsCustom ={"add1.png","add2.png","minus1.png","minus2.png","right1.png","right2.png","left1.png","left2.png"};
+    private static String[] ibackground ={"spacee.png","kindpng_6159643.png"};
+
 
 
 //    private static String[] iconsCustom ={"add1.png","add2.png","minus1.png","minus2.png","right1.png","right2.png","left1.png","left2.png"};
@@ -114,7 +121,7 @@ public abstract class variables implements GLEventListener {
         prepareimage(folderchicken,ibaskets,baskets,gl);
         prepareimage(folderIcons,iconsCustom,icons,gl);
 
-        prepareimage(folderBackground,ibackground,background,gl);
+        prepareimage(folderchicken,ibackground,background,gl);
 
 
 
