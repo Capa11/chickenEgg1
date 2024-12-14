@@ -64,6 +64,7 @@ public abstract class variables implements GLEventListener {
     private static String[] ibaskets = {"basket1.png","basket2.png","basket3.png","basket4.png"};
     private static String[] iegg = {"egg.png"};
     private static String[] ichicken = {"OrdinaryChicken.png","UnordinaryChicken.png","SuperChicken.png","UltimateChicken.png"};
+    private static String[] iheart = {"heart.png"};
 
     private static String[] iconsCustom ={"add1.png","add2.png","minus1.png","minus2.png","right1.png","right2.png","left1.png","left2.png","settings.png","play.png","top3.png","reset.png"};
     private static String[] ibackground ={"background1.jpg"};
@@ -92,7 +93,7 @@ public abstract class variables implements GLEventListener {
 
     public static int[] bullets = new int[ibullets.length];
     public static int[] rockets = new int[irockets.length];
-
+    public static int[] heart = new int[iheart.length];
     public static boolean isClickInside() {
         if (lastMouseX <= xaxis && lastMouseX >= -xaxis && lastMouseY <= yaxis && lastMouseY >= -yaxis) {
             return true;
@@ -128,7 +129,7 @@ public abstract class variables implements GLEventListener {
         prepareimage(folderbullets , ibullets , bullets , gl);
         prepareimage(folderRockets , irockets , rockets , gl);
 
-
+        prepareimage(folderchicken , iheart , heart ,gl);
 
     }
 
