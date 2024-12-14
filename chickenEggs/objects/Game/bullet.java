@@ -10,8 +10,11 @@ public class bullet extends singleGameObject {
     public bullet(int x, int y, int w, int h,int path, int xmingame, int xmaxgame, int ymingame, int ymaxgame) {
         super(x, y, w, h , path, xmingame , xmaxgame , ymingame , ymaxgame);
     }
-    public void moveup() {
+    public boolean moveup() {
         this.y+=Speed;
+        if(y<ymaxGame)return true;
+        else return false;
+
     }
 
 }

@@ -1,8 +1,16 @@
 package chickenEggs.objects.Game;
 
-public interface Egg {
+import chickenEggs.interfaces.*;
+import chickenEggs.interfaces.Game.*;
 
-    boolean is_inside();
-    void fall();
+public abstract class Egg extends singleGameObject {
+    int speed=2;
 
+    public Egg(int x, int y, int w, int h, int path, int xminGame, int xmaxGame, int yminGame, int ymaxGame) {
+        super(x, y, w, h, path, xminGame, xmaxGame, yminGame, ymaxGame);
+    }
+
+    public void fall(){
+        this.y-=speed;
+    }
 }
