@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="lib65">
+    <CLASSES>
+      <root url="file://D:/lib64" />
+    </CLASSES>
+    <JAVADOC />
+    <NATIVE>
+      <root url="file://D:/lib64" />
+    </NATIVE>
+    <SOURCES />
+    <jarDirectory url="file://D:/lib64" recursive="false" />
+  </library>
+</component>

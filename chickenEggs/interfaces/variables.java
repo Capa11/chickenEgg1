@@ -68,7 +68,7 @@ public abstract class variables implements GLEventListener {
     private static String[] ichicken = {"OrdinaryChicken.png","UnordinaryChicken.png","SuperChicken.png","UltimateChicken.png"};
 
     private static String[] iconsCustom ={"add1.png","add2.png","minus1.png","minus2.png","right1.png","right2.png","left1.png","left2.png","settings.png","play.png","top3.png","reset.png"};
-    private static String[] ibackground ={"background1.jpg"};
+    private static String[] ibackground ={"background1.jpg","hoverBlue.jpg"};
 
 
 //    private static String[] iconsCustom ={"add1.png","add2.png","minus1.png","minus2.png","right1.png","right2.png","left1.png","left2.png"};
