@@ -14,10 +14,10 @@ public class GamePage extends Page {
     SingleGame singleGame;
     ArrayList<Chicken> chickens;
     float[] probilityChickens;
-    public GamePage(ArrayList<mousePlayer> mousePlayers, ArrayList<keyPlayer> keyPlayers, ArrayList<AiPlayer> AiPlayers, int level){//level 0 means not custom game
+    public GamePage(mousePlayer mousePlayer, ArrayList<keyPlayer> keyPlayers, ArrayList<AiPlayer> AiPlayers, int level){//level 0 means not custom game
         path=background[0];
         if(level==0) {
-            singleGame = new SingleGame((int) -xaxis, (int) xaxis, (int) -yaxis, (int) yaxis,mousePlayers,keyPlayers,AiPlayers,5,initChicken(level));
+            singleGame = new SingleGame((int) -xaxis, (int) xaxis, (int) -yaxis, (int) yaxis,mousePlayer,keyPlayers,AiPlayers,5,initChicken(level));
         }
     }
     public ArrayList<Chicken> initChicken(int level){

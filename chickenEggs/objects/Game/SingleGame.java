@@ -11,40 +11,43 @@ public class SingleGame {
     public int xminGame,xmaxGame,yminGame,ymaxGame,howManyPlayers,lives;int[] score;
     public int wbullet=20,hbullet=20;
     public boolean haveMousePlayer=false;
-    public Player MousePlayer;
+    public mousePlayer mousePlayer;
     public boolean isDead=false;
     public ArrayList<Egg> eggs=new ArrayList<>();
     public ArrayList<Chicken> chickens;
     public ArrayList<bullet> bullets=new ArrayList<>(0);
-    public ArrayList<mousePlayer> mousePlayers;
     public ArrayList<keyPlayer> keyPlayers;
     public ArrayList<AiPlayer> AiPlayers;
-    public SingleGame(int xminGame, int xmaxGame , int yminGame, int ymaxGame, ArrayList<mousePlayer> mousePlayers, ArrayList<keyPlayer> keyPlayers, ArrayList<AiPlayer> AiPlayers, int lives, ArrayList<Chicken> chickens){
+    public SingleGame(int xminGame, int xmaxGame , int yminGame, int ymaxGame, mousePlayer mousePlayer, ArrayList<keyPlayer> keyPlayers, ArrayList<AiPlayer> AiPlayers, int lives, ArrayList<Chicken> chickens){
         this.xminGame=xminGame;this.xmaxGame=xmaxGame;
         this.yminGame=yminGame;this.ymaxGame=ymaxGame;
-        score=new int[howManyPlayers];
-        this.howManyPlayers=mousePlayers.size();
         this.lives=lives;
         this.keyPlayers=keyPlayers;
         this.AiPlayers=AiPlayers;
         this.chickens=chickens;
+        this.mousePlayer=mousePlayer;
     }
     public void moveAllBullets(){
         for (int i = 0; i < bullets.size(); i++) {
             if(!bullets.get(i).moveup())bullets.remove(i);
         }
     }
+    public void moveAllEggs(){
+        for (int i = 0; i < eggs.size(); i++) {
+            if(!eggs.get(i).fall())eggs.remove(i);
+        }
+    }
     public void mouseMotion(){
         if(isMouseInside(xminGame,xmaxGame,yminGame,ymaxGame)&&haveMousePlayer){
-            for (int i = 0; i < mousePlayers.size(); i++) {
-                mousePlayers.get(i).mouseMotion();
+            if(mousePlayer!=null){
+                mousePlayer.mouseMotion();
             }
         }
     }
     public void mouseClicked(){
         if(isClickInside(xminGame,xmaxGame,yminGame,ymaxGame)&&haveMousePlayer) {
-            for (int i = 0; i < mousePlayers.size(); i++) {
-                mousePlayers.get(i).mouseClicked();
+            if(mousePlayer!=null){
+                mousePlayer.mouseClicked();
             }
         }
     }

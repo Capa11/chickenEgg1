@@ -232,7 +232,7 @@ public abstract class variables implements GLEventListener {
             i++;
         }
     }
-    public static void initGridNoWH(drawable[] arr, float xs, float xf, float ys,int yf, int gapX, int gapY){
+    public static void initGridNoWH(drawable[] arr, float xs, float xf, float ys,float yf, int gapX, int gapY){
         int totalElements = arr.length;
         float availableWidth = xf - xs;
         float availableHeight = ys - yf;
@@ -254,7 +254,6 @@ public abstract class variables implements GLEventListener {
         initGridindex(arr, xs, xf, ys, (int) w, (int) h, gapX, gapY, 0, arr.length-1);
 
     }
-
     //numbers and letters(no caps) and blank only in string all words must satisfy the width given
     //method is theta(n)
     public static drawable[] initwriteString(String str, float xs, float xf, float ys, int w, int h, int gapY){

@@ -19,10 +19,8 @@ public class mousePlayer extends Player {
 
     public void mouseMotion(){
         if(isMouseInside(xminGame, xmaxGame , yminGame, ymaxGame)){
-            if(xmouse-r.x>r.speed)r.moveright();
-            if(r.x-xmouse>r.speed)r.moveleft();
-            if(ymouse-r.y>r.speed)r.moveup();
-            if(r.y-ymouse>r.speed)r.movedown();
+            if(xmouse!=r.x)r.x= (int) xmouse;
+            if(ymouse!=r.y)r.y=(int)ymouse;
         }
     }
 }

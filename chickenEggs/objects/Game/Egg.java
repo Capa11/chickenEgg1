@@ -10,7 +10,9 @@ public abstract class Egg extends singleGameObject {
         super(x, y, w, h, path, xminGame, xmaxGame, yminGame, ymaxGame);
     }
 
-    public void fall(){
+    public boolean fall(){
         this.y-=speed;
+        if(y>=yminGame)return true;
+        return false;
     }
 }
