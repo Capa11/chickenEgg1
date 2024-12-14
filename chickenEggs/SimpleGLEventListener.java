@@ -42,7 +42,7 @@ public class SimpleGLEventListener extends variables {
         component = (java.awt.Component) gld;
 
         // Set initial custom cursor
-        setCustomCursor("chickenEgg1/chickenEggs/Assets/Man/Man1.png");
+//        setCustomCursor("chickenEgg1/chickenEggs/Assets/Man/Man1.png");
         //BlueBoyAdventure.wav //the sound
         //D:\practice code\304 file\project-game-jetbrains--main\chickenEgg1\chickenEggs\BlueBoyAdventure.wav
         // D:\practice code\304 file\project-game-jetbrains--main\chickenEgg1\chickenEggs\Sounds\BlueBoyAdventure.wav

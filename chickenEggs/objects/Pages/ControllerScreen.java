@@ -68,7 +68,7 @@ public class ControllerScreen extends Page {
 
             level[n--].path = health[0];
         }
-        
+
         super.isClicked();
     }
 }
