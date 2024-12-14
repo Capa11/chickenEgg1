@@ -11,23 +11,43 @@ public class chickencircle extends Page {
     private float radius = 200; // Radius of the circular motion
     private float angle = 0; // Current angle in radians
     private float speed = 0.05f; // Speed of the circular motion (angle increment per frame)
+    private drawable[] numbers;
+    private drawable[] down;
 
     public chickencircle() {
         super(background[0]);
+
+        // Initialize 10 numbers
+        numbers = new drawable[10];
+        for (int i = 0; i < numbers.length; i++) {
+            numbers[i] = new drawable();
+            numbers[i].setPath(i); // Assuming paths are integers from 0 to 9
+        }
+
+        // Initialize 5 down objects
+        down = new drawable[5];
+        for (int i = 0; i < down.length; i++) {
+            down[i] = new drawable();
+            down[i].setPath(numbers[i].path);
+        }
+
         // Set center to the middle of the screen
-        centerX = 2000 / 2f;
-        centerY = 600*2 / 2f;
+        centerX = xaxis / 2f;
+        centerY = yaxis / 2f;
+
+        // Initialize grid and draw array
+        initGrid(down, -1000, -900, 500, 50, 50, 20);
+        drawArray(down);
     }
 
     @Override
     public void draw() {
         super.drawBackground();
-        animateText(); // Update position for circular motion
+        animateText(); // Update positions for circular motion
     }
 
     private void animateText() {
         // Calculate new positions using circular motion formula
-        // Center the sprite's rotation around the screen center
         float xOffset = centerX + (float) (radius * Math.cos(angle));
         float yOffset = centerY + (float) (radius * Math.sin(angle));
 
@@ -40,7 +60,6 @@ public class chickencircle extends Page {
         }
 
         // Draw the sprite in circular motion
-        // Adjust the drawing position to center the sprite around the calculated point
         DrawSprite((int) xOffset - 50, (int) yOffset - 30, 100, 60, background[1]);
     }
 
@@ -52,5 +71,14 @@ public class chickencircle extends Page {
     // Optional: Method to adjust the radius of rotation
     public void setRotationRadius(float newRadius) {
         this.radius = newRadius;
+    }
+
+    // Updated initGrid method to match the provided arguments
+    private void initGrid(drawable[] array, int x, int y, int w, int h, int dx, int dy) {
+        // Implementation of initGrid
+    }
+
+    private void drawArray(drawable[] array) {
+        // Implementation of drawArray
     }
 }
