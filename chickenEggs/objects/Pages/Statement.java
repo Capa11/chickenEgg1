@@ -21,7 +21,7 @@ public class Statement extends Page {
     @Override
     public void draw() {
         super.drawBackground();
-        DrawSprite(0,0, (1000), (600), background[1]);
+        DrawSprite(-100, (int) yOffset+300, 1000, 600, background[1]);
         drawArray(line1);
         drawArray(credits);
         animateText();
