@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import static chickenEggs.interfaces.variables.*;
 
 public class Page extends drawable {
-    public ArrayList<Button> buttons;boolean isGame;
+    public ArrayList<Button> buttons = new ArrayList<>();
+    boolean isGame;
     public Page(){
     }
     public Page(int backgroundPath,ArrayList<Button> buttons){
@@ -25,8 +26,8 @@ public class Page extends drawable {
     public void ifkeyPressed(int e) {}//for calling subclasses when overriding
 
     public void isClicked(){
-        for (int i = 0; i < buttons.size(); i++) {
-            buttons.get(i).isClicked();
+        for (Button button : buttons) {
+            button.isClicked();
         }
         ifClicked();
     }
@@ -37,8 +38,8 @@ public class Page extends drawable {
         ifMouseMotion();
     }
     public void keyPressed(int e){
-        for (int i = 0; i < buttons.size(); i++) {
-            buttons.get(i).keyPressed(e);
+        for (Button button : buttons) {
+            button.keyPressed(e);
         }
         ifkeyPressed(e);
     }
@@ -47,8 +48,8 @@ public class Page extends drawable {
     @Override
     public void draw(){
         drawBackground();//draw background of page;
-        for (int i = 0; i < buttons.size(); i++) {
-            buttons.get(i).draw();
+        for (Button button : buttons) {
+            button.draw();
         }
         if(isGame)draw();//calling draw method of gamePage
     }
