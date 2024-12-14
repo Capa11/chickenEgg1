@@ -9,6 +9,7 @@ public class rocket extends singleGameObject {
     boolean preparingRocket =true;int waitTimer=0;
     public static boolean[] rocketSkin ={true,true,true,true};
     public static int wRocket=200;public static int hRocket=200;
+    boolean bulletready=true;
 
     public rocket(int x, int y){
         super(x,y,wRocket,hRocket,rockets[0]);
@@ -46,9 +47,13 @@ public class rocket extends singleGameObject {
         y-=speed;
         if(!isInside())y+=speed;
     }
-    public Pairii fire(){
-        return new Pairii(x,y+y/2+bullet1.defaultSize/2);
+    public void fire(){
+        GamePage.bullets.add(new bullet1(x,y+bullet.defaultSize));
     }
+    public void bulletready(){
+        bulletready=true;
+    }
+
 
 
 

@@ -27,7 +27,7 @@ public class GamePage extends Page {
     public boolean isDead=false;
     public ArrayList<Egg> eggs=new ArrayList<>();
     public ArrayList<Chicken> chickens=new ArrayList<>();
-    public ArrayList<bullet> bullets=new ArrayList<>(0);
+    public static ArrayList<bullet> bullets=new ArrayList<>(0);
     public ArrayList<keyPlayer> keyPlayers;
     public ArrayList<AiPlayer> AiPlayers;
     public ArrayList<Player> players = new ArrayList<>();
@@ -75,12 +75,12 @@ public class GamePage extends Page {
         moveAllBullets();
         moveAllEggs();
         checkChickens();
-
     }
     @Override
     public void draw(){
         super.draw();
         moveAll();
+        checkCollesion();
         for (int i = 0; i < chickens.size(); i++) {
             chickens.get(i).draw();
         }
@@ -100,7 +100,7 @@ public class GamePage extends Page {
         for (int i = 0; i < players.size(); i++) {
             for (int j = 0; j < chickens.size(); j++) {
                 if(players.get(i).r.iscollesion(chickens.get(i))){
-                    players.get(i).r.distroy();
+                    players.get(i).distroy();
                 }
             }
         }
@@ -109,7 +109,7 @@ public class GamePage extends Page {
         for (int i = 0; i < players.size(); i++) {
             for (int j = 0; j < eggs.size(); j++) {
                 if(players.get(i).r.iscollesion(chickens.get(i))){
-                    players.get(i).r.distroy();
+                    players.get(i).distroy();
                 }
             }
         }
