@@ -24,7 +24,7 @@ public abstract class Player {
             i++;
         }
     }
-    public rocket.Pairii fire(){
+    public Pairii fire(){
         return r.fire();
 
     }

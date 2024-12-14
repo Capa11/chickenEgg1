@@ -11,6 +11,10 @@ public class eggs extends Egg{
         super(x, y, w, h , egg[0]);
         speed=4;
     }
+    public eggs(int x, int y) {
+        super(x, y, wegg, hegg , egg[0]);
+        speed=4;
+    }
 
 
 }

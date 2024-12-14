@@ -49,12 +49,7 @@ public class rocket extends singleGameObject {
     public Pairii fire(){
         return new Pairii(x,y+y/2+bullet1.defaultSize/2);
     }
-    public static class Pairii{
-        public Integer f;public Integer s;
-        Pairii(Integer f,Integer s){
-            this.f=f;this.s=s;
-        }
-    }
+
 
 
 }
