@@ -12,5 +12,7 @@ public class eggs extends Egg{
         speed=4;
     }
 
-
+    public void fall(){
+        this.y-=speed;
+    }
 }

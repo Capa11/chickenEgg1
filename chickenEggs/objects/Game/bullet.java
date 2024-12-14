@@ -14,6 +14,7 @@ public class bullet extends singleGameObject {
         this.y+=Speed;
         if(y<ymaxGame)return true;
         else return false;
+
     }
 
 }

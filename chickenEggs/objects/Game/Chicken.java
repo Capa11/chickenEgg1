@@ -11,11 +11,6 @@ public class Chicken extends singleGameObject {
      public Chicken(int x, int y, int w, int h,int path, int xmingame, int xmaxgame, int ymingame, int ymaxgame) {
           super(x, y, w, h , path, xmingame , xmaxgame , ymingame , ymaxgame);
      }
-     public Chicken(int path, int xmingame, int xmaxgame, int ymingame, int ymaxgame,int scoreIfDead,int scoreIfdamage) {
-          super(path, xmingame , xmaxgame , ymingame , ymaxgame);
-          this.scoreIfDead=scoreIfDead;
-          this.scoreIfdamage=scoreIfdamage;
-     }
      public void moveleft() {
           this.x-=Speed;
           if(!isInside())x+=Speed;
