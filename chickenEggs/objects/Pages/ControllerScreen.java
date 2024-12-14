@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import static chickenEggs.interfaces.variables.*;
 
 
+
 public class ControllerScreen extends Page {
     Button player1 = new NavBtn(-200, -100, 350, 100, health[0], new PlayerControllerScreen(), "player 1", 40);
     Button player2 = new NavBtn(250, -100, 350, 100, health[0], new PlayerControllerScreen(), "player 2", 40);
@@ -22,7 +23,7 @@ public class ControllerScreen extends Page {
     drawable[] level = new drawable[10];
     drawable[] controller = initwriteString("controller", -150, 400, 100, 40, 50, 0);
     static ArrayList<Button> buttons = new ArrayList<>();
-
+    int n=0;
     public ControllerScreen() {
         super(background[0], buttons);
         for (int i = 0; i < level.length; i++) {
@@ -55,6 +56,14 @@ public class ControllerScreen extends Page {
                 System.out.println(playerController);
                 break;
             }
+        }
+        if(lastMouseX <= 375 && lastMouseX >= 325 && lastMouseY <= 280 && lastMouseY>=226 && n<10) {
+            if (n < 0) n = 0;
+            level[n++].path = health[1];
+        }
+        if(lastMouseX>=-325 && lastMouseX <=-272 && lastMouseY <=280 && lastMouseY>=225 && n >=0) {
+            if (n == 10) n = 9;
+            level[n--].path = health[0];
         }
         super.isClicked();
     }

@@ -30,7 +30,6 @@ public class SimpleGLEventListener extends variables {
         gl = gld.getGL();
         gl.glClear(GL.GL_COLOR_BUFFER_BIT);
         runningPage.draw();
-
     }
 
     @Override

@@ -41,6 +41,7 @@ import java.awt.*;
             glcanvas.addGLEventListener(listener);
             getContentPane().add(glcanvas, BorderLayout.CENTER);
             animator = new FPSAnimator(glcanvas,60);
+            animator.start();
 //
 //        JPanel controlPanel = new JPanel();
 //        JButton toggleButton = new JButton("Start");
