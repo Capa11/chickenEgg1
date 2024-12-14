@@ -8,6 +8,7 @@ import chickenEggs.interfaces.*;
 import chickenEggs.objects.Pages.CustomScreen;
 
 import chickenEggs.interfaces.Pages.*;
+import chickenEggs.objects.Pages.HomeScreen;
 import chickenEggs.objects.Pages.ScoreBoard;
 
 
@@ -23,7 +24,7 @@ public class SimpleGLEventListener extends variables {
     public void init(GLAutoDrawable gld) {
         gl = gld.getGL();
         init(gl);
-        runningPage = new ScoreBoard();
+        runningPage = new CustomScreen();
 
     }
 
