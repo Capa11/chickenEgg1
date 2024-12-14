@@ -3,40 +3,48 @@ package chickenEggs;
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 
-import chickenEggs.objects.Game.*;
 import chickenEggs.interfaces.*;
-import chickenEggs.objects.Game.OrdinaryChicken;
-import chickenEggs.objects.Game.OrdinaryChicken;
+import chickenEggs.interfaces.Game.Player;
+import chickenEggs.objects.Game.Chickens.OrdinaryChicken;
+import chickenEggs.objects.Game.GamePage;
+import chickenEggs.objects.Game.Players.AiPlayer;
+import chickenEggs.objects.Game.Players.keyPlayer;
+import chickenEggs.objects.Game.Players.mousePlayer;
+import chickenEggs.objects.Game.rocket;
 import chickenEggs.objects.Pages.CustomScreen;
 
 import chickenEggs.interfaces.Pages.*;
-import chickenEggs.objects.Pages.HomeScreen;
-import chickenEggs.objects.Pages.ScoreBoard;
-import chickenEggs.objects.Game.OrdinaryChicken;
+
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+
 
 public class SimpleGLEventListener extends variables {
     drawable mons;
     drawable[] str1;
     drawable[] str;
-
+    mousePlayer mousePlayer ;
+    ArrayList<keyPlayer> keyPlayers = new ArrayList<>();
+    ArrayList<AiPlayer> AiPlayers = new ArrayList<>(0);
 
     public static inputbox box;
-    OrdinaryChicken chicken;
+    rocket r = new rocket(0,0, (int) -xaxis, (int) xaxis, (int) -yaxis, (int) yaxis);
+
     public void init(GLAutoDrawable gld) {
         gl = gld.getGL();
         init(gl);
-        runningPage = new CustomScreen();
+        int[] keyController = {KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.VK_SPACE};
 
+        keyPlayers.add(new keyPlayer(keyController,"Capa"));
+        mousePlayer=new mousePlayer("Yousef");
+        runningPage=new GamePage(mousePlayer,keyPlayers,AiPlayers,0);
     }
-
     public void display(GLAutoDrawable gld) {
         gl = gld.getGL();
         gl.glClear(GL.GL_COLOR_BUFFER_BIT);
         runningPage.draw();
 
     }
-
-
     void drawBackground(){
         //DrawSprite(0,0, (int) (xaxis*2), (int) (yaxis*2),backninjastarDigitsDotBlank[0]);
     }

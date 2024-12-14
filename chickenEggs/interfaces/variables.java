@@ -23,7 +23,6 @@ public abstract class variables implements GLEventListener {
     public static float convertX(float x, float width) {
         return -xaxis + (x / width) * xaxis *2;
     }
-
     public static float convertY(float y, float height) {
         return (1 - y / height) * yaxis *2- yaxis;
     }
@@ -60,7 +59,7 @@ public abstract class variables implements GLEventListener {
     private static String[] iman = {"Man1.png", "Man2.png", "Man3.png", "Man4.png","back.png"};
     private static String[] iletters = {"a.png", "b.png", "c.png", "d.png", "e.png", "f.png", "g.png", "h.png", "i.png", "j.png", "k.png", "l.png", "m.png", "n.png", "o.png", "p.png", "q.png", "r.png", "s.png", "t.png", "u.png", "v.png", "w.png", "x.png", "y.png", "z.png","blank.png"};
     private static String[] ihealth = {"HealthB.png", "Health.png"};
-//    private static String[] ibackgrounds= {"Back.png"};
+    //    private static String[] ibackgrounds= {"Back.png"};
     private static String[] inumbers2 = {"tile000.png", "tile001.png", "tile002.png", "tile003.png", "tile004.png", "tile005.png", "tile006.png", "tile007.png", "tile008.png", "tile009.png"};
     private static String[] imonsters = {"1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "9.png", "10.png", "11.png", "12.png", "13.png", "14.png", "15.png", "16.png", "17.png", "18.png", "19.png", "20.png", "21.png", "22.png", "23.png", "24.png", "25.png", "26.png", "27.png", "28.png", "29.png", "30.png", "31.png", "32.png", "33.png", "34.png", "35.png", "36.png", "37.png", "38.png", "39.png", "40.png"};
     private static String[] ibaskets = {"basket1.png","basket2.png","basket3.png","basket4.png"};
@@ -71,7 +70,7 @@ public abstract class variables implements GLEventListener {
     private static String[] ibackground ={"background1.jpg"};
 
 
-//    private static String[] iconsCustom ={"add1.png","add2.png","minus1.png","minus2.png","right1.png","right2.png","left1.png","left2.png"};
+    //    private static String[] iconsCustom ={"add1.png","add2.png","minus1.png","minus2.png","right1.png","right2.png","left1.png","left2.png"};
     private static String[] ibullets = {"bullet1.png"};
     private static String[] irockets = {"rocket1.png" , "rocket4.png" , "rocket5.png" , "rocket6.png"};
 
@@ -80,7 +79,7 @@ public abstract class variables implements GLEventListener {
     public static int[] man = new int[iman.length];
     public static int[] Letters = new int[iletters.length];
     public static int[] health = new int[ihealth.length];
-//    public static int[] background = new int[ibackgrounds.length];
+    //    public static int[] background = new int[ibackgrounds.length];
     public static int[] numbers2 = new int[inumbers2.length];
     public static int[] monsters = new int[imonsters.length];
     public static int[] baskets = new int[ibaskets.length];
@@ -95,7 +94,16 @@ public abstract class variables implements GLEventListener {
     public static int[] bullets = new int[ibullets.length];
     public static int[] rockets = new int[irockets.length];
 
-
+    public static boolean isClickInside(int xmin,int xmax ,int ymin,int ymax) {
+        if (lastMouseX <= xmax && lastMouseX >= xmin && lastMouseY <= ymax && lastMouseY >= ymin) {
+            return true;
+        } else return false;
+    }
+    public static boolean isMouseInside(int xmin,int xmax ,int ymin,int ymax) {
+        if (xmouse <= xmax && xmouse >= xmin && ymouse <= ymax && ymouse >= ymin) {
+            return true;
+        } else return false;
+    }
     protected static  void init(GL gl) {
         gl.glOrtho( -xaxis, xaxis, -yaxis, yaxis,-1.0, 1.0);
         gl.glClearColor(1.0f, 1.0f, 1.0f, 1.0f); // This Will Clear The Background Color To White
@@ -200,6 +208,7 @@ public abstract class variables implements GLEventListener {
     public static void initGrid(drawable[] arr, float xs, float xf, float ys, int w, int h, int gapX, int gapY){
         initGridindex(arr,xs,xf,ys,w,h,gapX,gapY,0,arr.length-1);
     }
+
     public static void initGridindex(drawable[] arr, float xs, float xf, float ys, int w, int h, int gapX, int gapY,int sind,int eind){
         int maxEx= Math.min((int) ((xf-xs)/(w+gapX)),eind-sind+1);
         float xEmpty=(xf-xs)-((w*maxEx)+gapX*(maxEx-1));
@@ -221,6 +230,28 @@ public abstract class variables implements GLEventListener {
             else xs+=gapX+w;
             i++;
         }
+    }
+    public static void initGridNoWH(drawable[] arr, float xs, float xf, float ys,float yf, int gapX, int gapY){
+        int totalElements = arr.length;
+        float availableWidth = xf - xs;
+        float availableHeight = ys - yf;
+        int maxColumns = 1;
+        int maxRows = 1;
+        for (int cols = 1; cols <= totalElements; cols++) {
+            int rows = (int) Math.ceil((double) totalElements / cols);
+            float calculatedWidth = (availableWidth - gapX * (cols - 1)) / cols;
+            float calculatedHeight = (availableHeight - gapY * (rows - 1)) / rows;
+            if (calculatedWidth > 0 && calculatedHeight > 0) {
+                maxColumns = cols;
+                maxRows = rows;
+            }
+            else break;
+        }
+        float w = (availableWidth - gapX * (maxColumns - 1)) / maxColumns;
+        float h = (availableHeight - gapY * (maxRows - 1)) / maxRows;
+
+        initGridindex(arr, xs, xf, ys, (int) w, (int) h, gapX, gapY, 0, arr.length-1);
+
     }
 
     //numbers and letters(no caps) and blank only in string all words must satisfy the width given
@@ -262,17 +293,9 @@ public abstract class variables implements GLEventListener {
         return initwriteString(new String(arr),xs,xf,ys,w,h,gapY);
     }
     public static class Pair{
-        String s;Integer in;
+        public String s;public Integer in;
         Pair(String s,Integer in){
             this.s=s;this.in=in;
-        }
-
-        public String getS() {
-            return s;
-        }
-
-        public Integer getIn() {
-            return in;
         }
     }
     public static void clearScoreBoard(){
@@ -339,7 +362,7 @@ public abstract class variables implements GLEventListener {
             prepareYouWin(y);
             isYouWinPrepared=true;
         }
-       drawArray(youWin);
+        drawArray(youWin);
     }
     public static void youLose(int y){
         if(!isYouLosePrepared) {
