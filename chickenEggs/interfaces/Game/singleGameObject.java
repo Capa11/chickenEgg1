@@ -7,6 +7,10 @@ public class singleGameObject extends drawable{
         this( x,  y,  w,  h,  xminGame,  xmaxGame,  yminGame,  ymaxGame);
         this.path=path;
     }
+    public singleGameObject( int path, int xminGame, int xmaxGame, int yminGame, int ymaxGame){
+        this( 0,  0,  0,  0 , xminGame,  xmaxGame,  yminGame,  ymaxGame);
+        this.path=path;
+    }
     public singleGameObject(int x, int y, int w, int h, int xminGame, int xmaxGame, int yminGame, int ymaxGame){
         super(x,y,w,h);
         this.xminGame=xminGame;

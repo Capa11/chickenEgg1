@@ -23,7 +23,6 @@ public abstract class variables implements GLEventListener {
     public static float convertX(float x, float width) {
         return -xaxis + (x / width) * xaxis *2;
     }
-
     public static float convertY(float y, float height) {
         return (1 - y / height) * yaxis *2- yaxis;
     }
@@ -254,6 +253,7 @@ public abstract class variables implements GLEventListener {
         initGridindex(arr, xs, xf, ys, (int) w, (int) h, gapX, gapY, 0, arr.length-1);
 
     }
+
     //numbers and letters(no caps) and blank only in string all words must satisfy the width given
     //method is theta(n)
     public static drawable[] initwriteString(String str, float xs, float xf, float ys, int w, int h, int gapY){
@@ -293,17 +293,9 @@ public abstract class variables implements GLEventListener {
         return initwriteString(new String(arr),xs,xf,ys,w,h,gapY);
     }
     public static class Pair{
-        String s;Integer in;
+        public String s;public Integer in;
         Pair(String s,Integer in){
             this.s=s;this.in=in;
-        }
-
-        public String getS() {
-            return s;
-        }
-
-        public Integer getIn() {
-            return in;
         }
     }
     public static void clearScoreBoard(){

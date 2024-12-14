@@ -7,6 +7,7 @@ import chickenEggs.interfaces.*;
 import chickenEggs.interfaces.Game.Player;
 import chickenEggs.objects.Game.Chickens.OrdinaryChicken;
 import chickenEggs.objects.Game.GamePage;
+import chickenEggs.objects.Game.Players.AiPlayer;
 import chickenEggs.objects.Game.Players.keyPlayer;
 import chickenEggs.objects.Game.Players.mousePlayer;
 import chickenEggs.objects.Game.rocket;
@@ -22,26 +23,26 @@ public class SimpleGLEventListener extends variables {
     drawable mons;
     drawable[] str1;
     drawable[] str;
-    ArrayList<mousePlayer> mousePlayers = new ArrayList<mousePlayer>(1);
-    ArrayList<keyPlayer> keyPlayers = new ArrayList<keyPlayer>(1);
+    mousePlayer mousePlayer ;
+    ArrayList<keyPlayer> keyPlayers = new ArrayList<>();
+    ArrayList<AiPlayer> AiPlayers = new ArrayList<>(0);
 
     public static inputbox box;
-    OrdinaryChicken chicken;
+    rocket r = new rocket(0,0, (int) -xaxis, (int) xaxis, (int) -yaxis, (int) yaxis);
 
     public void init(GLAutoDrawable gld) {
         gl = gld.getGL();
         init(gl);
         int[] keyController = {KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.VK_SPACE};
 
-//        rocket r = new rocket(0,0,0,200,200,-xaxis,xaxis,-yaxis,yaxis,
-//        keyPlayers.set(0,new keyPlayer(keyController,new rocket())
-//        runningPage=new GamePage(;
+        keyPlayers.add(new keyPlayer(keyController,"Capa"));
+        mousePlayer=new mousePlayer("Yousef");
+        runningPage=new GamePage(mousePlayer,keyPlayers,AiPlayers,0);
     }
     public void display(GLAutoDrawable gld) {
         gl = gld.getGL();
         gl.glClear(GL.GL_COLOR_BUFFER_BIT);
         runningPage.draw();
-
 
     }
     void drawBackground(){

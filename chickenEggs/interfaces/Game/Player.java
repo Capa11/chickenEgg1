@@ -12,23 +12,32 @@ public abstract class Player {
     public rocket r;
     public String name;
     public int score=0;
-    public ArrayList<bullet> bullets;
-    public int xminGame, xmaxGame , yminGame, ymaxGame;
-    public Player(rocket r,String name,int xminGame,int xmaxGame ,int yminGame,int ymaxGame){
-        this(xminGame,xmaxGame,yminGame,ymaxGame);
-        this.r=r;
+    public int xminGame= (int) -xaxis, xmaxGame= (int) xaxis, yminGame= (int) -yaxis, ymaxGame= (int) yaxis;
+    public Player(String name){
         this.name=name;
+        int i=0;
+        r=new rocket(0,0,xminGame,xmaxGame,yminGame,ymaxGame);
+        while(i<rocket.rocketSkin.length){
+            if(rocket.rocketSkin[i]){
+                rocket.rocketSkin[i]=false;
+                r.path=rockets[i];
+                return;
+            }
+            i++;
+        }
     }
-    private Player(int xminGame,int xmaxGame ,int yminGame,int ymaxGame){
-        this.xminGame=xminGame;
-        this.xmaxGame=xmaxGame;
-        this.ymaxGame=ymaxGame;
-        this.yminGame=yminGame;
+    public rocket.Pairii fire(){
+        return r.fire();
+
     }
+
     public void killing(Chicken chicken){
         score+=chicken.scoreIfDead;
     }
     public void damaging(Chicken chicken){
         score+=chicken.scoreIfdamage;
+    }
+    public void draw(){
+        r.draw();
     }
 }

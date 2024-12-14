@@ -16,6 +16,11 @@ public class Chicken extends singleGameObject {
           this.scoreIfDead=scoreIfDead;
           this.scoreIfdamage=scoreIfdamage;
      }
+     public Chicken(int path, int xmingame, int xmaxgame, int ymingame, int ymaxgame,int scoreIfDead,int scoreIfdamage) {
+          super(path, xmingame , xmaxgame , ymingame , ymaxgame);
+          this.scoreIfDead=scoreIfDead;
+          this.scoreIfdamage=scoreIfdamage;
+     }
      public void moveleft() {
           this.x-=Speed;
           if(!isInside())x+=Speed;

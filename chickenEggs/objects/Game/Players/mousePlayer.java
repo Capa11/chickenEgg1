@@ -8,12 +8,12 @@ import static chickenEggs.interfaces.variables.*;
 import static chickenEggs.interfaces.variables.xmouse;
 
 public class mousePlayer extends Player {
-    public mousePlayer(rocket r, String name, int xminGame, int xmaxGame, int yminGame, int ymaxGame) {
-        super(r, name, xminGame, xmaxGame, yminGame, ymaxGame);
+    public mousePlayer(String name) {
+        super( name);
     }
     public void mouseClicked(){
         if(isClickInside( xminGame, xmaxGame , yminGame, ymaxGame)) {
-            bullets.add(new bullet1((int) lastMouseX, (int) lastMouseY,xminGame,xmaxGame,yminGame,ymaxGame));
+            r.fire();
         }
     }
 
