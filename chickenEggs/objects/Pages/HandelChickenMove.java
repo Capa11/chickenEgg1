@@ -8,9 +8,9 @@ import static chickenEggs.interfaces.variables.*;
 public class HandelChickenMove extends Page {
     drawable[] line1;
     drawable[] credits;
-    private float xOffsetStart = 0; // Start from the right  not form 1000 but zero to mach the speed
-    private float xOffsetEnd = -1000; // End position off-screen to the left
-    private float creditsOffsetStart = -1000; // Start from the left
+    private float xOffsetStart = 1000; // Start from the right
+    private float xOffsetEnd = 0; // End position off-screen to the left
+    private float creditsOffsetStart = -1500; // Start from the left
     private float creditsOffsetEnd = 0; // End position off-screen to the right
     private float speed = 4; // Speed of the animation
 
@@ -29,7 +29,7 @@ public class HandelChickenMove extends Page {
     }
 
     private void animateText() {
-        if (xOffsetStart > 0) {
+        if (xOffsetStart > -1000) {
             xOffsetStart -= speed;
             xOffsetEnd -= speed;
         }
