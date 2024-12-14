@@ -23,7 +23,7 @@ public class SimpleGLEventListener extends variables {
     public void init(GLAutoDrawable gld) {
         gl = gld.getGL();
         init(gl);
-        runningPage = new CustomScreen();
+        runningPage = new ScoreBoard();
 
     }
 
