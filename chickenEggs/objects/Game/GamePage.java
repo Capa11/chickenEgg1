@@ -5,6 +5,7 @@ import chickenEggs.interfaces.Game.Player;
 import chickenEggs.interfaces.Game.bullet;
 import chickenEggs.interfaces.Pages.Page;
 import chickenEggs.interfaces.drawable;
+import chickenEggs.objects.Game.Chickens.OrdinaryChicken;
 import chickenEggs.objects.Game.Players.AiPlayer;
 import chickenEggs.objects.Game.Players.keyPlayer;
 import chickenEggs.objects.Game.Players.mousePlayer;
@@ -34,13 +35,20 @@ public class GamePage extends Page {
         if(mousePlayer!=null)players.add(mousePlayer);
         players.addAll(keyPlayers);
         players.addAll(AiPlayers);
+        chickens=initChicken(0);
 
     }
     public ArrayList<Chicken> initChicken(int level){
-       chickens = new ArrayList<>(20);//how many chickens
-        for (int i = 0; i < chickens.size(); i++) {
-            chickens.set(i,new Chicken(0,0,0,0,0,0,0));
+       chickens = new ArrayList<>();//how many chickens
+        for (int i = 0; i < 20; i++) {
+            chickens.add(new OrdinaryChicken());
         }
+        Chicken[]  chickens1 = new Chicken[chickens.size()];
+        for (int i = 0; i < chickens1.length; i++) {
+            chickens1[i]=chickens.get(i);
+        }
+        initGridNoWH(chickens1,-xaxis,xaxis,yaxis,0,0,0);
+        System.out.println(chickens1.length);
         return chickens;
     }
     public void ifkeyPressed(int e) {
@@ -59,12 +67,13 @@ public class GamePage extends Page {
     public void moveAll(){
         moveAllBullets();
         moveAllEggs();
+        checkChickens();
 
     }
     @Override
     public void draw(){
         super.draw();
-         moveAll();
+        moveAll();
         for (int i = 0; i < chickens.size(); i++) {
             chickens.get(i).draw();
         }
@@ -78,6 +87,12 @@ public class GamePage extends Page {
             players.get(i).draw();
         }
 
+    }
+    public void checkChickens(){
+        for (int i = 0; i < chickens.size(); i++) {
+            Pairii eggxy = chickens.get(i).fallegg();
+            if(eggxy!=null)eggs.add(new eggs(eggxy.f,eggxy.s));
+        }
     }
     public void moveAllBullets(){
         for (int i = 0; i < bullets.size(); i++) {
@@ -99,7 +114,6 @@ public class GamePage extends Page {
         if(isClickInside()&&mousePlayer!=null) {
             System.out.println("click");
                 mousePlayer.mouseClicked();
-
         }
     }
     public void keyPressed(int e){
@@ -107,12 +121,7 @@ public class GamePage extends Page {
             keyPlayers.get(i).keyPressed(e);
         }
     }
-    public void initChicken() {
-        Chicken[] chickens1 = (Chicken[]) chickens.toArray();
-        for (int i = 0; i < chickens.size(); i++) {
-            initGrid(chickens1,-xaxis,xaxis,-yaxis,Chicken.defaultSize,Chicken.defaultSize,20,20);
-        }
-    }
+
 }
 
 

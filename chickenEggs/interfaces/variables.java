@@ -10,7 +10,6 @@ import java.util.*;
 
 import Texture.TextureReader;
 import chickenEggs.interfaces.Pages.Page;
-import chickenEggs.objects.Pages.CustomScreen;
 
 public abstract class variables implements GLEventListener {
     public static File scoreBoard = new File("D://learning//Graphics//team project//chickenEggs//Assets//scoreboard.txt");
@@ -232,25 +231,19 @@ public abstract class variables implements GLEventListener {
         }
     }
     public static void initGridNoWH(drawable[] arr, float xs, float xf, float ys,float yf, int gapX, int gapY){
-        int totalElements = arr.length;
-        float availableWidth = xf - xs;
-        float availableHeight = ys - yf;
-        int maxColumns = 1;
-        int maxRows = 1;
-        for (int cols = 1; cols <= totalElements; cols++) {
-            int rows = (int) Math.ceil((double) totalElements / cols);
-            float calculatedWidth = (availableWidth - gapX * (cols - 1)) / cols;
-            float calculatedHeight = (availableHeight - gapY * (rows - 1)) / rows;
-            if (calculatedWidth > 0 && calculatedHeight > 0) {
-                maxColumns = cols;
-                maxRows = rows;
-            }
-            else break;
-        }
-        float w = (availableWidth - gapX * (maxColumns - 1)) / maxColumns;
-        float h = (availableHeight - gapY * (maxRows - 1)) / maxRows;
+        float availableWidth = xf - xs;//right - left
+        float availableHeight = ys - yf;//up - down
 
-        initGridindex(arr, xs, xf, ys, (int) w, (int) h, gapX, gapY, 0, arr.length-1);
+        int size;
+        for ( size = 0; size < 2000; size+=10) {
+            int numberOfRows= (int) Math.ceil(((size+gapX)*arr.length)/availableWidth);
+            if(numberOfRows*size+gapY*(size-1)>availableHeight){
+                size-=10;
+                break;
+            }
+        }
+        System.out.println(size);
+        initGridindex(arr, xs, xf, ys,size,size, gapX, gapY, 0, arr.length-1);
 
     }
 
@@ -372,19 +365,10 @@ public abstract class variables implements GLEventListener {
         prepareYouLose(y);
         drawArray(youLose);
     }
-    public static void rectangle(int x1,int y1,int x2,int y2){
-        gl.glBegin(GL.GL_QUADS);
-        gl.glVertex2d(x1,y1);
-        gl.glVertex2d(x1,y2);
-        gl.glVertex2d(x2,y2);
-        gl.glVertex2d(x2,y1);
-        gl.glEnd();
-    }
-    public static void circle(int x,int y,int r){
-        gl.glBegin(9);
-        for (int i = 0; i < 360; i++) {
-            gl.glVertex2d(x+r*Math.cos(Math.toRadians(i)),y+r*Math.sin(Math.toRadians(i)));
+    public static class Pairii{
+        public Integer f;public Integer s;
+        public Pairii(Integer f, Integer s){
+            this.f=f;this.s=s;
         }
-        gl.glEnd();
     }
 }

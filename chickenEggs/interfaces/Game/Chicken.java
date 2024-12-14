@@ -4,12 +4,12 @@ import static chickenEggs.interfaces.variables.*;
 import chickenEggs.interfaces.*;
 import chickenEggs.interfaces.Game.*;
 import chickenEggs.objects.Game.eggs;
+import chickenEggs.objects.Game.rocket;
 
 import java.util.*;
 public class Chicken extends singleGameObject {
      public int health , eggDuration , eggtimer , Speed  ,path,scoreIfDead,scoreIfdamage;
      public boolean damaged = false;//omar was here...
-     public ArrayList<chickenEggs.objects.Game.eggs> eggs = new ArrayList<>();
      public static int defaultSize=30;
      public Chicken(int x, int y, int w, int h,int path ,int scoreIfDead,int scoreIfdamage) {
           super(x, y, w, h , path);
@@ -40,14 +40,6 @@ public class Chicken extends singleGameObject {
           if(!isInside())y+=Speed;
      }
 
-
-     public void makeegg() {
-          eggs egg = new eggs(this.x , this.y-70 , 40 , 40 );
-          egg.draw();
-          eggs.add(egg);
-     }
-
-
      public void damage() {
           health--;
      }
@@ -55,16 +47,17 @@ public class Chicken extends singleGameObject {
      public boolean amIdead() {
           return health<=0;
      }
-     public void fallegg() {
+     public Pairii fallegg() {
           this.eggtimer--;
           if(this.eggtimer <= 0){
-               makeegg();
                eggtimer = eggDuration;
+               return new Pairii(x,y-h/2);
           }
-          for (int i = 0; i < eggs.size(); i++) {
-               eggs.get(i).fall();
-               eggs.get(i).draw();
-          }
+          return null;
+     }
+     public void draw(){
+          super.draw();
+
      }
 
 }
