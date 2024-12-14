@@ -7,9 +7,10 @@ import chickenEggs.objects.Game.*;
 import chickenEggs.interfaces.*;
 
 import chickenEggs.interfaces.Pages.*;
-//import chickenEggs.objects.Pages.CustomGameInstraction;
+import chickenEggs.objects.Pages.CustomGameInstraction;
 import chickenEggs.objects.Pages.Statement;
 import chickenEggs.objects.Pages.HandelChickenMove;
+import chickenEggs.objects.Pages.InstractionDefult;
 
 
 public class SimpleGLEventListener extends variables {
@@ -26,7 +27,8 @@ public class SimpleGLEventListener extends variables {
 //        runningPage=new CustomScreen();
 //        runningPage = new CustomGameInstraction();
 //        runningPage = new Statement();
-        runningPage = new HandelChickenMove();
+//        runningPage = new HandelChickenMove();
+        runningPage = new InstractionDefult();
 
     }
     public void display(GLAutoDrawable gld) {
