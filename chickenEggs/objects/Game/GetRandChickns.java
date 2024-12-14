@@ -38,6 +38,7 @@ public class GetRandChickns {
             for (int i = 0; i < 4; i++) {
                 int chickenCount = random.nextInt(15);
                 chickenDistribution.put("chicken" + (i + 1), chickenCount);
+                // remove chicken to return only the number so you can print the total num of chickens
                 currentTotal += chickenCount * chickenPoints[i];
             }
 
@@ -46,22 +47,22 @@ public class GetRandChickns {
             }
         }
 
-        chickenDistribution.put("TotalPoints", currentTotal);  
+        chickenDistribution.put("TotalPoints", currentTotal);
         return chickenDistribution;
     }
 
     public static void main(String[] args) {
-        // Test for levels 1 to 4
-        for (int level = 1; level <= 4; level++) {
-            System.out.println("Level " + level + ":");
-            Map<String, Integer> distribution = generateChickenDistribution(level);
-            distribution.forEach((key, value) -> System.out.println(key + ": " + value + " chickens"));
-            System.out.println();
-        }
-
-        // Additional test case for level 2
-        System.out.println("Test Case - Level 2:");
+//        // Test for levels 1 to 4
+//        for (int level = 1; level <= 4; level++) {
+//            System.out.println("Level " + level + ":");
+//            Map<String, Integer> distribution = generateChickenDistribution(level);
+//            distribution.forEach((key, value) -> System.out.println(key + ": " + value + " chickens"));
+//            System.out.println();
+//        }
+//
+//        // Additional test case for level 2
         Map<String, Integer> testCaseResult = generateChickenDistribution(2);
         testCaseResult.forEach((key, value) -> System.out.println(key + ": " + value + " chickens"));
+
     }
 }
