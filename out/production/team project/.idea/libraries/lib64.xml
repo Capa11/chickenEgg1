@@ -1,6 +1,5 @@
 <component name="libraryTable">
   <library name="lib64">
-<<<<<<< HEAD
     <CLASSES>
       <root url="file://$PROJECT_DIR$/../lib64" />
     </CLASSES>
@@ -10,10 +9,5 @@
     </NATIVE>
     <SOURCES />
     <jarDirectory url="file://$PROJECT_DIR$/../lib64" recursive="false" />
-=======
-    <CLASSES />
-    <JAVADOC />
-    <SOURCES />
->>>>>>> origin/hazem
   </library>
 </component>

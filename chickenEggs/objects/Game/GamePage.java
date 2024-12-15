@@ -1,6 +1,5 @@
 package chickenEggs.objects.Game;
 
-<<<<<<< HEAD
 import chickenEggs.interfaces.Game.Chicken;
 import chickenEggs.interfaces.Game.Player;
 import chickenEggs.interfaces.Game.bullet;
@@ -9,12 +8,6 @@ import chickenEggs.interfaces.drawable;
 import chickenEggs.objects.Game.Players.AiPlayer;
 import chickenEggs.objects.Game.Players.keyPlayer;
 import chickenEggs.objects.Game.Players.mousePlayer;
-=======
-import chickenEggs.interfaces.Pages.Page;
-import chickenEggs.interfaces.drawable;
-import static chickenEggs.interfaces.variables.*;
-public class GamePage extends Page {
->>>>>>> origin/hazem
 
 import chickenEggs.objects.Game.Chickens.OrdinaryChicken;
 import chickenEggs.objects.Game.Chickens.SuperChicken;

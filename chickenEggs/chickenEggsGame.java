@@ -14,13 +14,8 @@ import java.awt.*;
 
     public class chickenEggsGame extends JFrame {
         public static void main(String[] args) {
-<<<<<<< HEAD
             showOnScreen(1,new chickenEggsGame());
             animator.start();
-=======
-            new chickenEggsGame();
-
->>>>>>> origin/hazem
         }
         public static void showOnScreen(int screen, JFrame frame ) throws RuntimeException {
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -46,7 +41,6 @@ import java.awt.*;
             glcanvas.addGLEventListener(listener);
             getContentPane().add(glcanvas, BorderLayout.CENTER);
             animator = new FPSAnimator(glcanvas,60);
-            animator.start();
 //
 //        JPanel controlPanel = new JPanel();
 //        JButton toggleButton = new JButton("Start");
