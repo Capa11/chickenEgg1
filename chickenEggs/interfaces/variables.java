@@ -12,7 +12,7 @@ import Texture.TextureReader;
 import chickenEggs.interfaces.Pages.Page;
 
 public abstract class variables implements GLEventListener {
-    public static File scoreBoard = new File("D://learning//Graphics//team project//chickenEggs//Assets//scoreboard.txt");
+    public static File scoreBoard = new File("chickenEggs//Assets//scoreboard.txt");
     public static Page runningPage;
     public static float xtranslation=0,ytranslation=0;
     public static float xmouse=1000,ymouse=500;
@@ -25,6 +25,7 @@ public abstract class variables implements GLEventListener {
     public static float convertY(float y, float height) {
         return (1 - y / height) * yaxis *2- yaxis;
     }
+    public static int playerController = 1;
     public static GL gl;
     public static float xaxis =1000;
     public static float yaxis =600;
@@ -66,8 +67,10 @@ public abstract class variables implements GLEventListener {
     private static String[] ichicken = {"OrdinaryChicken.png","UnordinaryChicken.png","SuperChicken.png","UltimateChicken.png"};
     private static String[] iheart = {"heart.png"};
 
-    private static String[] iconsCustom ={"add1.png","add2.png","minus1.png","minus2.png","right1.png","right2.png","left1.png","left2.png","settings.png","play.png","top3.png","reset.png"};
-    private static String[] ibackground ={"background1.jpg"};
+    private static String[] iconsCustom ={"add1.png","add2.png","minus1.png","play.png","minus2.png","right1.png","right2.png","left1.png",
+                                         "left2.png","RocketIcon.png" , "instructions.png", "customIcon.png","top3.png"};
+    private static String[] ibackground ={"spacee.png" ,"kindpng_6159643.png"};
+
 
 
     //    private static String[] iconsCustom ={"add1.png","add2.png","minus1.png","minus2.png","right1.png","right2.png","left1.png","left2.png"};
@@ -122,7 +125,7 @@ public abstract class variables implements GLEventListener {
         prepareimage(folderchicken,ibaskets,baskets,gl);
         prepareimage(folderIcons,iconsCustom,icons,gl);
 
-        prepareimage(folderBackground,ibackground,background,gl);
+        prepareimage(folderchicken,ibackground,background,gl);
 
 
 
