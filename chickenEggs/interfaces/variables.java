@@ -12,7 +12,8 @@ import Texture.TextureReader;
 import chickenEggs.interfaces.Pages.Page;
 
 public abstract class variables implements GLEventListener {
-    public static File scoreBoard = new File("D://learning//Graphics//team project//chickenEggs//Assets//scoreboard.txt");
+    public static int playerController = 1;
+    public static File scoreBoard = new File("chickenEggs//Assets//scoreboard.txt");
     public static Page runningPage;
     public static float xtranslation=0,ytranslation=0;
     public static float xmouse=1000,ymouse=500;

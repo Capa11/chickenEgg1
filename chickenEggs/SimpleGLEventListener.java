@@ -3,55 +3,27 @@ package chickenEggs;
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 
+import chickenEggs.objects.Game.*;
 import chickenEggs.interfaces.*;
-import chickenEggs.interfaces.Game.Chicken;
-import chickenEggs.interfaces.Game.Player;
-import chickenEggs.interfaces.Game.bullet;
-import chickenEggs.objects.Game.Chickens.OrdinaryChicken;
-import chickenEggs.objects.Game.GamePage;
-import chickenEggs.objects.Game.Players.AiPlayer;
-import chickenEggs.objects.Game.Players.keyPlayer;
-import chickenEggs.objects.Game.Players.mousePlayer;
-import chickenEggs.objects.Game.bullet1;
-import chickenEggs.objects.Game.rocket;
+import chickenEggs.objects.Pages.ControllerScreen;
 import chickenEggs.objects.Pages.CustomScreen;
 
 import chickenEggs.interfaces.Pages.*;
-
-import java.awt.event.KeyEvent;
-import java.util.ArrayList;
+import chickenEggs.objects.Pages.HomeScreen;
+import chickenEggs.objects.Pages.PlayerControllerScreen;
 
 
 public class SimpleGLEventListener extends variables {
-    drawable mons;
-    drawable[] str1;
-    drawable[] str;
-    mousePlayer mousePlayer ;
-    ArrayList<keyPlayer> keyPlayers = new ArrayList<>();
-    ArrayList<AiPlayer> AiPlayers = new ArrayList<>(0);
 
-    public static inputbox box;
     public void init(GLAutoDrawable gld) {
         gl = gld.getGL();
         init(gl);
-        int[] keyController = {KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.VK_SPACE};
-
-        keyPlayers.add(new keyPlayer(keyController,"Capa"));
-        mousePlayer=new mousePlayer("Yousef");
-        runningPage=new GamePage(mousePlayer,keyPlayers,AiPlayers,0);
-//        bullet b = new bullet1(0,0);
-//        Chicken c = new OrdinaryChicken(100);
-//        System.out.println(b.iscollesion(c));
+        runningPage=new HomeScreen();
     }
     public void display(GLAutoDrawable gld) {
         gl = gld.getGL();
         gl.glClear(GL.GL_COLOR_BUFFER_BIT);
         runningPage.draw();
-        Operations=true;
-
-    }
-    void drawBackground(){
-        //DrawSprite(0,0, (int) (xaxis*2), (int) (yaxis*2),backninjastarDigitsDotBlank[0]);
     }
 
     @Override

@@ -2,17 +2,19 @@ package chickenEggs.interfaces.Pages;
 import chickenEggs.interfaces.*;
 import static chickenEggs.interfaces.variables.*;
 public abstract class Button extends drawable{
-    Page page;drawable[] buttonName;public boolean haveIcon=false,isSelect=false;drawable icon;
+    Page page;drawable[] buttonName;public boolean haveIcon=false,isSelect=false;drawable icon;public String text;
     public Button(){}
     public Button(int xbutton, int ybutton , int wbutton, int hbutton, int backGround,Page page,String s,int fontsize){
         super(xbutton,ybutton,wbutton,hbutton,backGround);
         this.page=page;
+        this.text = s;
         float xEmpty=w-((fontsize*s.length()));//to make the string written in middle of button in x axis
         buttonName=initwriteString(s,xbutton-wbutton/2+xEmpty/2,xbutton+wbutton/2,ybutton+fontsize/2,fontsize,fontsize,0);//wbutton and fontsize used for centrilize the string in y axis
     }
     public Button(int xbutton, int ybutton , int wbutton, int hbutton, int backGround,Page page,String s,int fontsize,int ystring,int iconpath,int xicon,int yicon,int wicon,int hicon){
         super(xbutton,ybutton,wbutton,hbutton,backGround);
         this.page=page;
+        this.text =s;
         float xEmpty=w-((fontsize*s.length()));
         buttonName=initwriteString(s,xbutton-w/2+xEmpty/2,xbutton+w/2,ystring,fontsize,fontsize,0);
         haveIcon=true;
@@ -31,6 +33,7 @@ public abstract class Button extends drawable{
         return false;
     }
     public void ifMouseMoved(){}//for calling subclasses when overriding
+    public void ifMouseOutMoved(){}//for calling subclasses when overriding
     public void ifkeyPressed(int e) {}//for calling subclasses when overriding
     public void ifClicked(){}
     public void isClicked(){
@@ -46,8 +49,11 @@ public abstract class Button extends drawable{
         if(isInside(xmouse,ymouse)){
             ifMouseMoved();
             return true;
+        }else {
+            ifMouseOutMoved();
+            return false;
         }
-        return false;
+
     }
     public void keyPressed(int e){
         if(isSelect)ifkeyPressed(e);

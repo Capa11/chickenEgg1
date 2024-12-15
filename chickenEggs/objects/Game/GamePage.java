@@ -267,7 +267,7 @@ public class GamePage extends Page {
         for (int i = 0; i < players.size(); i++) {
             String s = "" + players.get(i).score;
             scores.add(new drawable[s.length()]);
-            StartEnd.add(x);
+//            StartEnd.add(x);
             for (int j = 0; j < s.length(); j++) {
                 scores.get(i)[j] = new drawable(x , ystart, 60 , 60 ,numbers[s.charAt(j) - '0']);
                 x+=50;
@@ -279,7 +279,7 @@ public class GamePage extends Page {
         int ystart = (int)(-yaxis+20);
         for (int i = 0; i < players.size(); i++) {
             healths.add(new drawable[2]);
-            int x = StartEnd.get(i);
+//            int x = StartEnd.get(i);
             healths.get(i)[0] = new drawable(x , ystart , 60 , 60 , health[0]);
             healths.get(i)[1] = new drawable(x + 70 , ystart , 60 , 60 , numbers[players.get(i).health]);
         }
@@ -305,7 +305,7 @@ public class GamePage extends Page {
         for (int i = 0; i < players.size(); i++) {
             names.add(new drawable[players.get(i).name.length()]);
             String s = players.get(i).name;
-            int x = (StartEnd.size()!=0) ?StartEnd.get(i) : 0;
+//            int x = (StartEnd.size()!=0) ?StartEnd.get(i) : 0;
             for (int j = 0; j < names.get(i).length; j++) {
                 names.get(i)[j] = new drawable(x , ystart , 60 , 60 , Letters[s.charAt(j)-'a']);
                 x+=50;
