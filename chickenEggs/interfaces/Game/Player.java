@@ -11,6 +11,7 @@ import static chickenEggs.interfaces.variables.xmouse;
 public abstract class Player {
     public rocket r;
     public String name;
+    public int health = 5;
     public int score=0;public Player(String name){
         this.name=name;
         int i=0;
@@ -24,9 +25,14 @@ public abstract class Player {
             i++;
         }
     }
+<<<<<<< Updated upstream
     public rocket.Pairii fire(){
         return r.fire();
+=======
+    public Pairii fire(){
+>>>>>>> Stashed changes
 
+        return null;
     }
 
     public void killing(Chicken chicken){

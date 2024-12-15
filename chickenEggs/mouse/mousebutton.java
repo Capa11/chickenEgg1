@@ -2,13 +2,12 @@ package chickenEggs.mouse;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
+import chickenEggs.interfaces.Game.Player;
 import static chickenEggs.SimpleGLEventListener.*;
 
 public class mousebutton implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
-
     }
 
     @Override
