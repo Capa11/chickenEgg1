@@ -4,12 +4,15 @@ import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 
 import chickenEggs.interfaces.*;
+import chickenEggs.interfaces.Game.Chicken;
 import chickenEggs.interfaces.Game.Player;
+import chickenEggs.interfaces.Game.bullet;
 import chickenEggs.objects.Game.Chickens.OrdinaryChicken;
 import chickenEggs.objects.Game.GamePage;
 import chickenEggs.objects.Game.Players.AiPlayer;
 import chickenEggs.objects.Game.Players.keyPlayer;
 import chickenEggs.objects.Game.Players.mousePlayer;
+import chickenEggs.objects.Game.bullet1;
 import chickenEggs.objects.Game.rocket;
 import chickenEggs.objects.Pages.CustomScreen;
 
@@ -28,8 +31,6 @@ public class SimpleGLEventListener extends variables {
     ArrayList<AiPlayer> AiPlayers = new ArrayList<>(0);
 
     public static inputbox box;
-    rocket r = new rocket(0,0);
-
     public void init(GLAutoDrawable gld) {
         gl = gld.getGL();
         init(gl);
@@ -38,6 +39,9 @@ public class SimpleGLEventListener extends variables {
         keyPlayers.add(new keyPlayer(keyController,"Capa"));
         mousePlayer=new mousePlayer("Yousef");
         runningPage=new GamePage(mousePlayer,keyPlayers,AiPlayers,0);
+//        bullet b = new bullet1(0,0);
+//        Chicken c = new OrdinaryChicken(100);
+//        System.out.println(b.iscollesion(c));
     }
     public void display(GLAutoDrawable gld) {
         gl = gld.getGL();

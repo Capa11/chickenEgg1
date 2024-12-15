@@ -9,27 +9,33 @@ import chickenEggs.objects.Game.Players.AiPlayer;
 import chickenEggs.objects.Game.Players.keyPlayer;
 import chickenEggs.objects.Game.Players.mousePlayer;
 
+import chickenEggs.objects.Game.Chickens.OrdinaryChicken;
+import chickenEggs.objects.Game.Chickens.SuperChicken;
+import chickenEggs.objects.Game.Chickens.UltimateChicken;
+import chickenEggs.objects.Game.Chickens.UnordinaryChicken;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import static chickenEggs.interfaces.variables.*;
-import static chickenEggs.interfaces.variables.bullets;
 
 public class GamePage extends Page {
-    float[] probilityChickens;
     public int howManyPlayers,lives=5;
     ArrayList<drawable[]> scores;
     ArrayList<drawable[]>healths;
     public mousePlayer mousePlayer;
     public boolean isDead=false;
+    public static int oneMinute=60*60;//because animator is 60 fps
     public ArrayList<Egg> eggs=new ArrayList<>();
     public ArrayList<Chicken> chickens=new ArrayList<>();
-    public ArrayList<bullet> bullets=new ArrayList<>(0);
+    public ArrayList<bullet> bullets=new ArrayList<>();
     public ArrayList<keyPlayer> keyPlayers = new ArrayList<>();
     public ArrayList<AiPlayer> AiPlayers;
     public ArrayList<Player> players = new ArrayList<>();
     ArrayList<drawable[]>names;
-    public GamePage(mousePlayer mousePlayer, ArrayList<keyPlayer> keyPlayers, ArrayList<AiPlayer> AiPlayers, int level){//level 0 means not custom game
+    public int timer;
+    int level;
+    boolean isCustom=true;
+    public GamePage(mousePlayer mousePlayer, ArrayList<keyPlayer> keyPlayers, ArrayList<AiPlayer> AiPlayers, int difficulty){//level 0 means not custom game
         path=background[0];
         this.keyPlayers=keyPlayers;
         this.AiPlayers=AiPlayers;
@@ -37,16 +43,104 @@ public class GamePage extends Page {
         if(mousePlayer!=null)players.add(mousePlayer);
         players.addAll(keyPlayers);
         players.addAll(AiPlayers);
-         scores = new ArrayList<drawable[]>();
-         healths = new ArrayList<drawable[]>();
-         names = new ArrayList<>();
-    }
-    public ArrayList<Chicken> initChicken(int level){
-       chickens = new ArrayList<>(20);//how many chickens
-        for (int i = 0; i < chickens.size(); i++) {
-            chickens.set(i,new Chicken(0,0,0,0,0,0,0));
+        for (int i = 0; i < players.size(); i++) {
+            players.get(i).bullets=bullets;
         }
-        return chickens;
+         scores = new ArrayList<>();
+         healths = new ArrayList<>();
+         names = new ArrayList<>();
+        initChicken(1);
+        if(difficulty==0){
+            level=1;
+            isCustom=false;
+        }
+        else if(difficulty==1){
+            level=3;
+            timer=oneMinute*3;//1 minute
+        }
+        else if(difficulty==2){
+            level=5;
+            timer=oneMinute*2;
+        }
+        else {
+            level=7;
+            timer=oneMinute*2;
+        }
+    }
+    @Override
+    public void draw() {
+        super.draw();
+        moveAll();
+        checkCollesion();
+        drawObjects();
+        if(isCustom)timer--;
+        if(isAllPlayerDead()||timer<=0)losing();
+        if(isAllChickenDead())winning();
+
+    }
+    public void losing(){
+
+
+    }
+    public void winning(){
+        if(isCustom){
+
+        }
+        else{
+            for (int i = 0; i < players.size(); i++) {
+                players.get(i).r.start();
+            }
+            initChicken(++level);
+        }
+    }
+    public boolean isAllPlayerDead(){
+        boolean check=true;
+        for (int i = 0; i < players.size(); i++) {
+            if(players.get(i).health>0)check=false;
+        }
+        return check;
+    }
+    public boolean isAllChickenDead(){
+       return chickens.size()==0;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public void drawObjects(){
+        for (int i = 0; i < chickens.size(); i++) {
+            chickens.get(i).draw();
+        }
+        for (int i = 0; i < eggs.size(); i++) {
+            eggs.get(i).draw();
+        }
+        for (int i = 0; i < bullets.size(); i++) {
+            bullets.get(i).draw();
+        }
+        for (int i = 0; i < players.size(); i++) {
+            players.get(i).draw();
+            System.out.print(players.get(i).score+" ");
+        }
+    }
+    public void initChicken(int level){
+        generateChickenDistribution(level);
+        Chicken[]  chickens1 = new Chicken[chickens.size()];
+        for (int i = 0; i < chickens1.length; i++) {
+            chickens1[i]=chickens.get(i);
+        }
+        initGridNoWH(chickens1,-xaxis,xaxis,yaxis,0,0,0);
     }
     public void ifkeyPressed(int e) {
         if(e== KeyEvent.VK_ESCAPE){
@@ -64,25 +158,76 @@ public class GamePage extends Page {
     public void moveAll(){
         moveAllBullets();
         moveAllEggs();
+        checkChickens();
 
     }
-    @Override
-    public void draw(){
-        super.draw();
-         moveAll();
-        for (int i = 0; i < chickens.size(); i++) {
-            chickens.get(i).draw();
-        }
-        for (int i = 0; i < eggs.size(); i++) {
-            eggs.get(i).draw();
-        }
-        for (int i = 0; i < bullets.size(); i++) {
-            bullets.get(i).draw();
-        }
+    public void checkCollesion(){
+        //checking players and chicken
         for (int i = 0; i < players.size(); i++) {
-            players.get(i).draw();
+            if(players.get(i).health>0) {
+                for (int j = 0; j < chickens.size(); j++) {
+                    if (players.get(i).r.iscollesion(chickens.get(j))) {
+                        players.get(i).destroy();
+                        break;
+                    }
+                }
+            }
         }
 
+        //checking players and eggs
+        for (int i = 0; i < players.size(); i++) {
+            if(players.get(i).health>0) {
+                for (int j = 0; j < eggs.size(); j++) {
+                    if (players.get(i).r.iscollesion(eggs.get(j))) {
+                        players.get(i).destroy();
+                        eggs.remove(j);
+                        break;
+                    }
+                }
+            }
+        }
+
+        //checking bullets and chickens
+        for (int i = 0; i < bullets.size(); i++) {
+            for (int j = 0; j < chickens.size(); j++) {
+                if(bullets.get(i).iscollesion(chickens.get(j))){
+                    bullets.get(i).playerWhoFireMe.damaging(chickens.get(j).getDamageScore());
+                    bullets.remove(i);
+                    i--;
+                    if(chickens.get(j).health<=0)chickens.remove(j);
+                    break;
+                }
+            }
+        }
+    }
+    public void generateChickenDistribution(int level) {
+        int targetPoints = level * 500;
+        int[] chickenPoints = {20, 40, 60, 80};
+
+        int currentTotal = 0;
+        int rand;
+        while (currentTotal < targetPoints) {
+            rand = (int) (Math.random() * 10);
+            if (rand < 4) {
+                chickens.add(new OrdinaryChicken(10000-level*500));
+                currentTotal += chickenPoints[0];
+            } else if (rand < 7) {
+                chickens.add(new SuperChicken(8000-level*400));
+                currentTotal += chickenPoints[1];
+            } else if (rand < 9) {
+                chickens.add(new UltimateChicken(7000-level*350));
+                currentTotal += chickenPoints[2];
+            } else {
+                chickens.add(new UnordinaryChicken(5000-level*250));
+                currentTotal += chickenPoints[3];
+            }
+        }
+    }
+    public void checkChickens(){
+        for (int i = 0; i < chickens.size(); i++) {
+            Pairii eggxy = chickens.get(i).fallegg();
+            if(eggxy!=null)eggs.add(new eggs(eggxy.f,eggxy.s));
+        }
     }
     public void moveAllBullets(){
         for (int i = 0; i < bullets.size(); i++) {
@@ -96,7 +241,6 @@ public class GamePage extends Page {
     }
     public void mouseMotion(){
         if(isMouseInside()&&mousePlayer!=null){
-            System.out.println("motion");
             mousePlayer.mouseMotion();
         }
     }
@@ -104,7 +248,6 @@ public class GamePage extends Page {
         if(isClickInside()&&mousePlayer!=null) {
             System.out.println("click");
                 mousePlayer.mouseClicked();
-
         }
     }
     public void keyPressed(int e){
@@ -112,12 +255,7 @@ public class GamePage extends Page {
             keyPlayers.get(i).keyPressed(e);
         }
     }
-    public void initChicken() {
-        Chicken[] chickens1 = (Chicken[]) chickens.toArray();
-        for (int i = 0; i < chickens.size(); i++) {
-            initGrid(chickens1,-xaxis,xaxis,-yaxis,Chicken.defaultSize,Chicken.defaultSize,20,20);
-        }
-    }
+
     private void initScores(){
         int xstart = (int)-xaxis + 100;
         int ystart = (int)(-yaxis+120);

@@ -1,20 +1,20 @@
 package chickenEggs.interfaces.Game;
 
-import chickenEggs.objects.Game.bullet1;
 import chickenEggs.objects.Game.rocket;
 
 import java.util.ArrayList;
 
 import static chickenEggs.interfaces.variables.*;
-import static chickenEggs.interfaces.variables.xmouse;
 
 public abstract class Player {
     public rocket r;
     public String name;
+    public int health=5;
+    public ArrayList<bullet> bullets;
     public int score=0;public Player(String name){
         this.name=name;
         int i=0;
-        r=new rocket(0,0);
+        r=new rocket(this);
         while(i<rocket.rocketSkin.length){
             if(rocket.rocketSkin[i]){
                 rocket.rocketSkin[i]=false;
@@ -24,18 +24,13 @@ public abstract class Player {
             i++;
         }
     }
-    public Pairii fire(){
-        return r.fire();
-
+    public void damaging(int damageScore){
+        score+=damageScore;
     }
-
-    public void killing(Chicken chicken){
-        score+=chicken.scoreIfDead;
-    }
-    public void damaging(Chicken chicken){
-        score+=chicken.scoreIfdamage;
+    public void destroy(){
+        r.destroy();
     }
     public void draw(){
-        r.draw();
+        if(health>0)r.draw();
     }
 }

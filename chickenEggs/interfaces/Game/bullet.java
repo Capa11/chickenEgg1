@@ -7,6 +7,7 @@ import java.util.*;
 
 public class bullet extends singleGameObject {
     public int  Speed = 5  ,path;
+    public Player playerWhoFireMe;
     public static int defaultSize = 30;
     public bullet(int x, int y, int w, int h,int path) {
         super(x, y, w, h , path);

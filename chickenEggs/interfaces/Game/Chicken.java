@@ -9,17 +9,22 @@ import chickenEggs.objects.Game.rocket;
 import java.util.*;
 public class Chicken extends singleGameObject {
      public int health , eggDuration , eggtimer , Speed  ,path,scoreIfDead,scoreIfdamage;
+     public int maxTimer;
      public boolean damaged = false;//omar was here...
      public static int defaultSize=30;
-     public Chicken(int x, int y, int w, int h,int path ,int scoreIfDead,int scoreIfdamage) {
+     public Chicken(int x, int y, int w, int h,int path ,int scoreIfDead,int scoreIfdamage,int maxTimer) {
           super(x, y, w, h , path);
           this.scoreIfDead=scoreIfDead;
           this.scoreIfdamage=scoreIfdamage;
+          this.maxTimer=maxTimer;
+          eggtimer = (int) (Math.random()*maxTimer);
      }
-     public Chicken(int path,int scoreIfDead,int scoreIfdamage) {
+     public Chicken(int path,int scoreIfDead,int scoreIfdamage,int maxTimer) {
           super(path);
           this.scoreIfDead=scoreIfDead;
           this.scoreIfdamage=scoreIfdamage;
+          this.maxTimer=maxTimer;
+          eggtimer = (int) (Math.random()*maxTimer);
      }
      public void moveleft() {
           this.x-=Speed;
@@ -40,8 +45,10 @@ public class Chicken extends singleGameObject {
           if(!isInside())y+=Speed;
      }
 
-     public void damage() {
+     public int getDamageScore() {
           health--;
+          if(health==0)return scoreIfDead;
+          else return scoreIfdamage;
      }
 
      public boolean amIdead() {
@@ -50,7 +57,7 @@ public class Chicken extends singleGameObject {
      public Pairii fallegg() {
           this.eggtimer--;
           if(this.eggtimer <= 0){
-               eggtimer = eggDuration;
+               eggtimer = (int) (Math.random()*maxTimer);
                return new Pairii(x,y-h/2);
           }
           return null;
