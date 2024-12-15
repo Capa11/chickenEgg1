@@ -3,12 +3,15 @@ package chickenEggs.objects;
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Sound {
     private static float globalVolume = 1.0f; // Default volume (1.0 = max, 0.0 = mute)
     private byte[] mBytes;
     private DataLine.Info mInfo;
     private AudioFormat mFormat;
+    private static List<Clip> playingClips = new ArrayList<>();
 
     private Sound() {}
 
@@ -34,6 +37,7 @@ public class Sound {
             c.open(mFormat, mBytes, 0, mBytes.length);
             setVolume(c, globalVolume); // Apply global volume
             c.start();
+            playingClips.add(c); // Add to the list of playing clips
             return c;
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -47,6 +51,7 @@ public class Sound {
             c.open(mFormat, mBytes, 0, mBytes.length);
             setVolume(c, globalVolume); // Apply global volume
             c.loop(Clip.LOOP_CONTINUOUSLY);
+            playingClips.add(c); // Add to the list of playing clips
             return c;
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -55,13 +60,24 @@ public class Sound {
     }
 
     public static void setGlobalVolume(float volume) {
-        if (volume < 0.0f || volume > 1.0f) {
-            throw new IllegalArgumentException("Volume must be between 0.0 and 1.0");
+        if (volume < 0.0f) {
+            globalVolume = 0.0f;
+        } else if (volume > 1.0f) {
+            globalVolume = 1.0f;
+        } else {
+            globalVolume = Math.round(volume * 10) / 10.0f; // Round to nearest 0.1
         }
-        globalVolume = volume;
+        // Update the volume of all currently playing clips
+        for (Clip clip : playingClips) {
+            setVolume(clip, globalVolume);
+        }
     }
 
-    private void setVolume(Clip clip, float volume) {
+    public static float getGlobalVolume() {
+        return globalVolume;
+    }
+
+    private static void setVolume(Clip clip, float volume) {
         try {
             FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
             float min = volumeControl.getMinimum(); // Typically -80.0 dB

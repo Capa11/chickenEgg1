@@ -1,17 +1,15 @@
 package chickenEggs.objects.Pages;
 
-
 import chickenEggs.interfaces.*;
 import chickenEggs.interfaces.Pages.Button;
 import chickenEggs.interfaces.Pages.NavBtn;
 import chickenEggs.interfaces.Pages.Page;
 import chickenEggs.objects.Game.GamePage;
+import chickenEggs.objects.Sound;
 
 import java.util.ArrayList;
 
 import static chickenEggs.interfaces.variables.*;
-
-
 
 public class ControllerScreen extends Page {
     Button player1 = new NavBtn(-200, -100, 350, 100, health[0], new PlayerControllerScreen(), "player 1", 40);
@@ -61,14 +59,21 @@ public class ControllerScreen extends Page {
 
             if (n < 0) n = 0;
             level[n++].path = health[1];
+            adjustVolume(0.1f); // Increase volume by 0.1
         }
         if(lastMouseX>=-325 && lastMouseX <=-272 && lastMouseY <=280 && lastMouseY>=225 && n >=0) {
 
             if (n == 10) n = 9;
 
             level[n--].path = health[0];
+            adjustVolume(-0.1f); // Decrease volume by 0.1
         }
 
         super.isClicked();
+    }
+
+    private void adjustVolume(float delta) {
+        float newVolume = Sound.getGlobalVolume() + delta;
+        Sound.setGlobalVolume(newVolume);
     }
 }
