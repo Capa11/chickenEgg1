@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Sound {
-    private static float globalVolume = 0.5f; // Default volume set to 50%
+    private static float globalVolume = 0.0f; // Default volume set to 50%
     private byte[] mBytes;
     private DataLine.Info mInfo;
     private AudioFormat mFormat;
