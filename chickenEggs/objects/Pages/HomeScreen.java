@@ -16,8 +16,8 @@ public class HomeScreen extends Page {
     int y = 500;
 
     Button playButton = new NavBtn(-500, -450, 400, 200, icons[icons.length-1], new GamePage(), "start the game", 25 ,-500 , icons[icons.length-4],-500 , -420 , 150,150  );
-    Button customButton = new NavBtn(0, -450, 400, 200, icons[icons.length-1], new CustomScreen(), "custom game", 25 , -500 , icons[icons.length-2],0, -420 , 150 , 150 );
-    Button instructionButton = new NavBtn(500, -450, 400, 200,icons[icons.length-1], new CustomScreen(), "instruction", 25 , -500 , icons[icons.length-3]  , 500 , -430 , 200 , 200);
+    Button customButton = new NavBtn(0, -450, 400, 200, icons[icons.length-1], new CustomScreen(this), "custom game", 25 , -500 , icons[icons.length-2],0, -420 , 150 , 150 );
+    Button instructionButton = new NavBtn(500, -450, 400, 200,icons[icons.length-1], new Statement(this), "instruction", 25 , -500 , icons[icons.length-3]  , 500 , -430 , 200 , 200);
     public HomeScreen() {
         super(background[0], buttons);
         buttons.add(playButton);

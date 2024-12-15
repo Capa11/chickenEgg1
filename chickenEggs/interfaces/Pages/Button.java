@@ -14,9 +14,9 @@ public abstract class Button extends drawable{
     public Button(int xbutton, int ybutton , int wbutton, int hbutton, int backGround,Page page,String s,int fontsize,int ystring,int iconpath,int xicon,int yicon,int wicon,int hicon){
         super(xbutton,ybutton,wbutton,hbutton,backGround);
         this.page=page;
-        this.text = s;
+        this.text =s;
         float xEmpty=w-((fontsize*s.length()));
-        buttonName=initwriteString(s,xbutton- (float) w /2+xEmpty/2,xbutton+ (float) w /2,ystring,fontsize,fontsize,0);
+        buttonName=initwriteString(s,xbutton-w/2+xEmpty/2,xbutton+w/2,ystring,fontsize,fontsize,0);
         haveIcon=true;
         icon=new drawable(xicon,yicon,wicon,hicon,iconpath);
     }
@@ -33,6 +33,7 @@ public abstract class Button extends drawable{
         return false;
     }
     public void ifMouseMoved(){}//for calling subclasses when overriding
+    public void ifMouseOutMoved(){}//for calling subclasses when overriding
     public void ifkeyPressed(int e) {}//for calling subclasses when overriding
     public void ifClicked(){}
     public void isClicked(){
@@ -48,8 +49,11 @@ public abstract class Button extends drawable{
         if(isInside(xmouse,ymouse)){
             ifMouseMoved();
             return true;
+        }else {
+            ifMouseOutMoved();
+            return false;
         }
-        return false;
+
     }
     public void keyPressed(int e){
         if(isSelect)ifkeyPressed(e);

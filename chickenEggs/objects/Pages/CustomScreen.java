@@ -1,8 +1,5 @@
 package chickenEggs.objects.Pages;
 
-import javax.media.opengl.GL;
-import javax.media.opengl.GLAutoDrawable;
-
 import chickenEggs.interfaces.*;
 import chickenEggs.interfaces.Pages.Button;
 import chickenEggs.interfaces.Pages.NavBtn;
@@ -42,16 +39,16 @@ public class CustomScreen extends Page {
 
 
     //settings
-    NavBtn settings = new NavBtn((int)(-xaxis+150),(int)(yaxis-100),250,200,icons[8],null,"",0);
+    NavBtn backBtn;
 //    Buttons
-    Button rightPlayers = new RightPlayers(300, (int)(yaxis-300), 130, 100, icons[4], null, "", 50);
-    Button leftPlayers = new LeftPlayers(-300, (int)(yaxis-300), 130, 100, icons[4+2], null, "", 50);
-    Button leftHuman = new PrevHuman(-300, (int)(yaxis-500), 130, 100, icons[4+2], null, "", 50);
-    Button rightHuman = new NextHuman(300, (int)(yaxis-500), 130, 100, icons[4], null, "", 50);
+    Button rightPlayers = new RightPlayers(300, (int)(yaxis-300), 130, 100, icons[5], null, "", 50);
+    Button leftPlayers = new LeftPlayers(-300, (int)(yaxis-300), 130, 100, icons[7], null, "", 50);
+    Button leftHuman = new PrevHuman(-300, (int)(yaxis-500), 130, 100, icons[7], null, "", 50);
+    Button rightHuman = new NextHuman(300, (int)(yaxis-500), 130, 100, icons[5], null, "", 50);
 //    Button rightAi = new NextAi(300, (int)(yaxis-700), 130, 100, icons[4], null, "", 50);
 //    Button leftAi = new PrevAi(-300, (int)(yaxis-700), 130, 100, icons[4+2], null, "", 50);
-    Button rightLevels = new NextLevel(300, (int)(yaxis-700), 130, 100, icons[4], null, "", 50);
-    Button leftLevels = new PrevLevel(-300, (int)(yaxis-700), 130, 100, icons[4+2], null, "", 50);
+    Button rightLevels = new NextLevel(300, (int)(yaxis-700), 130, 100, icons[5], null, "", 50);
+    Button leftLevels = new PrevLevel(-300, (int)(yaxis-700), 130, 100, icons[7], null, "", 50);
 //  Data
     protected static Integer howManyPlayers = numPlayers;
     protected static Integer howManyHumans = numHuman;
@@ -59,13 +56,15 @@ public class CustomScreen extends Page {
     protected static String whatIsLevel = level;
 
 //Start
-NavBtn startGame = new NavBtn((int)((-xaxis+xaxis)/2),(int)(-yaxis+300),600,350,icons[9],null,"",0);
+    NavBtn startGame = new NavBtn((int)((-xaxis+xaxis)/2),(int)(-yaxis+300),600,350,icons[3],new ScoreBoard(this),"",0);
 
-    ArrayList<Button> arr = new ArrayList<>();
+    static ArrayList<Button> arr = new ArrayList<>();
+    public CustomScreen(){
+    }
 
-    public CustomScreen() {
-        super(background[0]);
-//        arr.add(b1);
+    public CustomScreen(Page back) {
+        super(background[0],arr);
+        this.backBtn = new NavBtn((int)(-xaxis+150),(int)(yaxis-100),250,200,icons[8],back,"",0);
         arr.add(rightPlayers);
         arr.add(leftPlayers);
         arr.add(rightHuman);
@@ -74,11 +73,10 @@ NavBtn startGame = new NavBtn((int)((-xaxis+xaxis)/2),(int)(-yaxis+300),600,350,
 //        arr.add(leftAi);
         arr.add(rightLevels);
         arr.add(leftLevels);
-        arr.add(settings);
+        arr.add(this.backBtn);
         arr.add(startGame);
 //        arr.add(incVol);
 //        arr.add(decVol);
-        super.buttons = arr;
     }
     @Override
     public void draw(){

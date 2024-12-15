@@ -13,7 +13,7 @@ import chickenEggs.interfaces.Pages.Page;
 import chickenEggs.objects.Pages.CustomScreen;
 
 public abstract class variables implements GLEventListener {
-    public static File scoreBoard = new File("D://learning//Graphics//team project//chickenEggs//Assets//scoreboard.txt");
+    public static File scoreBoard = new File("chickenEggs//Assets//scoreboard.txt");
     public static Page runningPage;
     public static float xtranslation=0,ytranslation=0;
     public static float xmouse=1000,ymouse=500;
@@ -68,8 +68,8 @@ public abstract class variables implements GLEventListener {
     private static String[] iegg = {"egg.png"};
     private static String[] ichicken = {"OrdinaryChicken.png","UnordinaryChicken.png","SuperChicken.png","UltimateChicken.png"};
 
-    private static String[] iconsCustom ={"add1.png","add2.png","minus1.png","minus2.png","right1.png","right2.png","left1.png","left2.png","RocketIcon.png" , "instructions.png", "customIcon.png","purple.png"};
-    //,"settings.png","play.png","top3.png","reset.png"};
+    private static String[] iconsCustom ={"add1.png","add2.png","minus1.png","play.png","minus2.png","right1.png","right2.png","left1.png",
+                                         "left2.png","RocketIcon.png" , "instructions.png", "customIcon.png","top3.png"};
     private static String[] ibackground ={"spacee.png" ,"kindpng_6159643.png"};
 
 

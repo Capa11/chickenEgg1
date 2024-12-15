@@ -31,9 +31,5 @@ public class RightPlayers extends Button {
     public void ifMouseMoved(){
         super.path = background[1];
     }
-    @Override
-    public void ifMouseOutMoved(){
-        super.path = icons[4];
-    }
 }
 

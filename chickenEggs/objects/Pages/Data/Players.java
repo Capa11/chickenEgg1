@@ -8,6 +8,7 @@ import static chickenEggs.interfaces.variables.*;
 
 public class Players extends CustomScreen {
     public Players(int val){
+        super();
         howManyPlayers = val;
     }
 }

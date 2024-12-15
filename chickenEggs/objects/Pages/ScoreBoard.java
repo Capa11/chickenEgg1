@@ -13,7 +13,9 @@ import static chickenEggs.interfaces.variables.*;
 
 public class ScoreBoard extends Page {
     //InputBox
-    inputbox inputbox = new inputbox(0,0,0,0,0,0,0);
+    inputbox inputbox = new inputbox(0,-350,1200,300,8,80,icons[2]);
+    NavBtn back;
+
 
     //Labels
     drawable[] playersText = initwriteString("players",-850,-475,390,60,60,0);
@@ -29,28 +31,42 @@ public class ScoreBoard extends Page {
 
     //InputBox
 
-
-    ArrayList<Button> arr = new ArrayList<>();
+    static ArrayList<Button> arr = new ArrayList<>();
     ArrayList<Pair> scores = getScoreBoard();
+/*
+    public ScoreBoard(){}
+*/
 
-    public ScoreBoard() {
-        super(background[0]);
-        arr.add(btnClearScoreBord);
-        arr.add(play);
-        super.buttons = arr;
+    public ScoreBoard(Page back) {
+        super(background[0],arr);
+        this.back = new NavBtn((int)(-xaxis+150),(int)(yaxis-100),250,200,icons[8],back,"",0);
+       /* arr.add(btnClearScoreBord);
+        arr.add(play);*/
+        arr.add(this.back);
     }
+
+    @Override
+    public void ifkeyPressed(int e) {
+        inputbox.keyPressed(e);
+    }
+
+    @Override
+    public void ifClicked() {
+        inputbox.isClicked();
+    }
+
     @Override
     public void draw(){
         super.draw();
-        DrawSprite(0,450,700,400,icons[10]);
-        DrawSprite(0,-350,1200,300,icons[2]);
+        DrawSprite(0,450,700,400,icons[icons.length-1]);
+        inputbox.draw();
         drawScores(scores);
     }
     public void drawScores(ArrayList<Pair> arra){
         for (int i = 0; i < arra.size() && i<3; i++) {
-            drawArray(initwriteString(i+"",-300,-200,100-i*150,50,50,0));
+            drawArray(initwriteString((i+1)+"",-300,-200,100-i*150,50,50,0));
             drawArray(initwriteString(arra.get(i).getS(),-180,180,100-i*150,50,50,0));
-            drawArray(initwriteString(arra.get(i).getIn().toString(),200,300,100-i*150,50,50,0));
+            drawArray(initwriteString(arra.get(i).getIn().toString(),200,300,150-i*150,50,50,0));
         }
     }
 }

@@ -83,19 +83,36 @@ public class inputbox extends drawable {
             str.add('h');
             str.add('t');
         } else if (e == KeyEvent.VK_SLASH) {
-            str.add('/');
+            str.add('s');
+            str.add('s');
+            str.add('s');
+            str.add('s');
+            str.add('s');
         } else if (e == KeyEvent.VK_MINUS) {
-            str.add('-');
+            str.add('m');
+            str.add('i');
+            str.add('n');
+            str.add('u');
+            str.add('s');
         } else if (e == KeyEvent.VK_COMMA) {
-            str.add(',');
+            str.add('c');
+            str.add('o');
+            str.add('m');
+            str.add('m');
+            str.add('a');
         } else if (e == KeyEvent.VK_PERIOD) {
-            str.add('.');
-        } else if (e == KeyEvent.VK_BACK_SLASH) {
-            str.add('\\');
+            str.add('p');
+            str.add('e');
+            str.add('r');
+            str.add('i');
+            str.add('o');
+            str.add('d');
         } else if (e == KeyEvent.VK_PLUS) {
-            str.add('-');
+            str.add('p');
+            str.add('l');
+            str.add('u');
+            str.add('s');
         }
-
 
         if (e == KeyEvent.VK_BACK_SPACE && !str.isEmpty()) {
             str.remove(str.size() - 1);
@@ -114,8 +131,6 @@ public class inputbox extends drawable {
     public boolean isClicked() {
         if (lastMouseX <= x + (float) w / 2 && lastMouseX >= x - (float) w / 2 && lastMouseY <= y + (float) h / 2 && lastMouseY >= y - (float) h / 2) {
             isSelect = true;
-            str.clear();
-            System.out.println("clicked");
             return true;
         } else {
             isSelect = false;
