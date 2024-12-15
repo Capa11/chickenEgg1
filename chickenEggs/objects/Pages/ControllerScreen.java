@@ -21,12 +21,13 @@ public class ControllerScreen extends Page {
     drawable[] level = new drawable[10];
     drawable[] controller = initwriteString("controller", -150, 400, 100, 40, 50, 0);
     static ArrayList<Button> buttons = new ArrayList<>();
-    int n=0;
+    int n = (int) (Sound.getGlobalVolume() * 10); // Start at 50%
+
     public ControllerScreen() {
         super(background[0], buttons);
         for (int i = 0; i < level.length; i++) {
             level[i] = new drawable();
-            level[i].setPath(health[0]);
+            level[i].setPath(i < n ? health[1] : health[0]); // Initialize volume bar to 50%
         }
         initGrid(level, -950, 1000, 280, 50, 50, 10, 10);
         buttons.add(player1);
@@ -46,6 +47,36 @@ public class ControllerScreen extends Page {
         DrawSprite(350, 255, 50, 60, icons[4]);
     }
 
+//    @Override
+//    public void isClicked() {
+//        for (Button button : buttons) {
+//            if (button.isInside(lastMouseX, lastMouseY)) {
+//                playerController = Integer.parseInt(String.valueOf(button.text.charAt(button.text.length() - 1)));
+//                System.out.println(playerController);
+//                break;
+//            }
+//        }
+//        if (lastMouseX <= 375 && lastMouseX >= 325 && lastMouseY <= 280 && lastMouseY >= 226 && n < 10) {
+//            if (n < 0) n = 0;
+//            level[n].path = health[1];
+//            adjustVolume(0.1f); // Increase volume by 0.1
+//            n++;
+//        }
+//        if (lastMouseX >= -325 && lastMouseX <= -272 && lastMouseY <= 280 && lastMouseY >= 225 && n >= 0) {
+//            if (n == 10) n = 9;
+//            n--;
+//            level[n].path = health[0];
+//            adjustVolume(-0.1f); // Decrease volume by 0.1
+//        }
+//
+//        super.isClicked();
+//    }
+//
+    private void adjustVolume(float delta) {
+        float newVolume = Sound.getGlobalVolume() + delta;
+        Sound.setGlobalVolume(newVolume);
+    }
+
     @Override
     public void isClicked() {
         for (Button button : buttons) {
@@ -55,25 +86,19 @@ public class ControllerScreen extends Page {
                 break;
             }
         }
-        if(lastMouseX <= 375 && lastMouseX >= 325 && lastMouseY <= 280 && lastMouseY>=226 && n<10) {
-
+        if (lastMouseX <= 375 && lastMouseX >= 325 && lastMouseY <= 280 && lastMouseY >= 226 && n < 10) {
             if (n < 0) n = 0;
-            level[n++].path = health[1];
+            level[n].path = health[1];
             adjustVolume(0.1f); // Increase volume by 0.1
+            n++;
         }
-        if(lastMouseX>=-325 && lastMouseX <=-272 && lastMouseY <=280 && lastMouseY>=225 && n >=0) {
-
-            if (n == 10) n = 9;
-
-            level[n--].path = health[0];
+        if (lastMouseX >= -325 && lastMouseX <= -272 && lastMouseY <= 280 && lastMouseY >= 225 && n > 0) {
+            n--;
+            level[n].path = health[0];
             adjustVolume(-0.1f); // Decrease volume by 0.1
         }
 
         super.isClicked();
     }
 
-    private void adjustVolume(float delta) {
-        float newVolume = Sound.getGlobalVolume() + delta;
-        Sound.setGlobalVolume(newVolume);
-    }
 }

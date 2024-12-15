@@ -1,4 +1,3 @@
-
 package chickenEggs.objects.Pages;
 
 import chickenEggs.interfaces.*;
@@ -20,11 +19,11 @@ public class Statement extends Page {
         line1 = initwriteString("in a galaxy far away the fate of earth hangs by a feather the chickens have returned and this time they are not clucking around with their cunning formations and relentless egg attacks it is up to you to defend the planet take control of your spaceship dodge the incoming eggs and fry these feathered foes in this fast paced action packed arcade adventure", -900, 900, yOffset, 50, 50, 8);
         credits = initwriteString("game made by hazem capa omar youssef mahmoud", -900, 900, creditsOffset, 50, 50, 8);
 
-        // Initialize the background sound and start looping
-        backgroundSound = Sound.loadFromFile("chickenEgg1/chickenEggs/Sounds/BlueBoyAdventure.wav");
-        if (backgroundSound != null) {
-            backgroundSound.playLooping();
-        }
+        // if you un commented this code it will run the sound in the backgorund
+        // backgroundSound = Sound.loadFromFile("chickenEgg1/chickenEggs/Sounds/BlueBoyAdventure.wav");
+        // if (backgroundSound != null) {
+        //     backgroundSound.playLooping();
+        // }
     }
 
     @Override

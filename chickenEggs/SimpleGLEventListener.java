@@ -8,6 +8,7 @@ import chickenEggs.interfaces.*;
 
 import chickenEggs.interfaces.Pages.*;
 import chickenEggs.objects.Pages.*;
+import chickenEggs.objects.Sound;
 //cursor
 import java.awt.Cursor;
 import java.awt.Image;
@@ -29,6 +30,14 @@ public class SimpleGLEventListener extends variables {
     public void init(GLAutoDrawable gld) {
         gl = gld.getGL();
         init(gl);
+
+        // Initialize the background sound and start looping
+        Sound backgroundSound = Sound.loadFromFile("chickenEgg1/chickenEggs/Sounds/BlueBoyAdventure.wav");
+        if (backgroundSound != null) {
+            backgroundSound.playLooping();
+        }
+
+
 //        runningPage=new CustomScreen();
 //        runningPage = new CustomGameInstraction();
         runningPage = new Statement();
@@ -40,8 +49,10 @@ public class SimpleGLEventListener extends variables {
 
         // Store the component for later use
         component = (java.awt.Component) gld;
-
+// un comment this line to set custom cursor
         // Set initial custom cursor
+        // the cursor moves the mose a bit to the lift when i put this image don't know why
+
 //        setCustomCursor("chickenEgg1/chickenEggs/Assets/Man/Man1.png");
         //BlueBoyAdventure.wav //the sound
         //D:\practice code\304 file\project-game-jetbrains--main\chickenEgg1\chickenEggs\BlueBoyAdventure.wav
