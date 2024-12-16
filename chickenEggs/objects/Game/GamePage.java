@@ -22,7 +22,6 @@ public class GamePage extends Page {
     ArrayList<drawable[]> scores;
     ArrayList<drawable[]>healths;
     public mousePlayer mousePlayer;
-    public boolean isDead=false;
     public static int oneMinute=60*60;//because animator is 60 fps
     public ArrayList<Egg> eggs=new ArrayList<>();
     public ArrayList<Chicken> chickens=new ArrayList<>();
@@ -30,11 +29,17 @@ public class GamePage extends Page {
     public ArrayList<keyPlayer> keyPlayers = new ArrayList<>();
     public ArrayList<AiPlayer> AiPlayers;
     public ArrayList<Player> players = new ArrayList<>();
+    public boolean winning=false;
     ArrayList<drawable[]>names;
     public int timer;
     int level;
+    public Page backPage;
+    public GameEnd gameEnd ;
+    public GamePause gamePause;
     boolean isCustom=true;
-    public GamePage(mousePlayer mousePlayer, ArrayList<keyPlayer> keyPlayers, ArrayList<AiPlayer> AiPlayers, int difficulty){//level 0 means not custom game
+    boolean isPause=false;
+
+    public GamePage(mousePlayer mousePlayer, ArrayList<keyPlayer> keyPlayers, ArrayList<AiPlayer> AiPlayers, int difficulty,Page backpage){//level 0 means not custom game
         path=background[0];
         this.keyPlayers=keyPlayers;
         this.AiPlayers=AiPlayers;
@@ -77,25 +82,40 @@ public class GamePage extends Page {
             level=7;
             timer=oneMinute*2;
         }
+        gamePause = new GamePause(backpage);
+        this.backPage=backpage;
     }
     @Override
     public void draw() {
         super.draw();
-        moveAll();
-        checkCollesion();
-        drawObjects();
-        if(isCustom)timer--;
-        if(isAllPlayerDead()||timer<=0)losing();
-        if(isAllChickenDead())winning();
+        if(isGameRunning) {
+            moveAll();
+            checkCollesion();
+            drawObjects();
+            if (isCustom) timer--;
+            if (isAllPlayerDead() || timer <= 0) losing();
+            if (isAllChickenDead()) winning();
+        }
+        else{
+            if(isPause) {
+                gamePause.draw();
+            }
+            else{
+                gameEnd.draw();
+            }
+        }
 
     }
     public void losing(){
-
-
+        isGameRunning=false;
+        winning=false;
+        gameEnd=new GameEnd(backPage,false);
     }
     public void winning(){
         if(isCustom){
-
+            isGameRunning=false;
+            winning=true;
+            gameEnd=new GameEnd(backPage,true);
         }
         else{
             for (int i = 0; i < players.size(); i++) {
@@ -114,22 +134,6 @@ public class GamePage extends Page {
     public boolean isAllChickenDead(){
        return chickens.size()==0;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public void drawObjects(){
         for (int i = 0; i < chickens.size(); i++) {
             chickens.get(i).draw();
@@ -274,8 +278,14 @@ public class GamePage extends Page {
         }
     }
     public void keyPressed(int e){
-        for (int i = 0; i < keyPlayers.size(); i++) {
-            keyPlayers.get(i).keyPressed(e);
+        if(isGameRunning) {
+            for (int i = 0; i < keyPlayers.size(); i++) {
+                keyPlayers.get(i).keyPressed(e);
+            }
+        }
+        if(e==KeyEvent.VK_ESCAPE){
+            isGameRunning=!isGameRunning;
+            isPause=!isPause;
         }
     }
 
