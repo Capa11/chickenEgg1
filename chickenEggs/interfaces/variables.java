@@ -237,7 +237,7 @@ public abstract class variables implements GLEventListener {
             i++;
         }
     }
-    public static void initGridNoWH(drawable[] arr, float xs, float xf, float ys,float yf, int gapX, int gapY){
+    public static void initGridNoWH(drawable[] arr, float xs, float xf, float ys,float yf, int gapX, int gapY){//no width and height require
         float availableWidth = xf - xs;//right - left
         float availableHeight = ys - yf;//up - down
 
