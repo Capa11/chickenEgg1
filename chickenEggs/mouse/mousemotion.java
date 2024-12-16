@@ -21,6 +21,12 @@ public class mousemotion implements MouseMotionListener {
 
             lastMouseX = e.getX();
             lastMouseY = e.getY();
+            xmouse = convertX(e.getX(), e.getComponent().getWidth());
+            ymouse = convertY(e.getY(), e.getComponent().getHeight());
+            runningPage.mouseMoved();
+            runningPage.isClicked();
+
+
         }
     }
 
