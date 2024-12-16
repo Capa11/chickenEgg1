@@ -10,9 +10,9 @@ import java.util.*;
 
 import Texture.TextureReader;
 import chickenEggs.interfaces.Pages.Page;
-import chickenEggs.objects.Pages.CustomScreen;
 
 public abstract class variables implements GLEventListener {
+    public static int playerController = 1;
     public static File scoreBoard = new File("chickenEggs//Assets//scoreboard.txt");
     public static Page runningPage;
     public static float xtranslation=0,ytranslation=0;
@@ -23,15 +23,13 @@ public abstract class variables implements GLEventListener {
     public static float convertX(float x, float width) {
         return -xaxis + (x / width) * xaxis *2;
     }
-
     public static float convertY(float y, float height) {
         return (1 - y / height) * yaxis *2- yaxis;
     }
-    public static int playerController = 1;
     public static GL gl;
     public static float xaxis =1000;
     public static float yaxis =600;
-    public static boolean Operations = true;
+    public static boolean Operations = false;
     public static boolean isGameRunning=true;
     public static boolean showCoolEffect = false;
     public boolean winning=false;
@@ -67,11 +65,10 @@ public abstract class variables implements GLEventListener {
     private static String[] ibaskets = {"basket1.png","basket2.png","basket3.png","basket4.png"};
     private static String[] iegg = {"egg.png"};
     private static String[] ichicken = {"OrdinaryChicken.png","UnordinaryChicken.png","SuperChicken.png","UltimateChicken.png"};
+    private static String[] iheart = {"heart.png"};
 
-    private static String[] iconsCustom ={"add1.png","add2.png","minus1.png","play.png","minus2.png","right1.png","right2.png","left1.png",
-                                         "left2.png","RocketIcon.png" , "instructions.png", "customIcon.png","top3.png"};
-    private static String[] ibackground ={"spacee.png" ,"kindpng_6159643.png"};
-
+    private static String[] iconsCustom ={"add1.png","add2.png","minus1.png","minus2.png","right1.png","right2.png","left1.png","left2.png","settings.png","play.png","top3.png","reset.png"};
+    private static String[] ibackground ={"background1.jpg"};
 
 
     //    private static String[] iconsCustom ={"add1.png","add2.png","minus1.png","minus2.png","right1.png","right2.png","left1.png","left2.png"};
@@ -97,8 +94,17 @@ public abstract class variables implements GLEventListener {
 
     public static int[] bullets = new int[ibullets.length];
     public static int[] rockets = new int[irockets.length];
-
-
+    public static int[] heart = new int[iheart.length];
+    public static boolean isClickInside() {
+        if (lastMouseX <= xaxis && lastMouseX >= -xaxis && lastMouseY <= yaxis && lastMouseY >= -yaxis) {
+            return true;
+        } else return false;
+    }
+    public static boolean isMouseInside() {
+        if (xmouse <= xaxis && xmouse >= -xaxis && ymouse <= yaxis && ymouse >= -yaxis) {
+            return true;
+        } else return false;
+    }
     protected static  void init(GL gl) {
         gl.glOrtho( -xaxis, xaxis, -yaxis, yaxis,-1.0, 1.0);
         gl.glClearColor(1.0f, 1.0f, 1.0f, 1.0f); // This Will Clear The Background Color To White
@@ -117,14 +123,14 @@ public abstract class variables implements GLEventListener {
         prepareimage(folderchicken,ibaskets,baskets,gl);
         prepareimage(folderIcons,iconsCustom,icons,gl);
 
-        prepareimage(folderchicken,ibackground,background,gl);
+        prepareimage(folderBackground,ibackground,background,gl);
 
 
 
         prepareimage(folderbullets , ibullets , bullets , gl);
         prepareimage(folderRockets , irockets , rockets , gl);
 
-
+        prepareimage(folderchicken , iheart , heart ,gl);
 
     }
 
@@ -203,6 +209,7 @@ public abstract class variables implements GLEventListener {
     public static void initGrid(drawable[] arr, float xs, float xf, float ys, int w, int h, int gapX, int gapY){
         initGridindex(arr,xs,xf,ys,w,h,gapX,gapY,0,arr.length-1);
     }
+
     public static void initGridindex(drawable[] arr, float xs, float xf, float ys, int w, int h, int gapX, int gapY,int sind,int eind){
         int maxEx= Math.min((int) ((xf-xs)/(w+gapX)),eind-sind+1);
         float xEmpty=(xf-xs)-((w*maxEx)+gapX*(maxEx-1));
@@ -224,6 +231,22 @@ public abstract class variables implements GLEventListener {
             else xs+=gapX+w;
             i++;
         }
+    }
+    public static void initGridNoWH(drawable[] arr, float xs, float xf, float ys,float yf, int gapX, int gapY){
+        float availableWidth = xf - xs;//right - left
+        float availableHeight = ys - yf;//up - down
+
+        int size;
+        for ( size = 0; size < 2000; size+=10) {
+            int numberOfRows= (int) Math.ceil(((size+gapX)*arr.length)/availableWidth);
+            if(numberOfRows*size+gapY*(size-1)>availableHeight){
+                size-=10;
+                break;
+            }
+        }
+        System.out.println(size);
+        initGridindex(arr, xs, xf, ys,size,size, gapX, gapY, 0, arr.length-1);
+
     }
 
     //numbers and letters(no caps) and blank only in string all words must satisfy the width given
@@ -265,17 +288,9 @@ public abstract class variables implements GLEventListener {
         return initwriteString(new String(arr),xs,xf,ys,w,h,gapY);
     }
     public static class Pair{
-        String s;Integer in;
+        public String s;public Integer in;
         Pair(String s,Integer in){
             this.s=s;this.in=in;
-        }
-
-        public String getS() {
-            return s;
-        }
-
-        public Integer getIn() {
-            return in;
         }
     }
     public static void clearScoreBoard(){
@@ -352,19 +367,10 @@ public abstract class variables implements GLEventListener {
         prepareYouLose(y);
         drawArray(youLose);
     }
-    public static void rectangle(int x1,int y1,int x2,int y2){
-        gl.glBegin(GL.GL_QUADS);
-        gl.glVertex2d(x1,y1);
-        gl.glVertex2d(x1,y2);
-        gl.glVertex2d(x2,y2);
-        gl.glVertex2d(x2,y1);
-        gl.glEnd();
-    }
-    public static void circle(int x,int y,int r){
-        gl.glBegin(9);
-        for (int i = 0; i < 360; i++) {
-            gl.glVertex2d(x+r*Math.cos(Math.toRadians(i)),y+r*Math.sin(Math.toRadians(i)));
+    public static class Pairii{
+        public Integer f;public Integer s;
+        public Pairii(Integer f, Integer s){
+            this.f=f;this.s=s;
         }
-        gl.glEnd();
     }
 }
