@@ -45,6 +45,18 @@ public class GamePage extends Page {
         for (int i = 0; i < players.size(); i++) {
             players.get(i).bullets=bullets;
         }
+
+        //init the x of each rocket when beginning
+        drawable[] d = new drawable[players.size()];
+        for (int i = 0; i < d.length; i++) {
+            d[i] = new drawable();
+        }
+        initGrid(d,-xaxis,xaxis,-yaxis,rocket.wRocket,rocket.hRocket,400,0);
+        for (int i = 0; i < players.size(); i++) {
+            players.get(i).r.xBegining=d[i].x;
+        }
+
+
          scores = new ArrayList<>();
          healths = new ArrayList<>();
          names = new ArrayList<>();

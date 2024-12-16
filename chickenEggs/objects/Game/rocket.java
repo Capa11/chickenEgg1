@@ -13,7 +13,7 @@ public class rocket extends singleGameObject {
     public static int hRocket = 200;
     boolean bulletready = true;
     Player player;
-
+    int xBegining=0;
     public rocket(int x, int y, Player player) {
         super(x, y, wRocket, hRocket, rockets[0]);
         this.player = player;
@@ -22,10 +22,12 @@ public class rocket extends singleGameObject {
     public rocket(Player player) {
         super(0, (int) (-yaxis + 100), wRocket, hRocket);
         this.player = player;
+        start();
     }
 
     public void destroy() {
         if (sheildTimer <= 0) {
+            xBegining=0;
             start();
             player.health--;
             preparingRocket = true;
@@ -35,7 +37,6 @@ public class rocket extends singleGameObject {
     public void start() {
         sheildTimer = 200;
         y = (int) (-yaxis - 100);
-        x=0;
     }
 
     public void draw() {
@@ -46,7 +47,10 @@ public class rocket extends singleGameObject {
 //        if(isInside())
         super.draw();
         if (sheildTimer > 0) sheildTimer--;
-        if (preparingRocket && y < -yaxis + 100) y += 2;
+        if (preparingRocket && y < -yaxis + 100) {
+            y += 2;
+            x=xBegining;
+        }
         else preparingRocket = false;
     }
 
