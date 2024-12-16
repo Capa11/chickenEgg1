@@ -14,4 +14,10 @@ public class GameEnd {
     public void draw(){
 
     }
+    public void mousePressed(){
+
+    }
+    public void mouseClicked(){
+
+    }
 }

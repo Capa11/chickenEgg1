@@ -11,4 +11,10 @@ public class GamePause {
     public void draw(){
 
     }
+    public void mousePressed(){
+
+    }
+    public void mouseClicked(){
+
+    }
 }
