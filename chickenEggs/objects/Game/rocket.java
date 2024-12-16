@@ -19,11 +19,13 @@ public class rocket extends singleGameObject {
     public rocket(int x, int y, Player player) {
         super(x, y, wRocket, hRocket, rockets[0]);
         this.player = player;
+        speed=10;
     }
 
     public rocket(Player player) {
         super(0, (int) (-yaxis + 100), wRocket, hRocket);
         this.player = player;
+        speed=10;
         start();
     }
 

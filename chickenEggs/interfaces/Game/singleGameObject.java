@@ -21,12 +21,9 @@ public class singleGameObject extends drawable{
     }
     //true if all object inside it's map
     public boolean isInside(){
-        return x<=xaxis-w/2&&y<=yaxis-h/2&&x>=-yaxis+w/2&&y>=-yaxis+h/2;
+        return x<=xaxis-w/2&&x>=-xaxis+w/2&&y>=-yaxis+w/2&&y<=yaxis-h/2;
+
     }
 
-    //true if part of object inside it's map
-    public boolean isPartInside(){
-        return x<=xaxis+w/2&&y<=yaxis+h/2&&x>=-xaxis-w/2&&y>=-yaxis-h/2;
-    }
 
 }
