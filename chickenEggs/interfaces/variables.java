@@ -10,6 +10,8 @@ import java.util.*;
 
 import Texture.TextureReader;
 import chickenEggs.interfaces.Pages.Page;
+import chickenEggs.objects.Game.GameEnd;
+import chickenEggs.objects.Game.GamePause;
 import chickenEggs.objects.Pages.CustomScreen;
 
 public abstract class variables implements GLEventListener {
