@@ -31,7 +31,6 @@ public class GamePage extends Page {
     public ArrayList<Player> players = new ArrayList<>();
     public boolean winning=false;
     ArrayList<drawable[]>names;
-    ArrayList<Integer>StartEnd;
     public int timer;
     int level;
     public Page backPage;
@@ -45,7 +44,6 @@ public class GamePage extends Page {
         this.keyPlayers=keyPlayers;
         this.AiPlayers=AiPlayers;
         this.mousePlayer=mousePlayer;
-        StartEnd = new ArrayList<>();
         if(mousePlayer!=null)players.add(mousePlayer);
         players.addAll(keyPlayers);
         players.addAll(AiPlayers);
@@ -297,12 +295,11 @@ public class GamePage extends Page {
         int space = 0;
         if(players.size()==2)space = 1200;
         if(players.size()==3)space = 500;
-        if(players.size()==4)space = 300;
+        if(players.size()==4)space = 200;
         int x = xstart;
         for (int i = 0; i < players.size(); i++) {
             String s = "" + players.get(i).score;
-            scores.add(new drawable[s.length()]);
-            StartEnd.add(x);
+             scores.add(new drawable[s.length()]);
             for (int j = 0; j < s.length(); j++) {
                 scores.get(i)[j] = new drawable(x , ystart, 60 , 60 ,numbers[s.charAt(j) - '0']);
                 x+=50;
@@ -310,16 +307,25 @@ public class GamePage extends Page {
             x+=space;
         }
     }
-    private void inithealths(){
+    public void inithealths(){
+        int xstart = (int)-xaxis + 100;
         int ystart = (int)(-yaxis+20);
+        int space = 0;
+        int x = xstart;
+        if(players.size()==2)space = 1300;
+        if(players.size()==3)space = 600;
+        if(players.size()==4)space = 300;
         for (int i = 0; i < players.size(); i++) {
-            healths.add(new drawable[2]);
-            int x = StartEnd.get(i);
-            healths.get(i)[0] = new drawable(x , ystart , 60 , 60 , health[0]);
-            healths.get(i)[1] = new drawable(x + 70 , ystart , 60 , 60 , numbers[players.get(i).health]);
+            healths.add(new drawable[players.get(i).health]);
+
+            for (int j = 0; j < players.get(i).health; j++) {
+                healths.get(i)[j] = new drawable(x , ystart , 60 , 60 , heart[0]);
+                x+=70;
+            }
+            x+=space;
         }
     }
-    private void draw_score(){
+    public void draw_score(){
         initScores();
         for (int i = 0; i < scores.size(); i++) {
             for (int j = 0; j < scores.get(i).length; j++) {
@@ -327,7 +333,7 @@ public class GamePage extends Page {
             }
         }
     }
-    private void draw_health(){
+    public void draw_healt(){
         inithealths();
         for (int i = 0; i < healths.size(); i++) {
             for (int j = 0; j < healths.get(i).length; j++) {
@@ -335,30 +341,31 @@ public class GamePage extends Page {
             }
         }
     }
-    private void initnames(){
+    public void initnames(){
+        int xstart = (int)-xaxis + 100;
         int ystart = (int)(-yaxis+200);
+        int space = 0;
+        int x = xstart;
+        if(players.size()==2)space = 1200;
+        if(players.size()==3)space = 500;
+        if(players.size()==4)space = 300;
         for (int i = 0; i < players.size(); i++) {
             names.add(new drawable[players.get(i).name.length()]);
-            String s = players.get(i).name.toLowerCase();
-            int x = (StartEnd.size()!=0) ?StartEnd.get(i) : 0;
+            String s = players.get(i).name;
             for (int j = 0; j < names.get(i).length; j++) {
                 names.get(i)[j] = new drawable(x , ystart , 60 , 60 , Letters[s.charAt(j)-'a']);
                 x+=50;
             }
+            x+=space;
         }
     }
-    private void draw_names(){
+    public void draw_names(){
         initnames();
         for (int i = 0; i < names.size(); i++) {
             for (int j = 0; j < names.get(i).length; j++) {
                 if(names.get(i)!=null && names.get(i)[j]!=null)names.get(i)[j].draw();
             }
         }
-    }
-    public void draw_info(){
-        draw_score();//must be first
-        draw_names();
-        draw_health();
     }
 }
 
