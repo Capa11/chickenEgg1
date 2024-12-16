@@ -45,36 +45,36 @@ public class SimpleGLEventListener extends variables {
 //        runningPage = new Statement();
 //        runningPage = new HandelChickenMove();
 //        runningPage = new HandelChickenMove2();
-
 //        runningPage = new InstractionDefult();
         // runningPage = new chickencircle2();
 //        runningPage = new chickencircle();
         runningPage = new ControllerScreen();
 
-        // Store the component for later use
+        // this is for cursor
         component = (java.awt.Component) gld;
-// un comment this line to set custom cursor
-        // Set initial custom cursor
-        // the cursor moves the mose a bit to the lift when i put this image don't know why
 
-//        setCustomCursor("chickenEgg1/chickenEggs/Assets/Man/Man1.png");
-        //BlueBoyAdventure.wav //the sound
-        //D:\practice code\304 file\project-game-jetbrains--main\chickenEgg1\chickenEggs\BlueBoyAdventure.wav
-        // D:\practice code\304 file\project-game-jetbrains--main\chickenEgg1\chickenEggs\Sounds\BlueBoyAdventure.wav
+        // Assign this instance to the static variable for access in other classes
+        variables.simpleGLEventListenerInstance = this;
 
+        // un comment this line to set custom cursor
+//       setCustomCursor("chickenEgg1/chickenEggs/Assets/Man/11.png");
     }
+
     //cursor
     // Make setCustomCursor public and accept an image path
-    public void setCustomCursor(String imagePath) {
-        // Load the cursor image
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Image cursorImage = toolkit.getImage(imagePath);
+    public static void setCustomCursor(String imagePath) {
+        SimpleGLEventListener listener = variables.simpleGLEventListenerInstance;
+        if (listener != null && listener.component != null) {
+            // Load the cursor image
+            Toolkit toolkit = Toolkit.getDefaultToolkit();
+            Image cursorImage = toolkit.getImage(imagePath);
 
-        // Create the custom cursor
-        Cursor customCursor = toolkit.createCustomCursor(cursorImage, new Point(0, 0), "Custom Cursor");
+            // Create the custom cursor
+            Cursor customCursor = toolkit.createCustomCursor(cursorImage, new Point(0, 0), "Custom Cursor");
 
-        // Set the custom cursor on the component
-        component.setCursor(customCursor);
+            // Set the custom cursor on the component
+            listener.component.setCursor(customCursor);
+        }
     }
     //end
 
@@ -82,14 +82,10 @@ public class SimpleGLEventListener extends variables {
         gl = gld.getGL();
         gl.glClear(GL.GL_COLOR_BUFFER_BIT);
         runningPage.draw();
-
-
     }
 
-
     @Override
-    public void reshape(GLAutoDrawable glAutoDrawable, int i, int i1, int i2, int i3) {
+    public void reshape(GLAutoDrawable glAutoDrawable, int i, int i1, int i2, int i3) {}
 
-    }public void displayChanged(GLAutoDrawable glAutoDrawable, boolean b, boolean b1) {}
-
+    public void displayChanged(GLAutoDrawable glAutoDrawable, boolean b, boolean b1) {}
 }
