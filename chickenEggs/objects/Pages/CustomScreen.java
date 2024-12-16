@@ -11,8 +11,30 @@ import static chickenEggs.interfaces.variables.*;
 
 //2
 public class CustomScreen extends Page {
+    //    drawable[] arr1 =  initwriteString("players  1 2 3 4", -900, 950, 500, 60, 100, 10);
+//    drawable[] arr2 =  initwriteString("settings", -900, -850, 400, 60, 100, 10);
+//    drawable[] arr3 =  initwriteString("levels", -900, -850, 200, 60, 100, 10);
+//    drawable[] arr4 =  initwriteString("game modes", -900, -850, 0, 60, 100, 10);
+//    public CustomScreen() {
+//    }
+//    void drawBackground(){
+//        //DrawSprite(0,0, (int) (xaxis*2), (int) (yaxis*2), backgrounds[0]);
+//       // DrawSprite(0,0, (1200), (800), backgrounds[1]);
+//    }
+//
+//    @Override
+//    public void draw() {
+//        drawBackground();
+//        drawArray(arr1);
+//        drawArray(arr2);
+//        drawArray(arr3);
+//        drawArray(arr4);
+//    }
+
+    //Labels
     drawable[] playersText = initwriteString("players",-850,-475,390,60,60,0);
     drawable[] humansText = initwriteString("human",-700,-475,200,65,65,0);
+//    drawable[] aiText = initwriteString("ai",-575,-475,0,70,70,0);
     drawable[] levelText = initwriteString("level",-745,-495,0,70,70,0);
 
 
@@ -36,22 +58,23 @@ public class CustomScreen extends Page {
 //Start
     NavBtn startGame = new NavBtn((int)((-xaxis+xaxis)/2),(int)(-yaxis+300),600,350,icons[3],new ScoreBoard(this),"",0);
 
+    static ArrayList<Button> arr = new ArrayList<>();
     public CustomScreen(){
     }
 
     public CustomScreen(Page back) {
-        super(background[0]);
+        super(background[0],arr);
         this.backBtn = new NavBtn((int)(-xaxis+150),(int)(yaxis-100),250,200,icons[8],back,"",0);
-        buttons.add(rightPlayers);
-        buttons.add(leftPlayers);
-        buttons.add(rightHuman);
-        buttons.add(leftHuman);
+        arr.add(rightPlayers);
+        arr.add(leftPlayers);
+        arr.add(rightHuman);
+        arr.add(leftHuman);
 //        arr.add(rightAi);
 //        arr.add(leftAi);
-        buttons.add(rightLevels);
-        buttons.add(leftLevels);
-        buttons.add(this.backBtn);
-        buttons.add(startGame);
+        arr.add(rightLevels);
+        arr.add(leftLevels);
+        arr.add(this.backBtn);
+        arr.add(startGame);
 //        arr.add(incVol);
 //        arr.add(decVol);
     }

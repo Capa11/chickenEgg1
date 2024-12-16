@@ -14,7 +14,7 @@ import static chickenEggs.interfaces.variables.*;
 public class ScoreBoard extends Page {
     //InputBox
     inputbox inputbox = new inputbox(0,-350,1200,300,8,80,icons[2]);
-    NavBtn backBtn;
+    NavBtn back;
 
 
     //Labels
@@ -31,21 +31,22 @@ public class ScoreBoard extends Page {
 
     //InputBox
 
+    static ArrayList<Button> arr = new ArrayList<>();
     ArrayList<Pair> scores = getScoreBoard();
 /*
     public ScoreBoard(){}
 */
 
     public ScoreBoard(Page back) {
-        super(background[0]);
+        super(background[0],arr);
+        this.back = new NavBtn((int)(-xaxis+150),(int)(yaxis-100),250,200,icons[8],back,"",0);
        /* arr.add(btnClearScoreBord);
         arr.add(play);*/
-        buttons.add(new NavBtn((int)(-xaxis+150),(int)(yaxis-100),250,200,icons[8],back,"",0));
+        arr.add(this.back);
     }
 
     @Override
-    public void keyPressed(int e) {
-        super.keyPressed(e);
+    public void ifkeyPressed(int e) {
         inputbox.keyPressed(e);
     }
 
@@ -64,8 +65,8 @@ public class ScoreBoard extends Page {
     public void drawScores(ArrayList<Pair> arra){
         for (int i = 0; i < arra.size() && i<3; i++) {
             drawArray(initwriteString((i+1)+"",-300,-200,100-i*150,50,50,0));
-            drawArray(initwriteString(arra.get(i).s,-180,180,100-i*150,50,50,0));
-            drawArray(initwriteString(arra.get(i).in.toString(),200,300,150-i*150,50,50,0));
+            drawArray(initwriteString(arra.get(i).getS(),-180,180,100-i*150,50,50,0));
+            drawArray(initwriteString(arra.get(i).getIn().toString(),200,300,150-i*150,50,50,0));
         }
     }
 }

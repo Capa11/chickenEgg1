@@ -22,9 +22,10 @@ public class ControllerScreen extends Page {
     drawable[] volume = initwriteString("volume", -100, 400, 350, 40, 40, 0);
     drawable[] level = new drawable[10];
     drawable[] controller = initwriteString("controller", -150, 400, 100, 40, 50, 0);
+    static ArrayList<Button> buttons = new ArrayList<>();
     int n=0;
     public ControllerScreen() {
-        super(background[0]);
+        super(background[0], buttons);
         for (int i = 0; i < level.length; i++) {
             level[i] = new drawable();
             level[i].setPath(health[0]);
@@ -48,7 +49,7 @@ public class ControllerScreen extends Page {
     }
 
     @Override
-    public void ifClicked() {
+    public void isClicked() {
         for (Button button : buttons) {
             if (button.isInside(lastMouseX, lastMouseY)) {
                 playerController = Integer.parseInt(String.valueOf(button.text.charAt(button.text.length() - 1)));
