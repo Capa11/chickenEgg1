@@ -18,6 +18,11 @@ public class drawable {
         this.h=h;
         this.path=path;
     }
+
+    public void increment() {
+        this.y++;
+    }
+
     public void setPath(int path){
         this.path=path;
     }
