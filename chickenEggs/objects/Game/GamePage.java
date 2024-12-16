@@ -47,20 +47,20 @@ public class GamePage extends Page {
         }
 
         //init the x of each rocket when beginning
-        drawable[] d = new drawable[players.size()];
-        for (int i = 0; i < d.length; i++) {
-            d[i] = new drawable();
+        drawable[] temp = new drawable[players.size()];
+        for (int i = 0; i < temp.length; i++) {
+            temp[i] = new drawable();
         }
-        initGrid(d,-xaxis,xaxis,-yaxis,rocket.wRocket,rocket.hRocket,400,0);
+        initGrid(temp,-xaxis,xaxis,-yaxis,rocket.wRocket,rocket.hRocket,400,0);
         for (int i = 0; i < players.size(); i++) {
-            players.get(i).r.xBegining=d[i].x;
+            players.get(i).r.xBegining=temp[i].x;
         }
 
 
          scores = new ArrayList<>();
          healths = new ArrayList<>();
          names = new ArrayList<>();
-        initChicken(1);
+        initChicken(5);
         if(difficulty==0){
             level=1;
             isCustom=false;
@@ -151,6 +151,8 @@ public class GamePage extends Page {
             chickens1[i]=chickens.get(i);
         }
         initGridNoWH(chickens1,-xaxis,xaxis,yaxis,0,0,0);
+        Egg.hegg=chickens1[0].h/2;
+        Egg.wegg=chickens1[0].w/2;
     }
     public void ifkeyPressed(int e) {
         if(e== KeyEvent.VK_ESCAPE){
@@ -195,6 +197,17 @@ public class GamePage extends Page {
                     }
                 }
             }
+        }
+        //checking bullets and eggs
+        for (int i = 0; i < bullets.size(); i++) {
+                for (int j = 0; j < eggs.size(); j++) {
+                    if (bullets.get(i).iscollesion(eggs.get(j))) {
+                        bullets.remove(i);
+                        eggs.remove(j);
+                        break;
+                    }
+                }
+
         }
 
         //checking bullets and chickens

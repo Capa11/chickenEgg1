@@ -78,6 +78,7 @@ public abstract class variables implements GLEventListener {
     private static String[] ibullets = {"bullet1.png"};
     private static String[] irockets = {"rocket1.png" , "rocket4.png" , "rocket5.png" , "rocket6.png"};
     private static String[] iheart = {"heart.png"};
+    private static String[] isheild ={"sheild.png"};
 
     //texters
     public static int[] numbers = new int[inumbers.length];
@@ -93,6 +94,7 @@ public abstract class variables implements GLEventListener {
     public static int[] icons = new int[iconsCustom.length];
 
     public static int[] background = new int[ibackground.length];
+    public static int[] sheild = new int[isheild.length];
 
 
 
@@ -135,6 +137,7 @@ public abstract class variables implements GLEventListener {
         prepareimage(folderbullets , ibullets , bullets , gl);
         prepareimage(folderRockets , irockets , rockets , gl);
         prepareimage(folderchicken , iheart , heart ,gl);
+        prepareimage(folderchicken , isheild , sheild ,gl);
 
 
 
