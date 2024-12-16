@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import static chickenEggs.interfaces.variables.*;
 
 public class GamePage extends Page {
-    public int howManyPlayers,lives=5;
     ArrayList<drawable[]> scores;
     ArrayList<drawable[]>healths;
     public mousePlayer mousePlayer;
@@ -131,7 +130,6 @@ public class GamePage extends Page {
         }
         for (int i = 0; i < players.size(); i++) {
             players.get(i).draw();
-            System.out.print(players.get(i).score+" ");
         }
     }
     public void initChicken(int level){

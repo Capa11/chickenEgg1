@@ -122,7 +122,6 @@ public class inputbox extends drawable {
     }
 
     public void keyPressed(int e) {
-        System.out.println((char) e);
         if (isSelect) {
             ifKeyPressed(e);
         }
