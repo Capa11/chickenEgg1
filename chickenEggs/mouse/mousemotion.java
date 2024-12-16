@@ -16,8 +16,8 @@ public class mousemotion implements MouseMotionListener {
             float deltaX = e.getX() - lastMouseX;
             float deltaY = e.getY() - lastMouseY;
 
-            xtranslation += deltaX * 2.6;
-            ytranslation -= deltaY * 1.85;
+            xtranslation += (float) (deltaX * 2.6);
+            ytranslation -= (float) (deltaY * 1.85);
 
             lastMouseX = e.getX();
             lastMouseY = e.getY();

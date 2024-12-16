@@ -16,5 +16,4 @@ public class NavBtn extends Button{
     public void ifClicked() {
         runningPage=page;
     }
-
 }

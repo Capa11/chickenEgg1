@@ -39,7 +39,7 @@ public class CustomScreen extends Page {
 
 
     //settings
-    NavBtn backBtn;
+    NavBtn SettingButton = new NavBtn(900 , 520 , 200 , 180 , icons[13], new ControllerScreen(this) ,"",0 );
 //    Buttons
     Button rightPlayers = new RightPlayers(300, (int)(yaxis-300), 130, 100, icons[5], null, "", 50);
     Button leftPlayers = new LeftPlayers(-300, (int)(yaxis-300), 130, 100, icons[7], null, "", 50);
@@ -64,7 +64,7 @@ public class CustomScreen extends Page {
 
     public CustomScreen(Page back) {
         super(background[0],arr);
-        this.backBtn = new NavBtn((int)(-xaxis+150),(int)(yaxis-100),250,200,icons[8],back,"",0);
+        arr.add(new NavBtn((int)(-xaxis+150),(int)(yaxis-100),150,100,icons[8],back,"",0));
         arr.add(rightPlayers);
         arr.add(leftPlayers);
         arr.add(rightHuman);
@@ -73,7 +73,7 @@ public class CustomScreen extends Page {
 //        arr.add(leftAi);
         arr.add(rightLevels);
         arr.add(leftLevels);
-        arr.add(this.backBtn);
+        arr.add(SettingButton);
         arr.add(startGame);
 //        arr.add(incVol);
 //        arr.add(decVol);

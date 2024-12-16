@@ -51,7 +51,7 @@ public class Chicken extends singleGameObject {
           else return scoreIfdamage;
      }
 
-     public boolean amIdead() {
+     public boolean isDead() {
           return health<=0;
      }
      public Pairii fallegg() {
@@ -61,6 +61,8 @@ public class Chicken extends singleGameObject {
                return new Pairii(x,y-h/2);
           }
           return null;
+     }
+     public void wingsAnimation(){
      }
      public void draw(){
           super.draw();

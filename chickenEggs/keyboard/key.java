@@ -29,6 +29,7 @@ public class key implements KeyListener {
             keyBits.set(keyCode);
             runningPage.keyPressed(keyCode);
         }
+        controllerBits.set(e.getKeyCode());
     }
 
 
