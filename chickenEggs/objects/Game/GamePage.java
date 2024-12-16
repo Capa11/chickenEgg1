@@ -262,11 +262,12 @@ public class GamePage extends Page {
         int space = 0;
         if(players.size()==2)space = 1200;
         if(players.size()==3)space = 500;
-        if(players.size()==4)space = 200;
+        if(players.size()==4)space = 300;
         int x = xstart;
         for (int i = 0; i < players.size(); i++) {
             String s = "" + players.get(i).score;
-             scores.add(new drawable[s.length()]);
+            scores.add(new drawable[s.length()]);
+//            StartEnd.add(x);
             for (int j = 0; j < s.length(); j++) {
                 scores.get(i)[j] = new drawable(x , ystart, 60 , 60 ,numbers[s.charAt(j) - '0']);
                 x+=50;
@@ -275,21 +276,12 @@ public class GamePage extends Page {
         }
     }
     public void inithealths(){
-        int xstart = (int)-xaxis + 100;
         int ystart = (int)(-yaxis+20);
-        int space = 0;
-        int x = xstart;
-        if(players.size()==2)space = 1300;
-        if(players.size()==3)space = 600;
-        if(players.size()==4)space = 300;
         for (int i = 0; i < players.size(); i++) {
-            healths.add(new drawable[players.get(i).health]);
-
-            for (int j = 0; j < players.get(i).health; j++) {
-                healths.get(i)[j] = new drawable(x , ystart , 60 , 60 , heart[0]);
-                x+=70;
-            }
-            x+=space;
+            healths.add(new drawable[2]);
+//            int x = StartEnd.get(i);
+            healths.get(i)[0] = new drawable(x , ystart , 60 , 60 , health[0]);
+            healths.get(i)[1] = new drawable(x + 70 , ystart , 60 , 60 , numbers[players.get(i).health]);
         }
     }
     public void draw_score(){
@@ -300,7 +292,7 @@ public class GamePage extends Page {
             }
         }
     }
-    public void draw_healt(){
+    public void draw_health(){
         inithealths();
         for (int i = 0; i < healths.size(); i++) {
             for (int j = 0; j < healths.get(i).length; j++) {
@@ -309,21 +301,15 @@ public class GamePage extends Page {
         }
     }
     public void initnames(){
-        int xstart = (int)-xaxis + 100;
         int ystart = (int)(-yaxis+200);
-        int space = 0;
-        int x = xstart;
-        if(players.size()==2)space = 1200;
-        if(players.size()==3)space = 500;
-        if(players.size()==4)space = 300;
         for (int i = 0; i < players.size(); i++) {
             names.add(new drawable[players.get(i).name.length()]);
             String s = players.get(i).name;
+//            int x = (StartEnd.size()!=0) ?StartEnd.get(i) : 0;
             for (int j = 0; j < names.get(i).length; j++) {
                 names.get(i)[j] = new drawable(x , ystart , 60 , 60 , Letters[s.charAt(j)-'a']);
                 x+=50;
             }
-            x+=space;
         }
     }
     public void draw_names(){
