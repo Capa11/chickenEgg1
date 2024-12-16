@@ -30,7 +30,7 @@ public class HomeScreen extends Page {
         buttons.add(playButton);
         buttons.add(customButton);
         buttons.add(instructionButton);
-        
+
         controllers.add(arr);
         controllers.add(arr);
         controllers.add(arr);
