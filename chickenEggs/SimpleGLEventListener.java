@@ -36,12 +36,16 @@ public class SimpleGLEventListener extends variables {
         if (backgroundSound != null) {
             backgroundSound.playLooping();
         }
+//        Dead Chicken Sound Effect.wav
+        // D:\practice code\304 file\project-game-jetbrains--main\chickenEgg1\chickenEggs\Sounds\BlueBoyAdventure.wav
 
 
 //        runningPage=new CustomScreen();
 //        runningPage = new CustomGameInstraction();
-        runningPage = new Statement();
+//        runningPage = new Statement();
 //        runningPage = new HandelChickenMove();
+//        runningPage = new HandelChickenMove2();
+
 //        runningPage = new InstractionDefult();
         // runningPage = new chickencircle2();
 //        runningPage = new chickencircle();

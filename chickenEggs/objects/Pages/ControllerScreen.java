@@ -91,14 +91,25 @@ public class ControllerScreen extends Page {
             level[n].path = health[1];
             adjustVolume(0.1f); // Increase volume by 0.1
             n++;
+            playButtonSound();
+
         }
         if (lastMouseX >= -325 && lastMouseX <= -272 && lastMouseY <= 280 && lastMouseY >= 225 && n > 0) {
             n--;
             level[n].path = health[0];
             adjustVolume(-0.1f); // Decrease volume by 0.1
+            playButtonSound();
+
         }
 
         super.isClicked();
     }
-
+    
+    private void playButtonSound() {
+        Sound buttonSound = Sound.loadFromFile("chickenEgg1/chickenEggs/Sounds/sound3.wav");
+        if (buttonSound != null) {
+            buttonSound.play();
+        }
+    }
 }
+
