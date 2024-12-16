@@ -49,37 +49,29 @@ public abstract class variables implements GLEventListener {
 
     //paths
     private static String folderalphabet = "chickenEggs//Assets//Alphabet//";
-    private static String foldermonster = "chickenEggs//Assets//monsters//";
     private static String folderchicken = "chickenEggs//Assets//chickenEggObjects//";
     private static String folderIcons = "chickenEggs//Assets//Icons//";
-
-    private static String folderBackground = "chickenEggs//Assets//Backgrounds//";
-
-
 
     private static String folderbullets = "chickenEggs//Assets//bullets//";
     private static String folderRockets = "chickenEggs//Assets//Rockets//";
 
-    private static String[] inumbers = {"0.png", "1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "9.png"};
-    private static String[] iletters = {"a.png", "b.png", "c.png", "d.png", "e.png", "f.png", "g.png", "h.png", "i.png", "j.png", "k.png", "l.png", "m.png", "n.png", "o.png", "p.png", "q.png", "r.png", "s.png", "t.png", "u.png", "v.png", "w.png", "x.png", "y.png", "z.png","blank.png"};
-    private static String[] ihealth = {"HealthB.png", "Health.png"};
+    private static final String[] inumbers = {"0.png", "1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "9.png"};
+    private static final String[] iletters = {"a.png", "b.png", "c.png", "d.png", "e.png", "f.png", "g.png", "h.png", "i.png", "j.png", "k.png", "l.png", "m.png", "n.png", "o.png", "p.png", "q.png", "r.png", "s.png", "t.png", "u.png", "v.png", "w.png", "x.png", "y.png", "z.png", "blank.png"};
+    private static final String[] ihealth = {"HealthB.png", "Health.png"};
     //    private static String[] ibackgrounds= {"Back.png"};
-    private static String[] iegg = {"egg.png"};
-    private static String[] ichicken = {"OrdinaryChicken.png","UnordinaryChicken.png","SuperChicken.png","UltimateChicken.png"};
+    private static final String[] iegg = {"egg.png"};
+    private static final String[] ichicken = {"OrdinaryChicken.png", "UnordinaryChicken.png", "SuperChicken.png", "UltimateChicken.png"};
 
     private static final String[] iconsCustom = {"add1.png", "add2.png", "minus1.png", "play.png",
             "minus2.png", "right1.png", "right2.png", "left1.png",
             "left2.png", "RocketIcon.png", "instructions.png", "customIcon.png",
             "top3.png" , "settings.png","shield.png","reset.png"};
-    private static String[] ibackground ={"spacee.png" ,"kindpng_6159643.png"};
-
+    private static final String[] ibackground = {"spacee.png", "kindpng_6159643.png"};
 
 
     //    private static String[] iconsCustom ={"add1.png","add2.png","minus1.png","minus2.png","right1.png","right2.png","left1.png","left2.png"};
-    private static String[] ibullets = {"bullet1.png"};
-    private static String[] irockets = {"rocket1.png" , "rocket4.png" , "rocket5.png" , "rocket6.png"};
-    private static String[] iheart = {"heart.png"};
-    private static String[] isheild ={"sheild.png"};
+    private static final String[] ibullets = {"bullet1.png"};
+    private static final String[] irockets = {"rocket1.png", "rocket4.png", "rocket5.png", "rocket6.png"};
 
     //texters
     public static int[] numbers = new int[inumbers.length];
@@ -91,13 +83,11 @@ public abstract class variables implements GLEventListener {
     public static int[] icons = new int[iconsCustom.length];
 
     public static int[] background = new int[ibackground.length];
-    public static int[] sheild = new int[isheild.length];
-
 
 
     public static int[] bullets = new int[ibullets.length];
     public static int[] rockets = new int[irockets.length];
-    public static int[] heart = new int[iheart.length];
+
     public static boolean isClickInside() {
         if (lastMouseX <= xaxis && lastMouseX >= -xaxis && lastMouseY <= yaxis && lastMouseY >= -yaxis) {
             return true;
@@ -114,23 +104,20 @@ public abstract class variables implements GLEventListener {
         gl.glClearColor(1.0f, 1.0f, 1.0f, 1.0f); // This Will Clear The Background Color To White
         gl.glEnable(GL.GL_TEXTURE_2D); // Enable Texture Mapping
         gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
-        prepareimage(folderalphabet,inumbers,numbers,gl);
-        prepareimage(folderalphabet,iletters,Letters,gl);
-        prepareimage(folderalphabet,ihealth,health,gl);
+        prepareimage(folderalphabet, inumbers, numbers, gl);
+        prepareimage(folderalphabet, iletters, Letters, gl);
+        prepareimage(folderalphabet, ihealth, health, gl);
 //        prepareimage(folderalphabet,ibackgrounds,background,gl);
-        prepareimage(folderchicken , iegg , egg , gl);
-        prepareimage(folderchicken , ichicken , chicken , gl);
+        prepareimage(folderchicken, iegg, egg, gl);
+        prepareimage(folderchicken, ichicken, chicken, gl);
         //____________________________
-        prepareimage(folderIcons,iconsCustom,icons,gl);
+        prepareimage(folderIcons, iconsCustom, icons, gl);
 
-        prepareimage(folderchicken,ibackground,background,gl);
+        prepareimage(folderchicken, ibackground, background, gl);
 
 
-
-        prepareimage(folderbullets , ibullets , bullets , gl);
-        prepareimage(folderRockets , irockets , rockets , gl);
-        prepareimage(folderchicken , iheart , heart ,gl);
-        prepareimage(folderchicken , isheild , sheild ,gl);
+        prepareimage(folderbullets, ibullets, bullets, gl);
+        prepareimage(folderRockets, irockets, rockets, gl);
 
 
 

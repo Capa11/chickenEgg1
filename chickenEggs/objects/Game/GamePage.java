@@ -46,7 +46,7 @@ public class GamePage extends Page {
     ArrayList<Pairii> xyChickens;
 
     public GamePage(mousePlayer mousePlayer, ArrayList<keyPlayer> keyPlayers, ArrayList<AiPlayer> AiPlayers, int difficulty,Page backpage){//level 0 means not custom game
-        path=background[1];
+        path=background[0];
         this.keyPlayers=keyPlayers;
         this.AiPlayers=AiPlayers;
         this.mousePlayer=mousePlayer;

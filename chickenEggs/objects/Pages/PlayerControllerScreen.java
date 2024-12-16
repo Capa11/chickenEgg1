@@ -29,7 +29,7 @@ public class PlayerControllerScreen extends Page {
         int path = health[0];
 
         for (int i = 0; i < controllerBoxes.length; i++) {
-//            controllerBoxes[i] = new ControllerBox(x, y, w, h, i , fontSize, path);
+            controllerBoxes[i] = new ControllerBox(x, y, w, h, i , fontSize, path);
             y -= 200;
         }
         buttons.add(new NavBtn((int)(-xaxis+150),(int)(yaxis-100),150,100,icons[8],back,"",0));

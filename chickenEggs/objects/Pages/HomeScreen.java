@@ -20,21 +20,21 @@ public class HomeScreen extends Page {
     int[] controller ={KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.VK_SPACE};
     ArrayList<keyPlayer> keyPlayers = new ArrayList<>();
 
-    Button playButton;
-
+    Button playButton ;
     Button customButton = new NavBtn(0, -450, 400, 200, Letters[26], new CustomScreen(this), "custom game", 25 , -500 , Letters[26],0, -420 , 150 , 150 );
     Button instructionButton = new NavBtn(500, -450, 400, 200,Letters[26], new Statement(this), "instruction", 25 , -500 , Letters[26]  , 500 , -430 , 200 , 200);
     public HomeScreen() {
         super(background[0]);
         keyPlayers.add(new keyPlayer(controller,"Yousef"));
-        Button playButton = new NavBtn(-500, -450, 400, 200, Letters[26], new GamePage(mousePlayer,keyPlayers,new ArrayList<AiPlayer>(),0,this), "start the game", 25 ,-500 , Letters[26],-500 , -420 , 150,150 );
+        playButton = new NavBtn(-500, -450, 400, 200, Letters[26], new GamePage(mousePlayer,keyPlayers,new ArrayList<AiPlayer>(),3,this), "start the game", 25 ,-500 , Letters[26],-500 , -420 , 150,150 );
         buttons.add(playButton);
         buttons.add(customButton);
         buttons.add(instructionButton);
-//        controllers.add(arr);
-//        controllers.add(arr);
-//        controllers.add(arr);
-//        controllers.add(arr);
+        
+        controllers.add(arr);
+        controllers.add(arr);
+        controllers.add(arr);
+        controllers.add(arr);
     }
 
     @Override

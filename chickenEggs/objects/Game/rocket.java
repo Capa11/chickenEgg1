@@ -52,7 +52,7 @@ public class rocket extends singleGameObject {
         super.draw();
         if (sheildTimer > 0){
             sheildTimer--;
-            DrawSprite(x,y,wRocket+50,hRocket+50,sheild[0]);
+            DrawSprite(x,y,wRocket+50,hRocket+50,icons[14]);
         }
         if (reloadTimer > 0) reloadTimer--;
 
