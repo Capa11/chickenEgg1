@@ -13,6 +13,8 @@ import chickenEggs.objects.Game.Chickens.OrdinaryChicken;
 import chickenEggs.objects.Game.Chickens.SuperChicken;
 import chickenEggs.objects.Game.Chickens.UltimateChicken;
 import chickenEggs.objects.Game.Chickens.UnordinaryChicken;
+import chickenEggs.objects.Game.*;
+
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
