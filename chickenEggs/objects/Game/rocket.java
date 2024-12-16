@@ -12,6 +12,8 @@ public class rocket extends singleGameObject {
     public static int wRocket = 200;
     public static int hRocket = 200;
     boolean bulletready = true;
+    public static int reloadTimer=100;
+    int bulletReloadTimer=reloadTimer;
     Player player;
     int xBegining=0;
     public rocket(int x, int y, Player player) {
@@ -46,7 +48,12 @@ public class rocket extends singleGameObject {
 //        else preparingRocket =false;
 //        if(isInside())
         super.draw();
-        if (sheildTimer > 0) sheildTimer--;
+        if (sheildTimer > 0){
+            sheildTimer--;
+            DrawSprite(x,y,wRocket+50,hRocket+50,sheild[0]);
+        }
+        if (reloadTimer > 0) reloadTimer--;
+
         if (preparingRocket && y < -yaxis + 100) {
             y += 2;
             x=xBegining;
@@ -83,7 +90,10 @@ public class rocket extends singleGameObject {
     }
 
     public void fire() {
-        if (player.health > 0) player.bullets.add(new bullet1(x, y + bullet.defaultSize,player));
+        if (player.health > 0&&reloadTimer<=0){
+            player.bullets.add(new bullet1(x, y + bullet.defaultSize,player));
+            reloadTimer=bulletReloadTimer;
+        }
     }
 
 
