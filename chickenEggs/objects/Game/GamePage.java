@@ -64,9 +64,9 @@ public class GamePage extends Page {
         }
 
 
-         scores = new ArrayList<>();
-         healths = new ArrayList<>();
-         names = new ArrayList<>();
+        scores = new ArrayList<>();
+        healths = new ArrayList<>();
+        names = new ArrayList<>();
         initChicken(5);
         if(difficulty==0){
             level=1;
@@ -134,7 +134,7 @@ public class GamePage extends Page {
         return check;
     }
     public boolean isAllChickenDead(){
-       return chickens.size()==0;
+        return chickens.size()==0;
     }
     public void drawObjects(){
         for (int i = 0; i < chickens.size(); i++) {
@@ -207,13 +207,13 @@ public class GamePage extends Page {
         }
         //checking bullets and eggs
         for (int i = 0; i < bullets.size(); i++) {
-                for (int j = 0; j < eggs.size(); j++) {
-                    if (bullets.get(i).iscollesion(eggs.get(j))) {
-                        bullets.remove(i);
-                        eggs.remove(j);
-                        break;
-                    }
+            for (int j = 0; j < eggs.size(); j++) {
+                if (bullets.get(i).iscollesion(eggs.get(j))) {
+                    bullets.remove(i);
+                    eggs.remove(j);
+                    break;
                 }
+            }
 
         }
 
@@ -277,7 +277,7 @@ public class GamePage extends Page {
     public void mouseClicked(){
         if(isClickInside()&&mousePlayer!=null) {
             System.out.println("click");
-                mousePlayer.mouseClicked();
+            mousePlayer.mouseClicked();
         }
     }
     public void keyPressed(int e){
@@ -291,7 +291,7 @@ public class GamePage extends Page {
             isPause=!isPause;
         }
     }
-//    private void playerinfo(){
+    //    private void playerinfo(){
 //        int xstart = (int)-xaxis +100;
 //        int ystart = (int)(-yaxis+120);
 //        drawable[] temp = new drawable[players.size()];
