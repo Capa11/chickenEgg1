@@ -46,7 +46,7 @@ public class GamePage extends Page {
     ArrayList<Pairii> xyChickens;
 
     public GamePage(mousePlayer mousePlayer, ArrayList<keyPlayer> keyPlayers, ArrayList<AiPlayer> AiPlayers, int difficulty,Page backpage){//level 0 means not custom game
-        path=background[0];
+        path=background[1];
         this.keyPlayers=keyPlayers;
         this.AiPlayers=AiPlayers;
         this.mousePlayer=mousePlayer;
@@ -124,7 +124,8 @@ public class GamePage extends Page {
             chickens.get(i).x= (int) (xyChickens.get(i).f+r*Math.cos(Math.toRadians(theta)));
             chickens.get(i).y= (int) (xyChickens.get(i).s+r*Math.sin(Math.toRadians(theta)));
         }
-        theta+=0.3;
+        theta+=0.7;
+        if(theta==360)theta=0;
     }
     public void timerDraw(){
         drawable[] timerdisplay =initwriteString(Integer.toString(timer/(60)),xaxis-200,xaxis,yaxis-60,60,60,0);
@@ -135,13 +136,13 @@ public class GamePage extends Page {
     public void losing(){
         isGameRunning=false;
         winning=false;
-        gameEnd=new GameEnd(backPage,false);
+        gameEnd=new GameEnd(backPage,players,false);
     }
     public void winning(){
         if(isCustom){
             isGameRunning=false;
             winning=true;
-            gameEnd=new GameEnd(backPage,true);
+            gameEnd=new GameEnd(backPage,players,true);
         }
         else{
             for (int i = 0; i < players.size(); i++) {
@@ -180,7 +181,7 @@ public class GamePage extends Page {
         for (int i = 0; i < chickens1.length; i++) {
             chickens1[i]=chickens.get(i);
         }
-        initGridNoWH(chickens1,-xaxis+30,xaxis-30,yaxis-30,0,30,0);
+        initGridNoWH(chickens1,-xaxis+30,xaxis-30,yaxis-30,0,50,0);
         xyChickens=new ArrayList<>();
         for (int i = 0; i < chickens.size(); i++) {
             xyChickens.add(new Pairii(chickens.get(i).x,chickens.get(i).y));
