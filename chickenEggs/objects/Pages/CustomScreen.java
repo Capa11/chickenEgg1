@@ -45,6 +45,7 @@ public class CustomScreen extends Page {
 
     static ArrayList<Button> arr = new ArrayList<>();
     public CustomScreen(){
+        super(background[0],arr);
     }
 
     public CustomScreen(Page back) {
