@@ -2,12 +2,18 @@ package chickenEggs.objects.Game.Players;
 
 import chickenEggs.interfaces.Game.Player;
 import chickenEggs.objects.Game.rocket;
+
+import java.awt.event.KeyEvent;
+
 import static chickenEggs.interfaces.variables.*;
 
 public class keyPlayer extends Player {
     public int[] controller;
-    public keyPlayer(int[] controller, rocket r, String name, int xminGame, int xmaxGame, int yminGame, int ymaxGame) {
-        super(r, name, xminGame, xmaxGame, yminGame, ymaxGame);
+    //controller[0] = up, [1]=down,[2]=right,[3]=left,[4]=fire
+    //example controller={w,s,d,a,space}
+    public keyPlayer(int[] controller, String name) {
+        super(name);
+        this.controller=controller;
     }
 
     public void keyPressed(int e){

@@ -2,29 +2,27 @@ package chickenEggs.objects.Game.Players;
 
 import chickenEggs.interfaces.Game.Chicken;
 import chickenEggs.interfaces.Game.Player;
-import chickenEggs.objects.Game.rocket;
-import chickenEggs.objects.Game.GamePage;
 import  chickenEggs.interfaces.variables;
 import  chickenEggs.objects.Game.eggs;
 import java.util.ArrayList;
 import java.util.Random;
 
-import chickenEggs.objects.Game.Egg;
+import static chickenEggs.objects.Game.GamePage.*;
+
 public class AiPlayer extends Player {
-    public ArrayList<eggs> eggs = new ArrayList();
-    public ArrayList<Chicken> chickens = new ArrayList<>();
     int durationBetweenEverybullet = 60;
     public AiPlayer(String name) {
         super( name);
+        moveRocket();
     }
     public eggs find_clstegg() {
         eggs minegg = new eggs(0,0) ;
         double minspace = Double.MAX_VALUE;
-        for (int i = 0; i < eggs.size(); i++) {
-            double currenteggspace = Math.sqrt(Math.pow((this.r.x - eggs.get(i).x),2) + (Math.pow((this.r.y - eggs.get(i).y),2)));
+        for (int i = 0; i < eggsArray.size(); i++) {
+            double currenteggspace = Math.sqrt(Math.pow((this.r.x - eggsArray.get(i).x),2) + (Math.pow((this.r.y - eggsArray.get(i).y),2)));
             if(currenteggspace < minspace) {
                 minspace = currenteggspace;
-                minegg = eggs.get(i);
+                minegg = (eggs) eggsArray.get(i);
             }
         }
         return minegg;
@@ -75,12 +73,11 @@ public class AiPlayer extends Player {
         int space = 30;
         eggs clstegg = find_clstegg();
         if(clstegg.x <= r.x + space){
-                r.moveleft();
+            r.moveleft();
         }
         else{
-                 r.moveright();
-            }
+            r.moveright();
         }
-
     }
 
+}

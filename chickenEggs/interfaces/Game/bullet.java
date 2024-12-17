@@ -7,18 +7,18 @@ import java.util.*;
 
 public class bullet extends singleGameObject {
     public int  Speed = 5  ,path;
+    public Player playerWhoFireMe;
     public static int defaultSize = 30;
-    public bullet(int x, int y, int w, int h,int path, int xmingame, int xmaxgame, int ymingame, int ymaxgame) {
-        super(x, y, w, h , path, xmingame , xmaxgame , ymingame , ymaxgame);
+    public bullet(int x, int y, int w, int h,int path) {
+        super(x, y, w, h , path);
     }
-    public bullet(int x, int y,int path, int xmingame, int xmaxgame, int ymingame, int ymaxgame) {
-        super(x, y, defaultSize, defaultSize, path, xmingame , xmaxgame , ymingame , ymaxgame);
+    public bullet(int x, int y,int path) {
+        super(x, y, defaultSize, defaultSize, path);
     }
     public boolean moveup() {
         this.y+=Speed;
-        if(y<ymaxGame-h/2)return true;
+        if(y<yaxis-h/2)return true;
         else return false;
-
     }
 
 }

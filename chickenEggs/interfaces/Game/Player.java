@@ -1,34 +1,36 @@
 package chickenEggs.interfaces.Game;
 
-import chickenEggs.objects.Game.bullet1;
 import chickenEggs.objects.Game.rocket;
 
 import java.util.ArrayList;
 
 import static chickenEggs.interfaces.variables.*;
-import static chickenEggs.interfaces.variables.xmouse;
 
 public abstract class Player {
     public rocket r;
     public String name;
-    public int score=0;
+    public int health=1;
     public ArrayList<bullet> bullets;
-    public int xminGame, xmaxGame , yminGame, ymaxGame;
-    public Player(rocket r,String name,int xminGame,int xmaxGame ,int yminGame,int ymaxGame){
-        this(xminGame,xmaxGame,yminGame,ymaxGame);
-        this.r=r;
+    public int score=0;public Player(String name){
         this.name=name;
+        int i=0;
+        r=new rocket(this);
+        while(i<rocket.rocketSkin.length){
+            if(rocket.rocketSkin[i]){
+                rocket.rocketSkin[i]=false;
+                r.path=rockets[i];
+                return;
+            }
+            i++;
+        }
     }
-    private Player(int xminGame,int xmaxGame ,int yminGame,int ymaxGame){
-        this.xminGame=xminGame;
-        this.xmaxGame=xmaxGame;
-        this.ymaxGame=ymaxGame;
-        this.yminGame=yminGame;
+    public void damaging(int damageScore){
+        score+=damageScore;
     }
-    public void killing(Chicken chicken){
-        score+=chicken.scoreIfDead;
+    public void destroy(){
+        r.destroy();
     }
-    public void damaging(Chicken chicken){
-        score+=chicken.scoreIfdamage;
+    public void draw(){
+        if(health>0)r.draw();
     }
 }

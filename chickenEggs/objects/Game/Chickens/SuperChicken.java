@@ -4,10 +4,16 @@ import chickenEggs.interfaces.Game.Chicken;
 import static chickenEggs.interfaces.variables.*;
 
 public class SuperChicken extends Chicken {
-    public SuperChicken (int x, int y, int w, int h, int xmingame, int xmaxgame, int ymingame, int ymaxgame) {
-        super(x, y, w, h , chicken[2] , xmingame, xmaxgame, ymingame, ymaxgame,250,0);
+    public SuperChicken () {
+        super(chicken[2] ,250,100,4000);
         this.health = 3;
-        this.eggDuration = 60;
+        this.eggDuration = 1500;
+        this.speed = 3;
+    }
+    public SuperChicken (int maxTimer) {
+        super(chicken[2] ,250,100,maxTimer);
+        this.health = 3;
+        this.eggDuration = 1500;
         this.speed = 3;
     }
 }

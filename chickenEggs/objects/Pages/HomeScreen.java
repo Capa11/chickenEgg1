@@ -1,22 +1,37 @@
 package chickenEggs.objects.Pages;
 
 import chickenEggs.interfaces.*;
+import chickenEggs.interfaces.Pages.Button;
+import chickenEggs.interfaces.Pages.NavBtn;
+import chickenEggs.interfaces.Pages.Page;
+import chickenEggs.objects.Game.GamePage;
+import chickenEggs.objects.Game.Players.*;
+
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 import static chickenEggs.interfaces.variables.*;
 
-public class HomeScreen {
-    drawable[] arr =  initwriteString("hazem" , 50 , 200 , -500 ,10 , 10 , 2 );
 
-    void drawBackground(){
-        //DrawSprite(0,0, (int) (xaxis*2), (int) (yaxis*2), backgrounds[0]);
-        //DrawSprite(0,0, (1200), (500), backgrounds[1]);
-    }
-    drawable[] button(String str , float ys, int x , int y , int gabY , float Bw , float Bh , int w , int h , int texture ){
-        drawable ha = new drawable(50 ,100 , 500 , 200 , numbers[2]);
-       return initwriteString(str , x - (Bw/2) , x + (Bw/2) , y - (Bh/2),w,h, gabY);
-    }
+public class HomeScreen extends Page {
+    int y = 500;
+    //for testing
+    mousePlayer mousePlayer = new mousePlayer("Capa");
+
+    Button playButton = new NavBtn(-500, -450, 400, 200, icons[2],new ScoreBoard(this) , "play game", 28 ,-480 , icons[9], -500 , -420 , 100,100 );
+    Button customButton = new NavBtn(0, -450, 400, 200, icons[2], new CustomScreen(this), "custom game", 28 , -480 , icons[11], 0, -420 , 100 , 100 );
+    Button instructionButton = new NavBtn(500, -450, 400, 200,icons[2], new Statement(this), "instruction", 28 , -480 , icons[10]  , 500 , -430 , 100 , 100);
     public HomeScreen() {
+        super(background[0]);
+        buttons.add(playButton);
+        buttons.add(customButton);
+        buttons.add(instructionButton);
     }
 
-
+    @Override
+    public void draw() {
+        super.draw();
+        DrawSprite(0 , 0 ,1200,500,background[1]);
+        action =true;
+    }
 }

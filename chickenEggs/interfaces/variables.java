@@ -2,18 +2,38 @@ package chickenEggs.interfaces;
 import javax.media.opengl.GL;
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.glu.GLU;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.*;
+import javax.sound.sampled.*;
+
 
 import Texture.TextureReader;
 import chickenEggs.interfaces.Pages.Page;
 import chickenEggs.objects.Pages.CustomScreen;
 
 public abstract class variables implements GLEventListener {
-    public static File scoreBoard = new File("D://learning//Graphics//team project//chickenEggs//Assets//scoreboard.txt");
+    //sounds
+    public static float globalVolume = 0.9f; // Default volume set to 90%
+    private static String soundsPath="chickenEggs//Assets//Sounds//";
+    public static String[] isounds = {"gameover.wav","button.wav","fire1.wav","fire2.wav","fire3.wav","respawn.wav","DeadChickenSoundEffect.wav"};
+    public static Sound[] sounds=new Sound[isounds.length];
+    public static void preparingSounds() {
+        for (int i = 0; i < sounds.length; i++) {
+            sounds[i]= Sound.loadFromFile(soundsPath+isounds[i]);
+        }
+    }
+    public static int[] player1Controller={KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.VK_SPACE};//only for single play death match
+    public static int[] player2Controller={KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.VK_SPACE};
+    public static int[] player3Controller={KeyEvent.VK_W,KeyEvent.VK_S,KeyEvent.VK_D,KeyEvent.VK_A,KeyEvent.VK_V};
+    public static int[] player4Controller={KeyEvent.VK_O,KeyEvent.VK_L,KeyEvent.VK_SEMICOLON,KeyEvent.VK_K,KeyEvent.VK_SPACE};
+    public static String[] arr = new String[5];
+    public static BitSet controllerBits = new BitSet(256);
+    public static ArrayList<String[]> controllers=new ArrayList<>(4);
+    public static File scoreBoard = new File("chickenEggs//Assets//scoreboard.txt");
     public static Page runningPage;
     public static float xtranslation=0,ytranslation=0;
     public static float xmouse=1000,ymouse=500;
@@ -27,10 +47,12 @@ public abstract class variables implements GLEventListener {
     public static float convertY(float y, float height) {
         return (1 - y / height) * yaxis *2- yaxis;
     }
+    public static int playerController = 1;
     public static GL gl;
     public static float xaxis =1000;
     public static float yaxis =600;
     public static boolean Operations = true;
+    public static boolean action = false;
     public static boolean isGameRunning=true;
     public static boolean showCoolEffect = false;
     public boolean winning=false;
@@ -43,47 +65,43 @@ public abstract class variables implements GLEventListener {
     public static String level ="easy";
 
 
+
+
     //paths
+    private static String[] ikeyboard={"0.png", "1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "9.png","","","","","","","","a.png", "b.png", "c.png", "comma.png", "comma-lt.png", "context-menu.png", "ctrl.png", "ctrl-2.png", "cursor-down.png", "cursor-left.png", "cursor-right.png", "cursor-up.png", "d.png", "delete.png", "e.png", "end.png", "enter.png", "equals-plus.png", "esc.png", "f.png", "f1.png", "f2.png", "f3.png", "f4.png", "f5.png", "f6.png", "f7.png", "f8.png", "f9.png", "f10.png", "f11.png", "f12.png", "g.png", "h.png", "home.png", "i.png", "insert.png", "j.png", "k.png", "keypad-0.png", "keypad-1.png", "keypad-2.png", "keypad-3.png", "keypad-4.png", "keypad-5.png", "keypad-6.png", "keypad-7.png", "keypad-8.png", "keypad-9.png", "keypad-asterix.png", "keypad-enter.png", "keypad-minus.png", "keypad-period.png", "keypad-plus.png", "keypad-slash.png", "l.png", "locks.png", "m.png", "minus.png", "n.png", "num-lock.png", "o.png", "p.png", "page-down.png", "page-up.png", "pause.png", "period-gt.png", "power.png", "print.png", "q.png", "r.png", "s.png", "scroll-lock.png", "semicolon-dble.png", "shift.png", "shift-right.png", "slash-questionmark.png", "sleep.png", "spacebar.png", "specialkey-2.png", "t.png", "tab.png", "u.png", "v.png", "w.png", "wake-up.png", "x.png", "y.png", "z.png"};
+    private static String folderKeyboard="chickenEggs//Assets//AllKeyBoard";
     private static String folderalphabet = "chickenEggs//Assets//Alphabet//";
-    private static String foldermonster = "chickenEggs//Assets//monsters//";
     private static String folderchicken = "chickenEggs//Assets//chickenEggObjects//";
     private static String folderIcons = "chickenEggs//Assets//Icons//";
-
-    private static String folderBackground = "chickenEggs//Assets//Backgrounds//";
-
-
 
     private static String folderbullets = "chickenEggs//Assets//bullets//";
     private static String folderRockets = "chickenEggs//Assets//Rockets//";
 
-    private static String[] inumbers = {"0.png", "1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "9.png"};
-    private static String[] iman = {"Man1.png", "Man2.png", "Man3.png", "Man4.png","back.png"};
-    private static String[] iletters = {"a.png", "b.png", "c.png", "d.png", "e.png", "f.png", "g.png", "h.png", "i.png", "j.png", "k.png", "l.png", "m.png", "n.png", "o.png", "p.png", "q.png", "r.png", "s.png", "t.png", "u.png", "v.png", "w.png", "x.png", "y.png", "z.png","blank.png"};
-    private static String[] ihealth = {"HealthB.png", "Health.png"};
+    private static final String[] inumbers = {"0.png", "1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "9.png"};
+    private static final String[] iletters = {"a.png", "b.png", "c.png", "d.png", "e.png", "f.png", "g.png", "h.png", "i.png", "j.png", "k.png", "l.png", "m.png", "n.png", "o.png", "p.png", "q.png", "r.png", "s.png", "t.png", "u.png", "v.png", "w.png", "x.png", "y.png", "z.png", "blank.png"};
+    private static final String[] ihealth = {"HealthB.png", "Health.png"};
     //    private static String[] ibackgrounds= {"Back.png"};
-    private static String[] inumbers2 = {"tile000.png", "tile001.png", "tile002.png", "tile003.png", "tile004.png", "tile005.png", "tile006.png", "tile007.png", "tile008.png", "tile009.png"};
-    private static String[] imonsters = {"1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "9.png", "10.png", "11.png", "12.png", "13.png", "14.png", "15.png", "16.png", "17.png", "18.png", "19.png", "20.png", "21.png", "22.png", "23.png", "24.png", "25.png", "26.png", "27.png", "28.png", "29.png", "30.png", "31.png", "32.png", "33.png", "34.png", "35.png", "36.png", "37.png", "38.png", "39.png", "40.png"};
-    private static String[] ibaskets = {"basket1.png","basket2.png","basket3.png","basket4.png"};
-    private static String[] iegg = {"egg.png"};
-    private static String[] ichicken = {"OrdinaryChicken.png","UnordinaryChicken.png","SuperChicken.png","UltimateChicken.png"};
+    private static final String[] iegg = {"egg.png"};
+    private static final String[] ichicken = {"OrdinaryChicken.png", "UnordinaryChicken.png", "SuperChicken.png", "UltimateChicken.png",
+            "SuperChicken.png","wingl.png","wingr.png","chickenblack.png",
+            "chickenblue.png", "chickengreen.png","chickenred.png","heart.png"};
 
-    private static String[] iconsCustom ={"add1.png","add2.png","minus1.png","minus2.png","right1.png","right2.png","left1.png","left2.png","settings.png","play.png","top3.png","reset.png"};
-    private static String[] ibackground ={"background1.jpg"};
+    private static final String[] iconsCustom = {"add1.png", "add2.png", "minus1.png", "play.png",
+            "minus2.png", "right1.png", "right2.png", "left1.png",
+            "left2.png", "RocketIcon.png", "instructions.png", "customIcon.png",
+            "top3.png" , "settings.png","shield.png","reset.png","lose.png", "win.png","pause.png"};
+    private static final String[] ibackground = {"spacee.png", "kindpng_6159643.png",};
 
 
     //    private static String[] iconsCustom ={"add1.png","add2.png","minus1.png","minus2.png","right1.png","right2.png","left1.png","left2.png"};
-    private static String[] ibullets = {"bullet1.png"};
-    private static String[] irockets = {"rocket1.png" , "rocket4.png" , "rocket5.png" , "rocket6.png"};
+    private static final String[] ibullets = {"bullet1.png"};
+    private static final String[] irockets = {"rocket1.png","rocket2.png","rocket3.png", "rocket4.png", "rocket5.png", "rocket6.png"};
 
     //texters
     public static int[] numbers = new int[inumbers.length];
-    public static int[] man = new int[iman.length];
     public static int[] Letters = new int[iletters.length];
     public static int[] health = new int[ihealth.length];
     //    public static int[] background = new int[ibackgrounds.length];
-    public static int[] numbers2 = new int[inumbers2.length];
-    public static int[] monsters = new int[imonsters.length];
-    public static int[] baskets = new int[ibaskets.length];
     public static int[] egg = new int[iegg.length];
     public static int[] chicken = new int[ichicken.length];
     public static int[] icons = new int[iconsCustom.length];
@@ -91,44 +109,33 @@ public abstract class variables implements GLEventListener {
     public static int[] background = new int[ibackground.length];
 
 
-
     public static int[] bullets = new int[ibullets.length];
     public static int[] rockets = new int[irockets.length];
 
-    public static boolean isClickInside(int xmin,int xmax ,int ymin,int ymax) {
-        if (lastMouseX <= xmax && lastMouseX >= xmin && lastMouseY <= ymax && lastMouseY >= ymin) {
-            return true;
-        } else return false;
-    }
-    public static boolean isMouseInside(int xmin,int xmax ,int ymin,int ymax) {
-        if (xmouse <= xmax && xmouse >= xmin && ymouse <= ymax && ymouse >= ymin) {
-            return true;
-        } else return false;
-    }
+
+
     protected static  void init(GL gl) {
         gl.glOrtho( -xaxis, xaxis, -yaxis, yaxis,-1.0, 1.0);
         gl.glClearColor(1.0f, 1.0f, 1.0f, 1.0f); // This Will Clear The Background Color To White
         gl.glEnable(GL.GL_TEXTURE_2D); // Enable Texture Mapping
         gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
-        prepareimage(folderalphabet,inumbers,numbers,gl);
-        prepareimage(folderalphabet,iletters,Letters,gl);
-        prepareimage(folderalphabet,ihealth,health,gl);
+        prepareimage(folderalphabet, inumbers, numbers, gl);
+        prepareimage(folderalphabet, iletters, Letters, gl);
+        prepareimage(folderalphabet, ihealth, health, gl);
 //        prepareimage(folderalphabet,ibackgrounds,background,gl);
-        prepareimage(folderalphabet,inumbers2,numbers2,gl);
-        prepareimage(foldermonster,imonsters,monsters,gl);
-        prepareimage(folderalphabet,iman,man,gl);
-        prepareimage(folderchicken , iegg , egg , gl);
-        prepareimage(folderchicken , ichicken , chicken , gl);
+        prepareimage(folderchicken, iegg, egg, gl);
+        prepareimage(folderchicken, ichicken, chicken, gl);
         //____________________________
-        prepareimage(folderchicken,ibaskets,baskets,gl);
-        prepareimage(folderIcons,iconsCustom,icons,gl);
+        prepareimage(folderIcons, iconsCustom, icons, gl);
 
-        prepareimage(folderBackground,ibackground,background,gl);
-
+        prepareimage(folderchicken, ibackground, background, gl);
 
 
-        prepareimage(folderbullets , ibullets , bullets , gl);
-        prepareimage(folderRockets , irockets , rockets , gl);
+        prepareimage(folderbullets, ibullets, bullets, gl);
+        prepareimage(folderRockets, irockets, rockets, gl);
+
+        //prearing sounds;
+        preparingSounds();
 
 
 
@@ -201,6 +208,38 @@ public abstract class variables implements GLEventListener {
 
         gl.glEnd();gl.glPopMatrix();gl.glDisable(GL.GL_BLEND);
     }
+    public static void DrawSprite(int x, int y, int w, int h, int texture,int rotate) {
+        gl.glEnable(GL.GL_BLEND);
+        gl.glBindTexture(GL.GL_TEXTURE_2D, texture); // Turn Blending On
+
+        gl.glPushMatrix();
+        gl.glTranslated(x, y, 0);
+        gl.glRotated(rotate,0,0,1);
+        gl.glBegin(GL.GL_QUADS);
+        gl.glTexCoord2f(0.0f, 0.0f);
+        gl.glVertex3f(-w / 2.0f, -h / 2.0f, -1.0f);
+        gl.glTexCoord2f(1.0f, 0.0f);
+        gl.glVertex3f(w / 2.0f, -h / 2.0f, -1.0f);
+        gl.glTexCoord2f(1.0f, 1.0f);
+        gl.glVertex3f(w / 2.0f, h / 2.0f, -1.0f);
+        gl.glTexCoord2f(0.0f, 1.0f);
+        gl.glVertex3f(-w / 2.0f, h / 2.0f, -1.0f);
+
+        gl.glEnd();
+        gl.glPopMatrix();
+        gl.glDisable(GL.GL_BLEND);
+    }
+
+    public static boolean isClickInside() {
+        if (lastMouseX <= xaxis && lastMouseX >= -xaxis && lastMouseY <= yaxis && lastMouseY >= -yaxis) {
+            return true;
+        } else return false;
+    }
+    public static boolean isMouseInside() {
+        if (xmouse <= xaxis && xmouse >= -xaxis && ymouse <= yaxis && ymouse >= -yaxis) {
+            return true;
+        } else return false;
+    }
     public static void drawArray(drawable[] arr){
         for (int i = 0; i < arr.length; i++) {
             arr[i].draw();
@@ -209,7 +248,6 @@ public abstract class variables implements GLEventListener {
     public static void initGrid(drawable[] arr, float xs, float xf, float ys, int w, int h, int gapX, int gapY){
         initGridindex(arr,xs,xf,ys,w,h,gapX,gapY,0,arr.length-1);
     }
-
     public static void initGridindex(drawable[] arr, float xs, float xf, float ys, int w, int h, int gapX, int gapY,int sind,int eind){
         int maxEx= Math.min((int) ((xf-xs)/(w+gapX)),eind-sind+1);
         float xEmpty=(xf-xs)-((w*maxEx)+gapX*(maxEx-1));
@@ -232,26 +270,19 @@ public abstract class variables implements GLEventListener {
             i++;
         }
     }
-    public static void initGridNoWH(drawable[] arr, float xs, float xf, float ys,int yf, int gapX, int gapY){
-        int totalElements = arr.length;
-        float availableWidth = xf - xs;
-        float availableHeight = ys - yf;
-        int maxColumns = 1;
-        int maxRows = 1;
-        for (int cols = 1; cols <= totalElements; cols++) {
-            int rows = (int) Math.ceil((double) totalElements / cols);
-            float calculatedWidth = (availableWidth - gapX * (cols - 1)) / cols;
-            float calculatedHeight = (availableHeight - gapY * (rows - 1)) / rows;
-            if (calculatedWidth > 0 && calculatedHeight > 0) {
-                maxColumns = cols;
-                maxRows = rows;
-            }
-            else break;
-        }
-        float w = (availableWidth - gapX * (maxColumns - 1)) / maxColumns;
-        float h = (availableHeight - gapY * (maxRows - 1)) / maxRows;
+    public static void initGridNoWH(drawable[] arr, float xs, float xf, float ys,float yf, int gapX, int gapY){//no width and height require
+        float availableWidth = xf - xs;//right - left
+        float availableHeight = ys - yf;//up - down
 
-        initGridindex(arr, xs, xf, ys, (int) w, (int) h, gapX, gapY, 0, arr.length-1);
+        int size;
+        for ( size = 0; size < 2000; size+=10) {
+            int numberOfRows= (int) Math.ceil(((size+gapX)*arr.length)/availableWidth);
+            if(numberOfRows*size+gapY*(size-1)>availableHeight){
+                size-=10;
+                break;
+            }
+        }
+        initGridindex(arr, xs, xf, ys,size,size, gapX, gapY, 0, arr.length-1);
 
     }
 
@@ -307,6 +338,12 @@ public abstract class variables implements GLEventListener {
             return in;
         }
     }
+    public static class Pairii{
+        public Integer f;public Integer s;
+        public Pairii(Integer f, Integer s){
+            this.f=f;this.s=s;
+        }
+    }
     public static void clearScoreBoard(){
         scoreBoard.delete();
         try {
@@ -340,7 +377,9 @@ public abstract class variables implements GLEventListener {
         return arr;
 
     }
+
     public static void updateScoreBoard(String s,int score){
+        System.out.println("yes");
         try {
             ArrayList<Pair> arr = getScoreBoard();
             //making names distinct
