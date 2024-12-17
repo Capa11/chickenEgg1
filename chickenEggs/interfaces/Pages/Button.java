@@ -47,7 +47,7 @@ public class Button extends drawable{
     public void ifkeyPressed(int e) {}//for calling subclasses when overriding
     public void ifClicked(){}
     public void isClicked(){
-        if(isInside(lastMouseX,lastMouseY)){
+        if(isInside(lastMouseX,lastMouseY) || !action){
             isSelect=true;
             sounds[1].play();
             ifClicked();

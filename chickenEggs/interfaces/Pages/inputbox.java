@@ -62,4 +62,11 @@ public class inputbox extends drawable {
         super.draw();
         drawArray(drawString);
     }
+    public String getString(){
+        String strin="";
+        for (int i = 0; i < str.size(); i++) {
+            strin+=str.get(i);
+        }
+        return strin;
+    }
 }

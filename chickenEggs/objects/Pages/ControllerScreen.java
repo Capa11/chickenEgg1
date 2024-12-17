@@ -15,9 +15,9 @@ import static chickenEggs.interfaces.variables.*;
 
 public class ControllerScreen extends Page {
     //Button player1 = new NavBtn(-200, -100, 350, 100, health[0], new PlayerControllerScreen(this,null), "player 1", 40);
-    Button player2 = new NavBtn(0, -100, 350, 100, health[0], new PlayerControllerScreen(this,player2Controller), "player 2", 40);
-    Button player3 = new NavBtn(-200, -300, 350, 100, health[0], new PlayerControllerScreen(this,player3Controller), "player 3", 40);
-    Button player4 = new NavBtn(250, -300, 350, 100, health[0], new PlayerControllerScreen(this,player4Controller), "player 4", 40);
+    Button player2;
+    Button player3;
+    Button player4;
     drawable[] settings = initwriteString("settings", -220, 200, 600, 70, 70, 0);
     drawable[] volume = initwriteString("volume", -100, 400, 350, 40, 40, 0);
     drawable[] level = new drawable[10];
@@ -27,10 +27,17 @@ public class ControllerScreen extends Page {
     int i=0;
     public ControllerScreen(Page back) {
         super(background[0], buttons);
+        controllers.add(arr);
+        controllers.add(arr);
+        controllers.add(arr);
+        player2 = new NavBtn(0, -100, 350, 100, health[0], new PlayerControllerScreen(this,player2Controller), "player 2", 40);
+        player3 = new NavBtn(-200, -300, 350, 100, health[0], new PlayerControllerScreen(this,player3Controller), "player 3", 40);
+        player4 = new NavBtn(250, -300, 350, 100, health[0], new PlayerControllerScreen(this,player4Controller), "player 4", 40);
         for (int i = 0; i < level.length-1; i++) {
             level[i] = new drawable();
             level[i].setPath(health[1]);
         }
+
         level[9] = new drawable();
         level[9].setPath(health[0]);
         initGrid(level, -950, 1000, 280, 50, 50, 10, 10);
@@ -54,7 +61,7 @@ public class ControllerScreen extends Page {
     @Override
     public void isClicked() {
         for (Button button : buttons) {
-            if (button.isInside(lastMouseX, lastMouseY) && i>0 && i<=4) {
+            if (button.isInside(lastMouseX, lastMouseY) && i>0 && i<=3) {
                 playerController = button.text.charAt(button.text.length() - 1) -'0';
                 System.out.println(playerController);
             }

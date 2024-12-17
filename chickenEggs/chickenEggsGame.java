@@ -15,23 +15,7 @@ import java.awt.event.KeyEvent;
 
 public class chickenEggsGame extends JFrame {
         public static void main(String[] args) {
-            showOnScreen(1, new chickenEggsGame());
-        }
-        public static void showOnScreen(int screen, JFrame frame ) throws RuntimeException {
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            GraphicsDevice[] gd = ge.getScreenDevices();
-            int width = 0, height = 0;
-            if( screen > -1 && screen < gd.length ) {
-                width = gd[screen].getDefaultConfiguration().getBounds().width;
-                height = gd[screen].getDefaultConfiguration().getBounds().height;
-                frame.setLocation(
-                        ((width / 2) - (frame.getSize().width / 2)) + gd[screen].getDefaultConfiguration().getBounds().x,
-                        ((height / 2) - (frame.getSize().height / 2)) + gd[screen].getDefaultConfiguration().getBounds().y
-                );
-                frame.setVisible(true);
-            } else {
-                throw new RuntimeException( "No Screens Found" );
-            }
+            new chickenEggsGame();
         }
         static Animator animator;
         public chickenEggsGame() {
@@ -42,28 +26,6 @@ public class chickenEggsGame extends JFrame {
             getContentPane().add(glcanvas, BorderLayout.CENTER);
             animator = new FPSAnimator(glcanvas,60);
             animator.start();
-//
-//        JPanel controlPanel = new JPanel();
-//        JButton toggleButton = new JButton("Start");
-//
-//        toggleButton.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                if (animator.isAnimating()) {
-//                    animator.stop();
-//                    listener.stopGame();
-//                    toggleButton.setText("Start");
-//                } else {
-//                    animator.start();
-//                    listener.startGame();
-//                    glcanvas.requestFocus();
-//                    toggleButton.setText("Stop");
-//                }
-//            }
-//        });
-//
-//        controlPanel.add(toggleButton);
-//        getContentPane().add(controlPanel, BorderLayout.SOUTH);
-            //animator.start();
             glcanvas.addKeyListener(new key());
             glcanvas.addMouseMotionListener(new mousemotion());
             glcanvas.addMouseListener(new mousebutton());

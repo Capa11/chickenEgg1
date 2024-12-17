@@ -23,12 +23,11 @@ public abstract class variables implements GLEventListener {
     public static Sound[] sounds=new Sound[isounds.length];
     public static void preparingSounds() {
         for (int i = 0; i < sounds.length; i++) {
-            System.out.println(i);
             sounds[i]= Sound.loadFromFile(soundsPath+isounds[i]);
         }
     }
     public static int[] player1Controller={KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.VK_SPACE};//only for single play death match
-    public static int[] player2Controller={KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.CTRL_DOWN_MASK};
+    public static int[] player2Controller={KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.VK_SPACE};
     public static int[] player3Controller={KeyEvent.VK_W,KeyEvent.VK_S,KeyEvent.VK_D,KeyEvent.VK_A,KeyEvent.VK_V};
     public static int[] player4Controller={KeyEvent.VK_O,KeyEvent.VK_L,KeyEvent.VK_SEMICOLON,KeyEvent.VK_K,KeyEvent.VK_SPACE};
     public static String[] arr = new String[5];
@@ -53,6 +52,7 @@ public abstract class variables implements GLEventListener {
     public static float xaxis =1000;
     public static float yaxis =600;
     public static boolean Operations = true;
+    public static boolean action = false;
     public static boolean isGameRunning=true;
     public static boolean showCoolEffect = false;
     public boolean winning=false;
@@ -68,7 +68,7 @@ public abstract class variables implements GLEventListener {
 
 
     //paths
-    private static String[] ikeyboard={"0.png", "1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "9.png","","","","","","","","a.png", "b.png", "c.png", "comma.png", "comma-lt.png", "context-menu.png", "ctrl.png", "ctrl-2.png", "cursor-down.png", "cursor-left.png", "cursor-right.png", "cursor-up.png", "d.png", "delete.png", "e.png", "end.png", "enter.png", "equals-plus.png", "esc.png", "f.png", "f1.png", "f2.png", "f3.png", "f4.png", "f5.png", "f6.png", "f7.png", "f8.png", "f9.png", "f10.png", "f11.png", "f12.png", "g.png", "h.png", "home.png", "i.png", "insert.png", "j.png", "k.png", "keypad-0.png", "keypad-1.png", "keypad-2.png", "keypad-3.png", "keypad-4.png", "keypad-5.png", "keypad-6.png", "keypad-7.png", "keypad-8.png", "keypad-9.png", "keypad-asterix.png", "keypad-enter.png", "keypad-minus.png", "keypad-period.png", "keypad-plus.png", "keypad-slash.png", "l.png", "locks.png", "m.png", "minus.png", "n.png", "num-lock.png", "o.png", "p.png", "page-down.png", "page-up.png", "pause.png", "period-gt.png", "power.png", "print.png", "q.png", "r.png", "s.png", "scroll-lock.png", "semicolon-dble.png", "shift.png", "shift-right.png", "slash-questionmark.png", "sleep.png", "spacebar.png", "specialkey-2.png", "t.png", "tab.png", "u.png", "v.png", "w.png", "wake-up.png", "win.png", "x.png", "y.png", "z.png"};
+    private static String[] ikeyboard={"0.png", "1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "9.png","","","","","","","","a.png", "b.png", "c.png", "comma.png", "comma-lt.png", "context-menu.png", "ctrl.png", "ctrl-2.png", "cursor-down.png", "cursor-left.png", "cursor-right.png", "cursor-up.png", "d.png", "delete.png", "e.png", "end.png", "enter.png", "equals-plus.png", "esc.png", "f.png", "f1.png", "f2.png", "f3.png", "f4.png", "f5.png", "f6.png", "f7.png", "f8.png", "f9.png", "f10.png", "f11.png", "f12.png", "g.png", "h.png", "home.png", "i.png", "insert.png", "j.png", "k.png", "keypad-0.png", "keypad-1.png", "keypad-2.png", "keypad-3.png", "keypad-4.png", "keypad-5.png", "keypad-6.png", "keypad-7.png", "keypad-8.png", "keypad-9.png", "keypad-asterix.png", "keypad-enter.png", "keypad-minus.png", "keypad-period.png", "keypad-plus.png", "keypad-slash.png", "l.png", "locks.png", "m.png", "minus.png", "n.png", "num-lock.png", "o.png", "p.png", "page-down.png", "page-up.png", "pause.png", "period-gt.png", "power.png", "print.png", "q.png", "r.png", "s.png", "scroll-lock.png", "semicolon-dble.png", "shift.png", "shift-right.png", "slash-questionmark.png", "sleep.png", "spacebar.png", "specialkey-2.png", "t.png", "tab.png", "u.png", "v.png", "w.png", "wake-up.png", "x.png", "y.png", "z.png"};
     private static String folderKeyboard="chickenEggs//Assets//AllKeyBoard";
     private static String folderalphabet = "chickenEggs//Assets//Alphabet//";
     private static String folderchicken = "chickenEggs//Assets//chickenEggObjects//";
@@ -82,18 +82,20 @@ public abstract class variables implements GLEventListener {
     private static final String[] ihealth = {"HealthB.png", "Health.png"};
     //    private static String[] ibackgrounds= {"Back.png"};
     private static final String[] iegg = {"egg.png"};
-    private static final String[] ichicken = {"OrdinaryChicken.png", "UnordinaryChicken.png", "SuperChicken.png", "UltimateChicken.png"};
+    private static final String[] ichicken = {"OrdinaryChicken.png", "UnordinaryChicken.png", "SuperChicken.png", "UltimateChicken.png",
+            "SuperChicken.png","wingl.png","wingr.png","chickenblack.png",
+            "chickenblue.png", "chickengreen.png","chickenred.png","heart.png"};
 
     private static final String[] iconsCustom = {"add1.png", "add2.png", "minus1.png", "play.png",
             "minus2.png", "right1.png", "right2.png", "left1.png",
             "left2.png", "RocketIcon.png", "instructions.png", "customIcon.png",
-            "top3.png" , "settings.png","shield.png","reset.png"};
-    private static final String[] ibackground = {"spacee.png", "kindpng_6159643.png"};
+            "top3.png" , "settings.png","shield.png","reset.png","lose.png", "win.png","pause.png"};
+    private static final String[] ibackground = {"spacee.png", "kindpng_6159643.png",};
 
 
     //    private static String[] iconsCustom ={"add1.png","add2.png","minus1.png","minus2.png","right1.png","right2.png","left1.png","left2.png"};
     private static final String[] ibullets = {"bullet1.png"};
-    private static final String[] irockets = {"rocket1.png", "rocket4.png", "rocket5.png", "rocket6.png"};
+    private static final String[] irockets = {"rocket1.png","rocket2.png","rocket3.png", "rocket4.png", "rocket5.png", "rocket6.png"};
 
     //texters
     public static int[] numbers = new int[inumbers.length];
@@ -206,6 +208,28 @@ public abstract class variables implements GLEventListener {
 
         gl.glEnd();gl.glPopMatrix();gl.glDisable(GL.GL_BLEND);
     }
+    public static void DrawSprite(int x, int y, int w, int h, int texture,int rotate) {
+        gl.glEnable(GL.GL_BLEND);
+        gl.glBindTexture(GL.GL_TEXTURE_2D, texture); // Turn Blending On
+
+        gl.glPushMatrix();
+        gl.glTranslated(x, y, 0);
+        gl.glRotated(rotate,0,0,1);
+        gl.glBegin(GL.GL_QUADS);
+        gl.glTexCoord2f(0.0f, 0.0f);
+        gl.glVertex3f(-w / 2.0f, -h / 2.0f, -1.0f);
+        gl.glTexCoord2f(1.0f, 0.0f);
+        gl.glVertex3f(w / 2.0f, -h / 2.0f, -1.0f);
+        gl.glTexCoord2f(1.0f, 1.0f);
+        gl.glVertex3f(w / 2.0f, h / 2.0f, -1.0f);
+        gl.glTexCoord2f(0.0f, 1.0f);
+        gl.glVertex3f(-w / 2.0f, h / 2.0f, -1.0f);
+
+        gl.glEnd();
+        gl.glPopMatrix();
+        gl.glDisable(GL.GL_BLEND);
+    }
+
     public static boolean isClickInside() {
         if (lastMouseX <= xaxis && lastMouseX >= -xaxis && lastMouseY <= yaxis && lastMouseY >= -yaxis) {
             return true;
@@ -258,7 +282,6 @@ public abstract class variables implements GLEventListener {
                 break;
             }
         }
-        System.out.println(size);
         initGridindex(arr, xs, xf, ys,size,size, gapX, gapY, 0, arr.length-1);
 
     }
@@ -356,6 +379,7 @@ public abstract class variables implements GLEventListener {
     }
 
     public static void updateScoreBoard(String s,int score){
+        System.out.println("yes");
         try {
             ArrayList<Pair> arr = getScoreBoard();
             //making names distinct

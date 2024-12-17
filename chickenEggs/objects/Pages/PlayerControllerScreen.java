@@ -16,7 +16,6 @@ public class PlayerControllerScreen extends Page {
     drawable[] player = initwriteString("player" , -220 , 1000 , 600 , 70, 70 , 0);
     drawable[] controllers = initwriteString("up down left right fire", -900, -800, 550, 60, 80, 100);
     ControllerBox[] controllerBoxes = new ControllerBox[5];
-    BitSet keyBits = new BitSet();
 
     public PlayerControllerScreen(Page back,int[] controllers){
         super(background[0]);

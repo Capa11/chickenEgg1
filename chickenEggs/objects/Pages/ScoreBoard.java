@@ -17,39 +17,32 @@ import static chickenEggs.interfaces.variables.*;
 
 public class ScoreBoard extends Page {
     //InputBox
-    inputbox inputbox = new inputbox(0,-350,1200,300,8,80,icons[2]);
+    inputbox inputbox = new inputbox(0,-200,800,150,8,80,icons[2]);
 
     //Labels
-    drawable[] playersText = initwriteString("players",-850,-475,390,60,60,0);
+   /* drawable[] playersText = initwriteString("players",-850,-475,390,60,60,0);
     drawable[] humansText = initwriteString("human",-700,-475,200,65,65,0);
     drawable[] aiText = initwriteString("ai",-575,-475,0,70,70,0);
     drawable[] levelText = initwriteString("level",-745,-495,-200,70,70,0);
 
 
     //settings
-    NavBtn play = new NavBtn((int)(-200),(int)(-yaxis+100),400,275,icons[9],null,"",0);
+    NavBtn play = new NavBtn((-200),(int)(-yaxis+100),200,100,icons[9],null,"",0);
     //    Buttons
     static Button btnClearScoreBord = new BtnClearScoreBoard(200, (int)(-yaxis+100), 400, 275, icons[5], null, "", 50);
-
+*/
     //InputBox
 
     ArrayList<Pair> scores = getScoreBoard();
-/*
-    public ScoreBoard(){}
-
-*/
     mousePlayer mousePlayer ;
     ArrayList<keyPlayer> keyPlayers = new ArrayList<>();
 
-    Button playButton = new NavBtn(-500, -450, 400, 200,Letters[26], new GamePage(mousePlayer, new ArrayList<>(),new ArrayList<AiPlayer>(),3,this), "start the game", 25 ,-500 , Letters[26],-500 , -420 , 150,150 );
-
+    drawable playButton = new drawable(0, -450, 400, 200, icons[3]);
     public ScoreBoard(Page back) {
         super(background[0]);
         mousePlayer= new mousePlayer("adf");
-        playButton= new NavBtn(-500, -450, 400, 200, Letters[26], new GamePage(mousePlayer,keyPlayers,new ArrayList<AiPlayer>(),3,this),"play",30);
-       /* arr.add(btnClearScoreBord);
+        /* arr.add(btnClearScoreBord);
         arr.add(play);*/
-        buttons.add(playButton);
         buttons.add(new NavBtn((int)(-xaxis+150),(int)(yaxis-100),150,100,icons[8],back,"",0));
     }
 
@@ -62,20 +55,28 @@ public class ScoreBoard extends Page {
     @Override
     public void ifClicked() {
         inputbox.isClicked();
+        if(lastMouseX<=playButton.x+playButton.w/2&&lastMouseX>=playButton.x-playButton.w/2&&lastMouseY<=playButton.y+playButton.h/2&&lastMouseY>=playButton.y-playButton.h/2){
+            runningPage =new GamePage(new mousePlayer(inputbox.getString()),keyPlayers,new ArrayList<>(),0,this);
+
+        }
     }
 
     @Override
     public void draw(){
+        isGameRunning = true;
         super.draw();
-        DrawSprite(0,450,700,400,icons[12]);
+        DrawSprite(0,450,300,200,icons[12]);
         inputbox.draw();
+        playButton.draw();
+
         drawScores(scores);
     }
     public void drawScores(ArrayList<Pair> arr){
         for (int i = 0; i < arr.size() && i<3; i++) {
-            drawArray(initwriteString((i+1)+"",-400,-200,250-i*150,50,50,0));
-            drawArray(initwriteString(arr.get(i).getS(),-280,180,250-i*150,50,50,0));
-            drawArray(initwriteString(arr.get(i).getIn().toString(),100,300,300-i*150,50,50,0));
+            drawArray(initwriteString((i+1)+"",-400,-200,200-i*150,50,50,0));
+            drawArray(initwriteString(arr.get(i).getS(),-280,180,200-i*150,50,50,0));
+            drawArray(initwriteString(arr.get(i).getIn().toString(),100,300,200-i*150,50,50,0));
         }
     }
+
 }

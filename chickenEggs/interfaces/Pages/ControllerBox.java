@@ -37,18 +37,66 @@ public class ControllerBox extends drawable {
 
         if (e <= KeyEvent.VK_Z && e >= KeyEvent.VK_A) {
             str.append((char) (e - 'A' + 'a'));
-            controller[index]=e;
+            controller[index] = e;
+            //controller[index]=e;
         }
-        else if (e >= KeyEvent.VK_0 && e <= KeyEvent.VK_9) {
+        else if (e == KeyEvent.VK_SPACE) {
+            str.append("space");
+            controller[index] = e;
+        } else if (e == KeyEvent.VK_UP) {
+            str.append("up");
+            controller[index] = e;
+        } else if (e == KeyEvent.VK_DOWN) {
+            str.append("down");
+            controller[index] = e;
+        } else if (e == KeyEvent.VK_SHIFT) {
+            str.append("shift");
+            controller[index] = e;
+        } else if (e == KeyEvent.VK_ENTER) {
+            str.append("enter");
+            controller[index]= e;
+        } else if (e == KeyEvent.VK_TAB) {
+            str.append("tab");
+            controller[index]= e;
+        } else if (e == KeyEvent.VK_ALT) {
+            str.append("alt");
+            controller[index]= e;
+        } else if (e == KeyEvent.VK_CONTROL) {
+            str.append("ctrl");
+            controller[index]= e;
+        } else if (e == KeyEvent.VK_LEFT) {
+            str.append("left");
+            controller[index]= e;
+        } else if (e == KeyEvent.VK_RIGHT) {
+            str.append("right");
+            controller[index]= e;
+        } else if (e == KeyEvent.VK_SLASH) {
+            str.append("slash");
+            controller[index]= e;
+        } else if (e == KeyEvent.VK_MINUS) {
+            str.append("minus");
+            controller[index]= e;
+        } else if (e == KeyEvent.VK_COMMA) {
+            str.append("comma");
+            controller[index] = e;
+        } else if (e == KeyEvent.VK_PERIOD) {
+            str.append("period");
+            controller[index] = e;
+        } else if (e == KeyEvent.VK_PLUS) {
+            str.append("plus");
+            controller[index] = e;
+        } else if (e >= KeyEvent.VK_0 && e <= KeyEvent.VK_9) {
             str.append((char)e);
-            controller[index]=e;
+            controller[index] = e;
+            //controller[index]=e;
         }
         arr[changed] = str.toString();
+
 
         controllers.set(playerController-1, arr);
 
         float xEmpty = w - ((fontSize * str.length())); // To make the string written in the middle of button on the x-axis
-        drawString = initwriteString(controllers.get(playerController-1)[changed], x - (float) w / 2 + xEmpty / 2, x + (float) w / 2, y + (float) fontSize / 2, fontSize, fontSize, 0);
+        drawString = initwriteString(String.valueOf(controllers.get(playerController-1)[changed]), x - (float) w / 2 + xEmpty / 2, x + (float) w / 2, y + (float) fontSize / 2, fontSize, fontSize, 0);
 
         keyReleased();
     }

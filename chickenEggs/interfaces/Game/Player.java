@@ -9,7 +9,7 @@ import static chickenEggs.interfaces.variables.*;
 public abstract class Player {
     public rocket r;
     public String name;
-    public int health=5;
+    public int health=1;
     public ArrayList<bullet> bullets;
     public int score=0;public Player(String name){
         this.name=name;

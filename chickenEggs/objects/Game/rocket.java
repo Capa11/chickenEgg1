@@ -8,11 +8,11 @@ import static chickenEggs.interfaces.variables.*;
 public class rocket extends singleGameObject {
     public boolean preparingRocket = true;
     int sheildTimer = 0;
-    public static boolean[] rocketSkin = {true, true, true, true};
+    public static boolean[] rocketSkin = {true, true, true, true,true,true,true};
     public static int wRocket = 200;
     public static int hRocket = 200;
     boolean bulletready = true;
-    public static int reloadTimer=100;
+    public static int reloadTimer=20;
     int bulletReloadTimer=reloadTimer;
     Player player;
     int xBegining=0;

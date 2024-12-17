@@ -13,7 +13,6 @@ import chickenEggs.objects.Game.Chickens.OrdinaryChicken;
 import chickenEggs.objects.Game.Chickens.SuperChicken;
 import chickenEggs.objects.Game.Chickens.UltimateChicken;
 import chickenEggs.objects.Game.Chickens.UnordinaryChicken;
-import chickenEggs.objects.Game.*;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -26,8 +25,8 @@ public class GamePage extends Page {
     ArrayList<Integer>StartEnd = new ArrayList<>();;
     public mousePlayer mousePlayer;
     public static int oneMinute=60*60;//because animator is 60 fps
-    public ArrayList<Egg> eggs=new ArrayList<>();
-    public ArrayList<Chicken> chickens=new ArrayList<>();
+    public static ArrayList<Egg> eggsArray =new ArrayList<>();
+    public static ArrayList<Chicken> chickens=new ArrayList<>();
     public ArrayList<bullet> bullets=new ArrayList<>();
     public ArrayList<keyPlayer>  keyPlayers;
     public ArrayList<AiPlayer> AiPlayers;
@@ -53,6 +52,7 @@ public class GamePage extends Page {
         if(mousePlayer!=null)players.add(mousePlayer);
         players.addAll(keyPlayers);
         players.addAll(AiPlayers);
+        isGameRunning=true;
         for (int i = 0; i < players.size(); i++) {
             players.get(i).bullets=bullets;
         }
@@ -97,10 +97,9 @@ public class GamePage extends Page {
             moveAll();
             checkCollesion();
             drawObjects();
-            //draw_info();
+            draw_info();
             if (isCustom){
                 timer--;
-                System.out.println(timer);
                 timerDraw();
             }
             if (isAllPlayerDead() || timer <= 0) losing();
@@ -111,6 +110,7 @@ public class GamePage extends Page {
                 gamePause.draw();
             }
             else{
+
                 gameEnd.draw();
             }
         }
@@ -126,6 +126,7 @@ public class GamePage extends Page {
         }
         theta+=0.7;
         if(theta==360)theta=0;
+
     }
     public void timerDraw(){
         drawable[] timerdisplay =initwriteString(Integer.toString(timer/(60)),xaxis-200,xaxis,yaxis-60,60,60,0);
@@ -134,16 +135,25 @@ public class GamePage extends Page {
 
     }
     public void losing(){
+        System.out.println("losing");
+        if(!isCustom){
+            updateScoreBoard(mousePlayer.name,mousePlayer.score);
+        }
         isGameRunning=false;
         winning=false;
         sounds[0].play();
-        gameEnd=new GameEnd(backPage,players,false);
+        gameEnd=new GameEnd(players,false);
     }
     public void winning(){
+        System.out.println("winning");
+        if(!isCustom){
+            updateScoreBoard(mousePlayer.name,mousePlayer.score);
+        }
+
         if(isCustom){
             isGameRunning=false;
             winning=true;
-            gameEnd=new GameEnd(backPage,players,true);
+            gameEnd=new GameEnd(players,true);
         }
         else{
             for (int i = 0; i < players.size(); i++) {
@@ -166,8 +176,8 @@ public class GamePage extends Page {
         for (int i = 0; i < chickens.size(); i++) {
             chickens.get(i).draw();
         }
-        for (int i = 0; i < eggs.size(); i++) {
-            eggs.get(i).draw();
+        for (int i = 0; i < eggsArray.size(); i++) {
+            eggsArray.get(i).draw();
         }
         for (int i = 0; i < bullets.size(); i++) {
             bullets.get(i).draw();
@@ -211,6 +221,7 @@ public class GamePage extends Page {
         moveAllEggs();
         checkChickens();
 
+
     }
     public void checkCollesion(){
         //checking players and chicken
@@ -228,10 +239,10 @@ public class GamePage extends Page {
         //checking players and eggs
         for (int i = 0; i < players.size(); i++) {
             if(players.get(i).health>0) {
-                for (int j = 0; j < eggs.size(); j++) {
-                    if (players.get(i).r.iscollesion(eggs.get(j))) {
+                for (int j = 0; j < eggsArray.size(); j++) {
+                    if (players.get(i).r.iscollesion(eggsArray.get(j))) {
                         players.get(i).destroy();
-                        eggs.remove(j);
+                        eggsArray.remove(j);
                         break;
                     }
                 }
@@ -239,10 +250,10 @@ public class GamePage extends Page {
         }
         //checking bullets and eggs
         for (int i = 0; i < bullets.size(); i++) {
-            for (int j = 0; j < eggs.size(); j++) {
-                if (bullets.get(i).iscollesion(eggs.get(j))) {
+            for (int j = 0; j < eggsArray.size(); j++) {
+                if (bullets.get(i).iscollesion(eggsArray.get(j))) {
                     bullets.remove(i);
-                    eggs.remove(j);
+                    eggsArray.remove(j);
                     break;
                 }
             }
@@ -291,7 +302,7 @@ public class GamePage extends Page {
     public void checkChickens(){
         for (int i = 0; i < chickens.size(); i++) {
             Pairii eggxy = chickens.get(i).fallegg();
-            if(eggxy!=null)eggs.add(new eggs(eggxy.f,eggxy.s));
+            if(eggxy!=null) eggsArray.add(new eggs(eggxy.f,eggxy.s));
         }
     }
     public void moveAllBullets(){
@@ -300,8 +311,8 @@ public class GamePage extends Page {
         }
     }
     public void moveAllEggs(){
-        for (int i = 0; i < eggs.size(); i++) {
-            if(!eggs.get(i).fall())eggs.remove(i);
+        for (int i = 0; i < eggsArray.size(); i++) {
+            if(!eggsArray.get(i).fall()) eggsArray.remove(i);
         }
     }
     public void mouseMotion(){
@@ -337,7 +348,6 @@ public class GamePage extends Page {
         for (int i = 0; i < players.size(); i++) {
             String s =Integer.toString(players.get(i).score);
             scores.add(new ArrayList<drawable>());
-            System.out.println(s);
             StartEnd.add(x);
             for (int j = 0; j < s.length() ; j++) {
                 scores.get(i).add(new drawable(x , ystart, 30 , 30 ,numbers[s.charAt(j) - '0']));
@@ -346,60 +356,67 @@ public class GamePage extends Page {
             x+=space;
         }
     }
-//    private void inithealths(){
-//        int ystart = (int)(-yaxis+10);
-//        int size = 40;
-//        for (int i = 0; i < players.size(); i++) {
-//            healths.add(new drawable[2]);
-//            int x = StartEnd.get(i);
-//            healths.get(i)[0] = new drawable(x , ystart , size , size , health[0]);
-//            healths.get(i)[1] = new drawable(x + 70 , ystart , size , size , numbers[players.get(i).health]);
-//        }
+    private void inithealths(){
+        int ystart = (int)(-yaxis+10);
+        int size = 40;
+        for (int i = 0; i < players.size(); i++) {
+            String num = Integer.toString(players.get(i).health);
+            drawable[]nums = new drawable[num.length()];
+            drawable[]healthsss = new drawable[1];
+            healths.add(healthsss);
+            healths.add(nums);
+            int x = StartEnd.get(i);
+            healths.get(i)[0] = new drawable(x , ystart , size , size , chicken[chicken.length-1]);
+            for (int j = 0; j < nums.length ; j++) {
+                healths.get(1)[j] = new drawable(x +=70  , ystart , 30 , 30 , numbers[num.charAt(j) - '0']);
+            }
+        }
+    }
+    private void draw_score(){
+        initScores();
+        for (int i = 0; i < scores.size(); i++) {
+            for (int j = 0; j < scores.get(i).size(); j++) {
+                scores.get(i).get(j).draw();
+            }
+        }
+    }
+    private void draw_health(){
+        inithealths();
+        for (int i = 0; i < healths.size(); i++) {
+            for (int j = 0; j < healths.get(i).length; j++) {
+                if(healths.get(i)!=null && healths.get(i)[j]!=null)healths.get(i)[j].draw();
+            }
+        }
+    }
+private void initnames(){
+    int ystart = (int)(-yaxis+100);
+    for (int i = 0; i < players.size(); i++) {
+        names.add(new drawable[players.get(i).name.length()]);
+        String s = players.get(i).name.toLowerCase();
+        s = s.replaceAll("\\s", "");
+        int x = (StartEnd.size()!=0) ?StartEnd.get(i) : 0;
+        for (int j = 0; j < names.get(i).length; j++) {
+            if(s.charAt(j) >= 'a' && s.charAt(j) <= 'z')names.get(i)[j] = new drawable(x , ystart , 30 , 30 , Letters[s.charAt(j)-'a']);
+            else if(s.charAt(j) >= '0' && s.charAt(j) <= '9')names.get(i)[j] = new drawable(x , ystart , 30 , 30 , numbers[s.charAt(j)-'0']);
+            x+=50;
+        }
+    }
+}
+    private void draw_names(){
+        initnames();
+        for (int i = 0; i < names.size(); i++) {
+            for (int j = 0; j < names.get(i).length; j++) {
+                if(names.get(i)!=null && names.get(i)[j]!=null)names.get(i)[j].draw();
+            }
+        }
+    }public void draw_info() {
+        draw_score();//must be first
+        draw_names();
+        draw_health();
+        scores.clear();
+        names.clear();
+        healths.clear();
+        StartEnd.clear();
 //    }
-//    private void draw_score(){
-//        initScores();
-//        for (int i = 0; i < scores.size(); i++) {
-//            for (int j = 0; j < scores.get(i).size(); j++) {
-//                scores.get(i).get(j).draw();
-//            }
-//        }
-//    }
-//    private void draw_health(){
-//        inithealths();
-//        for (int i = 0; i < healths.size(); i++) {
-//            for (int j = 0; j < healths.get(i).length; j++) {
-//                if(healths.get(i)!=null && healths.get(i)[j]!=null)healths.get(i)[j].draw();
-//            }
-//        }
-//    }
-//    private void initnames(){
-//        int ystart = (int)(-yaxis+100);
-//        for (int i = 0; i < players.size(); i++) {
-//            names.add(new drawable[players.get(i).name.length()]);
-//            String s = players.get(i).name.toLowerCase();
-//            int x = (StartEnd.size()!=0) ?StartEnd.get(i) : 0;
-//            for (int j = 0; j < names.get(i).length; j++) {
-//                names.get(i)[j] = new drawable(x , ystart , 30 , 30 , Letters[s.charAt(j)-'a']);
-//                x+=50;
-//            }
-//        }
-//    }
-//    private void draw_names(){
-//        initnames();
-//        for (int i = 0; i < names.size(); i++) {
-//            for (int j = 0; j < names.get(i).length; j++) {
-//                if(names.get(i)!=null && names.get(i)[j]!=null)names.get(i)[j].draw();
-//            }
-//        }
-//    }
-//    public void draw_info(){
-//        draw_score();//must be first
-//        draw_names();
-//        draw_health();
-//        scores.clear();
-//        names.clear();
-//        healths.clear();
-//        StartEnd.clear();
-//    }
-
+    }
 }

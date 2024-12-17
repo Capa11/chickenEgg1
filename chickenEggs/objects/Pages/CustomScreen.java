@@ -6,6 +6,7 @@ import chickenEggs.interfaces.Pages.Button;
 import chickenEggs.interfaces.Pages.NavBtn;
 import chickenEggs.interfaces.Pages.Page;
 import chickenEggs.objects.Game.GamePage;
+import chickenEggs.objects.Game.Players.AiPlayer;
 import chickenEggs.objects.Game.Players.keyPlayer;
 import chickenEggs.objects.Game.Players.mousePlayer;
 import chickenEggs.objects.Pages.Buttons.*;
@@ -45,6 +46,7 @@ public class CustomScreen extends Page {
 
     static ArrayList<Button> arr = new ArrayList<>();
     public CustomScreen(){
+        super(background[0],arr);
     }
 
     public CustomScreen(Page back) {
@@ -89,6 +91,10 @@ public class CustomScreen extends Page {
             if(numHuman>1)keyPlayers.add(new keyPlayer(player2Controller,"FGSF"));
             if(numHuman>2)keyPlayers.add(new keyPlayer(player3Controller,"FGSSFDG"));
             if(numHuman>3)keyPlayers.add(new keyPlayer(player4Controller,"SFGFGG"));
+            ArrayList<AiPlayer> aiPlayers = new ArrayList<>();
+            for (int i = 1; i <= numPlayers-numHuman; i++) {
+                aiPlayers.add(new AiPlayer("Ai"+i));
+            }
             //ai player handle here
 
 
@@ -102,7 +108,7 @@ public class CustomScreen extends Page {
                 case "hard":  intlevel=3;
                     break;
             }
-            runningPage=new GamePage(new mousePlayer("p1"),keyPlayers,new ArrayList<>(),intlevel,this);
+            runningPage=new GamePage(new mousePlayer("p1"),keyPlayers,aiPlayers,intlevel,this);
         }
     }
 }
