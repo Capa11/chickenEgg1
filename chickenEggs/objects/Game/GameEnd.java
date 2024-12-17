@@ -62,7 +62,7 @@ public class GameEnd extends drawable {
 //        drawArray(initwriteString("Hassan",-500,500,100-2*70,50,50,0));
 //        drawArray(initwriteString("100",500,900,100-2*70,50,50,0));
         DrawSprite(-100,-250,150,90,icons[8]);
-        DrawSprite(100,-250,150,90,icons[15]);
+        DrawSprite(100,-250,250,90,icons[15]);
         mouseClicked();
 //        mouseMotion();
     }
@@ -70,7 +70,7 @@ public class GameEnd extends drawable {
     public void mouseMotion(){
         if (xmouse>= -175 &&  xmouse<= -25 && ymouse>= -295 && ymouse<=-205){
             System.out.println("in Back");
-            runningPage = backPage;
+
         } else if (xmouse>= 25 &&  xmouse<= 175 && ymouse>= -295 && ymouse<=-205) {
             System.out.println("in Reset");
         }
@@ -78,8 +78,10 @@ public class GameEnd extends drawable {
     public void mouseClicked(){
         if (lastMouseX>= -175 &&  lastMouseX<= -25 && lastMouseY>= -295 && lastMouseY<=-205){
             System.out.println("Back");
+            runningPage = backPage;
         } else if (lastMouseX>= 25 &&  lastMouseX<= 175 && lastMouseY>= -295 && lastMouseY<=-205) {
             System.out.println("Reset");
+            runningPage = new GamePage();
         }
     }
 

@@ -16,8 +16,8 @@ public class GamePause extends drawable {
     }
     public void draw(){
         super.draw();
-        DrawSprite(-140,0,200,120,icons[14]);
-        DrawSprite(140,0,200,120,icons[15]);
+        DrawSprite(-140,0,200,120,icons[8]);
+        DrawSprite(140,0,250,120,icons[15]);
 
     }
     public void mouseMotion(){

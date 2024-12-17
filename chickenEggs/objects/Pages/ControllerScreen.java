@@ -58,7 +58,7 @@ public class ControllerScreen extends Page {
     @Override
     public void isClicked() {
         for (Button button : buttons) {
-            if (button.isInside(lastMouseX, lastMouseY) && i>0 && i<=4) {
+            if (button.isInside(lastMouseX, lastMouseY) && i>0 && i<=3) {
                 playerController = button.text.charAt(button.text.length() - 1) -'0';
                 System.out.println(playerController);
             }

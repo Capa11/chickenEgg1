@@ -14,6 +14,7 @@ import chickenEggs.objects.Game.Chickens.SuperChicken;
 import chickenEggs.objects.Game.Chickens.UltimateChicken;
 import chickenEggs.objects.Game.Chickens.UnordinaryChicken;
 import chickenEggs.objects.Game.*;
+import chickenEggs.objects.Pages.Data.Players;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -44,7 +45,7 @@ public class GamePage extends Page {
     float chickenSpeed=1;
     float theta=0;
     ArrayList<Pairii> xyChickens;
-
+    public GamePage(){}
     public GamePage(mousePlayer mousePlayer, ArrayList<keyPlayer> keyPlayers, ArrayList<AiPlayer> AiPlayers, int difficulty,Page backpage){//level 0 means not custom game
         path=background[0];
         this.keyPlayers=keyPlayers;

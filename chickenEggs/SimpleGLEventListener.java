@@ -19,6 +19,7 @@ public class SimpleGLEventListener extends variables {
         gl = gld.getGL();
         init(gl);
         runningPage=new HomeScreen();
+//        runningPage2 = new GamePause(null);
     }
     public void display(GLAutoDrawable gld) {
         gl = gld.getGL();
