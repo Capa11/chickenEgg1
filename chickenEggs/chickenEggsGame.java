@@ -10,9 +10,10 @@ import chickenEggs.mouse.mousemotion;
 import javax.media.opengl.GLCanvas;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 
-    public class chickenEggsGame extends JFrame {
+public class chickenEggsGame extends JFrame {
         public static void main(String[] args) {
             showOnScreen(1, new chickenEggsGame());
         }

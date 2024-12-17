@@ -44,10 +44,12 @@ public class Chicken extends singleGameObject {
           this.y-=Speed;
           if(!isInside())y+=Speed;
      }
-
      public int getDamageScore() {
           health--;
-          if(health==0)return scoreIfDead;
+          if(health==0){
+               sounds[6].play();
+               return scoreIfDead;
+          }
           else return scoreIfdamage;
      }
 

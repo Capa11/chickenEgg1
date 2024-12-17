@@ -2,17 +2,35 @@ package chickenEggs.interfaces;
 import javax.media.opengl.GL;
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.glu.GLU;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.*;
+import javax.sound.sampled.*;
+
 
 import Texture.TextureReader;
 import chickenEggs.interfaces.Pages.Page;
 import chickenEggs.objects.Pages.CustomScreen;
 
 public abstract class variables implements GLEventListener {
+    //sounds
+    public static float globalVolume = 0.9f; // Default volume set to 90%
+    private static String soundsPath="chickenEggs//Assets//Sounds//";
+    public static String[] isounds = {"gameover.wav","button.wav","fire1.wav","fire2.wav","fire3.wav","respawn.wav","DeadChickenSoundEffect.wav"};
+    public static Sound[] sounds=new Sound[isounds.length];
+    public static void preparingSounds() {
+        for (int i = 0; i < sounds.length; i++) {
+            System.out.println(i);
+            sounds[i]= Sound.loadFromFile(soundsPath+isounds[i]);
+        }
+    }
+    public static int[] player1Controller={KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.VK_SPACE};//only for single play death match
+    public static int[] player2Controller={KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.CTRL_DOWN_MASK};
+    public static int[] player3Controller={KeyEvent.VK_W,KeyEvent.VK_S,KeyEvent.VK_D,KeyEvent.VK_A,KeyEvent.VK_V};
+    public static int[] player4Controller={KeyEvent.VK_O,KeyEvent.VK_L,KeyEvent.VK_SEMICOLON,KeyEvent.VK_K,KeyEvent.VK_SPACE};
     public static String[] arr = new String[5];
     public static BitSet controllerBits = new BitSet(256);
     public static ArrayList<String[]> controllers=new ArrayList<>(4);
@@ -47,7 +65,11 @@ public abstract class variables implements GLEventListener {
     public static String level ="easy";
 
 
+
+
     //paths
+    private static String[] ikeyboard={"0.png", "1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "9.png","","","","","","","","a.png", "b.png", "c.png", "comma.png", "comma-lt.png", "context-menu.png", "ctrl.png", "ctrl-2.png", "cursor-down.png", "cursor-left.png", "cursor-right.png", "cursor-up.png", "d.png", "delete.png", "e.png", "end.png", "enter.png", "equals-plus.png", "esc.png", "f.png", "f1.png", "f2.png", "f3.png", "f4.png", "f5.png", "f6.png", "f7.png", "f8.png", "f9.png", "f10.png", "f11.png", "f12.png", "g.png", "h.png", "home.png", "i.png", "insert.png", "j.png", "k.png", "keypad-0.png", "keypad-1.png", "keypad-2.png", "keypad-3.png", "keypad-4.png", "keypad-5.png", "keypad-6.png", "keypad-7.png", "keypad-8.png", "keypad-9.png", "keypad-asterix.png", "keypad-enter.png", "keypad-minus.png", "keypad-period.png", "keypad-plus.png", "keypad-slash.png", "l.png", "locks.png", "m.png", "minus.png", "n.png", "num-lock.png", "o.png", "p.png", "page-down.png", "page-up.png", "pause.png", "period-gt.png", "power.png", "print.png", "q.png", "r.png", "s.png", "scroll-lock.png", "semicolon-dble.png", "shift.png", "shift-right.png", "slash-questionmark.png", "sleep.png", "spacebar.png", "specialkey-2.png", "t.png", "tab.png", "u.png", "v.png", "w.png", "wake-up.png", "win.png", "x.png", "y.png", "z.png"};
+    private static String folderKeyboard="chickenEggs//Assets//AllKeyBoard";
     private static String folderalphabet = "chickenEggs//Assets//Alphabet//";
     private static String folderchicken = "chickenEggs//Assets//chickenEggObjects//";
     private static String folderIcons = "chickenEggs//Assets//Icons//";
@@ -88,16 +110,7 @@ public abstract class variables implements GLEventListener {
     public static int[] bullets = new int[ibullets.length];
     public static int[] rockets = new int[irockets.length];
 
-    public static boolean isClickInside() {
-        if (lastMouseX <= xaxis && lastMouseX >= -xaxis && lastMouseY <= yaxis && lastMouseY >= -yaxis) {
-            return true;
-        } else return false;
-    }
-    public static boolean isMouseInside() {
-        if (xmouse <= xaxis && xmouse >= -xaxis && ymouse <= yaxis && ymouse >= -yaxis) {
-            return true;
-        } else return false;
-    }
+
 
     protected static  void init(GL gl) {
         gl.glOrtho( -xaxis, xaxis, -yaxis, yaxis,-1.0, 1.0);
@@ -118,6 +131,9 @@ public abstract class variables implements GLEventListener {
 
         prepareimage(folderbullets, ibullets, bullets, gl);
         prepareimage(folderRockets, irockets, rockets, gl);
+
+        //prearing sounds;
+        preparingSounds();
 
 
 
@@ -189,6 +205,16 @@ public abstract class variables implements GLEventListener {
         gl.glTexCoord2f(0.0f, 1.0f);gl.glVertex3f(-w/2.0f, h/2.0f, -1.0f);
 
         gl.glEnd();gl.glPopMatrix();gl.glDisable(GL.GL_BLEND);
+    }
+    public static boolean isClickInside() {
+        if (lastMouseX <= xaxis && lastMouseX >= -xaxis && lastMouseY <= yaxis && lastMouseY >= -yaxis) {
+            return true;
+        } else return false;
+    }
+    public static boolean isMouseInside() {
+        if (xmouse <= xaxis && xmouse >= -xaxis && ymouse <= yaxis && ymouse >= -yaxis) {
+            return true;
+        } else return false;
     }
     public static void drawArray(drawable[] arr){
         for (int i = 0; i < arr.length; i++) {

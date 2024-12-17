@@ -1,9 +1,13 @@
 package chickenEggs.objects.Pages;
 
 import chickenEggs.interfaces.*;
+import chickenEggs.interfaces.Game.*;
 import chickenEggs.interfaces.Pages.Button;
 import chickenEggs.interfaces.Pages.NavBtn;
 import chickenEggs.interfaces.Pages.Page;
+import chickenEggs.objects.Game.GamePage;
+import chickenEggs.objects.Game.Players.keyPlayer;
+import chickenEggs.objects.Game.Players.mousePlayer;
 import chickenEggs.objects.Pages.Buttons.*;
 
 import java.util.ArrayList;
@@ -11,25 +15,6 @@ import static chickenEggs.interfaces.variables.*;
 
 //2
 public class CustomScreen extends Page {
-    //    drawable[] arr1 =  initwriteString("players  1 2 3 4", -900, 950, 500, 60, 100, 10);
-//    drawable[] arr2 =  initwriteString("settings", -900, -850, 400, 60, 100, 10);
-//    drawable[] arr3 =  initwriteString("levels", -900, -850, 200, 60, 100, 10);
-//    drawable[] arr4 =  initwriteString("game modes", -900, -850, 0, 60, 100, 10);
-//    public CustomScreen() {
-//    }
-//    void drawBackground(){
-//        //DrawSprite(0,0, (int) (xaxis*2), (int) (yaxis*2), backgrounds[0]);
-//       // DrawSprite(0,0, (1200), (800), backgrounds[1]);
-//    }
-//
-//    @Override
-//    public void draw() {
-//        drawBackground();
-//        drawArray(arr1);
-//        drawArray(arr2);
-//        drawArray(arr3);
-//        drawArray(arr4);
-//    }
 
     //Labels
     drawable[] playersText = initwriteString("players",-850,-475,390,60,60,0);
@@ -41,14 +26,14 @@ public class CustomScreen extends Page {
     //settings
     NavBtn SettingButton = new NavBtn(900 , 520 , 200 , 180 , icons[13], new ControllerScreen(this) ,"",0 );
 //    Buttons
-    Button rightPlayers = new RightPlayers(300, (int)(yaxis-300), 130, 100, icons[5], null, "", 50);
-    Button leftPlayers = new LeftPlayers(-300, (int)(yaxis-300), 130, 100, icons[7], null, "", 50);
-    Button leftHuman = new PrevHuman(-300, (int)(yaxis-500), 130, 100, icons[7], null, "", 50);
-    Button rightHuman = new NextHuman(300, (int)(yaxis-500), 130, 100, icons[5], null, "", 50);
+    Button rightPlayers = new RightPlayers(300, (int)(yaxis-300), 130, 100, icons[1], null, "", 50);
+    Button leftPlayers = new LeftPlayers(-300, (int)(yaxis-300), 130, 100, icons[4], null, "", 50);
+    Button leftHuman = new PrevHuman(-300, (int)(yaxis-500), 130, 100, icons[4], null, "", 50);
+    Button rightHuman = new NextHuman(300, (int)(yaxis-500), 130, 100, icons[1], null, "", 50);
 //    Button rightAi = new NextAi(300, (int)(yaxis-700), 130, 100, icons[4], null, "", 50);
 //    Button leftAi = new PrevAi(-300, (int)(yaxis-700), 130, 100, icons[4+2], null, "", 50);
-    Button rightLevels = new NextLevel(300, (int)(yaxis-700), 130, 100, icons[5], null, "", 50);
-    Button leftLevels = new PrevLevel(-300, (int)(yaxis-700), 130, 100, icons[7], null, "", 50);
+    Button rightLevels = new NextLevel(300, (int)(yaxis-700), 130, 100,icons[1], null, "", 50);
+    Button leftLevels = new PrevLevel(-300, (int)(yaxis-700), 130, 100, icons[4], null, "", 50);
 //  Data
     protected static Integer howManyPlayers = numPlayers;
     protected static Integer howManyHumans = numHuman;
@@ -56,7 +41,7 @@ public class CustomScreen extends Page {
     protected static String whatIsLevel = level;
 
 //Start
-    NavBtn startGame = new NavBtn((int)((-xaxis+xaxis)/2),(int)(-yaxis+300),600,350,icons[3],new ScoreBoard(this),"",0);
+    drawable startGame = new drawable((int) ((-xaxis + xaxis) / 2), (int) (-yaxis + 300), 400, 200, icons[3]);
 
     static ArrayList<Button> arr = new ArrayList<>();
     public CustomScreen(){
@@ -74,13 +59,13 @@ public class CustomScreen extends Page {
         arr.add(rightLevels);
         arr.add(leftLevels);
         arr.add(SettingButton);
-        arr.add(startGame);
 //        arr.add(incVol);
 //        arr.add(decVol);
     }
     @Override
     public void draw(){
         super.draw();
+        startGame.draw();
         drawArray(playersText);
         drawArray(humansText);
 //        drawArray(aiText);
@@ -97,7 +82,31 @@ public class CustomScreen extends Page {
                 break;
         }
     }
+    @Override
+    public void ifClicked(){
+        if(lastMouseX<=startGame.x+startGame.w/2&&lastMouseX>=startGame.x-startGame.w/2&&lastMouseY<=startGame.y+startGame.h/2&&lastMouseY>=startGame.y-startGame.h/2){
+            ArrayList<keyPlayer> keyPlayers = new ArrayList<>();
+            if(numHuman>1)keyPlayers.add(new keyPlayer(player2Controller,"FGSF"));
+            if(numHuman>2)keyPlayers.add(new keyPlayer(player3Controller,"FGSSFDG"));
+            if(numHuman>3)keyPlayers.add(new keyPlayer(player4Controller,"SFGFGG"));
+            //ai player handle here
+
+
+
+            int intlevel=3;
+            switch (whatIsLevel){
+                case "easy": intlevel=1;
+                    break;
+                case "medium":  intlevel=2;
+                    break;
+                case "hard":  intlevel=3;
+                    break;
+            }
+            runningPage=new GamePage(new mousePlayer("p1"),keyPlayers,new ArrayList<>(),intlevel,this);
+        }
+    }
 }
+
 
 
 

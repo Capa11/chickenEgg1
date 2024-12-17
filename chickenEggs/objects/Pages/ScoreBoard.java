@@ -5,6 +5,10 @@ import chickenEggs.interfaces.Pages.NavBtn;
 import chickenEggs.interfaces.Pages.Page;
 import chickenEggs.interfaces.Pages.inputbox;
 import chickenEggs.interfaces.drawable;
+import chickenEggs.objects.Game.GamePage;
+import chickenEggs.objects.Game.Players.AiPlayer;
+import chickenEggs.objects.Game.Players.keyPlayer;
+import chickenEggs.objects.Game.Players.mousePlayer;
 import chickenEggs.objects.Pages.Buttons.*;
 
 import java.util.ArrayList;
@@ -32,12 +36,20 @@ public class ScoreBoard extends Page {
     ArrayList<Pair> scores = getScoreBoard();
 /*
     public ScoreBoard(){}
+
 */
+    mousePlayer mousePlayer ;
+    ArrayList<keyPlayer> keyPlayers = new ArrayList<>();
+
+    Button playButton = new NavBtn(-500, -450, 400, 200,Letters[26], new GamePage(mousePlayer, new ArrayList<>(),new ArrayList<AiPlayer>(),3,this), "start the game", 25 ,-500 , Letters[26],-500 , -420 , 150,150 );
 
     public ScoreBoard(Page back) {
         super(background[0]);
+        mousePlayer= new mousePlayer("adf");
+        playButton= new NavBtn(-500, -450, 400, 200, Letters[26], new GamePage(mousePlayer,keyPlayers,new ArrayList<AiPlayer>(),3,this),"play",30);
        /* arr.add(btnClearScoreBord);
         arr.add(play);*/
+        buttons.add(playButton);
         buttons.add(new NavBtn((int)(-xaxis+150),(int)(yaxis-100),150,100,icons[8],back,"",0));
     }
 

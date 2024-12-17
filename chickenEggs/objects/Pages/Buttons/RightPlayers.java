@@ -27,9 +27,6 @@ public class RightPlayers extends Button {
         System.out.println("Number of human is "+numHuman);
         System.out.println("Number of Ai is "+numAi);
     }
-    @Override
-    public void ifMouseMoved(){
-        super.path = background[1];
-    }
+
 }
 

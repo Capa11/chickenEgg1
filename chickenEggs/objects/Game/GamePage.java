@@ -97,7 +97,7 @@ public class GamePage extends Page {
             moveAll();
             checkCollesion();
             drawObjects();
-            draw_info();
+            //draw_info();
             if (isCustom){
                 timer--;
                 System.out.println(timer);
@@ -136,6 +136,7 @@ public class GamePage extends Page {
     public void losing(){
         isGameRunning=false;
         winning=false;
+        sounds[0].play();
         gameEnd=new GameEnd(backPage,players,false);
     }
     public void winning(){
@@ -345,60 +346,60 @@ public class GamePage extends Page {
             x+=space;
         }
     }
-    private void inithealths(){
-        int ystart = (int)(-yaxis+10);
-        int size = 40;
-        for (int i = 0; i < players.size(); i++) {
-            healths.add(new drawable[2]);
-            int x = StartEnd.get(i);
-            healths.get(i)[0] = new drawable(x , ystart , size , size , health[0]);
-            healths.get(i)[1] = new drawable(x + 70 , ystart , size , size , numbers[players.get(i).health]);
-        }
-    }
-    private void draw_score(){
-        initScores();
-        for (int i = 0; i < scores.size(); i++) {
-            for (int j = 0; j < scores.get(i).size(); j++) {
-                scores.get(i).get(j).draw();
-            }
-        }
-    }
-    private void draw_health(){
-        inithealths();
-        for (int i = 0; i < healths.size(); i++) {
-            for (int j = 0; j < healths.get(i).length; j++) {
-                if(healths.get(i)!=null && healths.get(i)[j]!=null)healths.get(i)[j].draw();
-            }
-        }
-    }
-    private void initnames(){
-        int ystart = (int)(-yaxis+100);
-        for (int i = 0; i < players.size(); i++) {
-            names.add(new drawable[players.get(i).name.length()]);
-            String s = players.get(i).name.toLowerCase();
-            int x = (StartEnd.size()!=0) ?StartEnd.get(i) : 0;
-            for (int j = 0; j < names.get(i).length; j++) {
-                names.get(i)[j] = new drawable(x , ystart , 30 , 30 , Letters[s.charAt(j)-'a']);
-                x+=50;
-            }
-        }
-    }
-    private void draw_names(){
-        initnames();
-        for (int i = 0; i < names.size(); i++) {
-            for (int j = 0; j < names.get(i).length; j++) {
-                if(names.get(i)!=null && names.get(i)[j]!=null)names.get(i)[j].draw();
-            }
-        }
-    }
-    public void draw_info(){
-        draw_score();//must be first
-        draw_names();
-        draw_health();
-        scores.clear();
-        names.clear();
-        healths.clear();
-        StartEnd.clear();
-    }
+//    private void inithealths(){
+//        int ystart = (int)(-yaxis+10);
+//        int size = 40;
+//        for (int i = 0; i < players.size(); i++) {
+//            healths.add(new drawable[2]);
+//            int x = StartEnd.get(i);
+//            healths.get(i)[0] = new drawable(x , ystart , size , size , health[0]);
+//            healths.get(i)[1] = new drawable(x + 70 , ystart , size , size , numbers[players.get(i).health]);
+//        }
+//    }
+//    private void draw_score(){
+//        initScores();
+//        for (int i = 0; i < scores.size(); i++) {
+//            for (int j = 0; j < scores.get(i).size(); j++) {
+//                scores.get(i).get(j).draw();
+//            }
+//        }
+//    }
+//    private void draw_health(){
+//        inithealths();
+//        for (int i = 0; i < healths.size(); i++) {
+//            for (int j = 0; j < healths.get(i).length; j++) {
+//                if(healths.get(i)!=null && healths.get(i)[j]!=null)healths.get(i)[j].draw();
+//            }
+//        }
+//    }
+//    private void initnames(){
+//        int ystart = (int)(-yaxis+100);
+//        for (int i = 0; i < players.size(); i++) {
+//            names.add(new drawable[players.get(i).name.length()]);
+//            String s = players.get(i).name.toLowerCase();
+//            int x = (StartEnd.size()!=0) ?StartEnd.get(i) : 0;
+//            for (int j = 0; j < names.get(i).length; j++) {
+//                names.get(i)[j] = new drawable(x , ystart , 30 , 30 , Letters[s.charAt(j)-'a']);
+//                x+=50;
+//            }
+//        }
+//    }
+//    private void draw_names(){
+//        initnames();
+//        for (int i = 0; i < names.size(); i++) {
+//            for (int j = 0; j < names.get(i).length; j++) {
+//                if(names.get(i)!=null && names.get(i)[j]!=null)names.get(i)[j].draw();
+//            }
+//        }
+//    }
+//    public void draw_info(){
+//        draw_score();//must be first
+//        draw_names();
+//        draw_health();
+//        scores.clear();
+//        names.clear();
+//        healths.clear();
+//        StartEnd.clear();
+//    }
 
 }

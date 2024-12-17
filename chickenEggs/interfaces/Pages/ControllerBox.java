@@ -13,6 +13,7 @@ public class ControllerBox extends drawable {
     StringBuilder str;
     drawable[] drawString;
     int fontSize;
+    int[] controller;int index;
 
     public ControllerBox(int x, int y, int w, int h, int fontSize, int changed) {
         super(x, y, w, h, health[0]);
@@ -22,50 +23,25 @@ public class ControllerBox extends drawable {
         drawString = new drawable[0];
     }
 
-    public ControllerBox(int x, int y, int w, int h, int changed, int fontSize, int path) {
+    public ControllerBox(int x, int y, int w, int h, int changed, int fontSize, int path,int[] controller,int index) {
         super(x, y, w, h, path);
         this.fontSize = fontSize;
         this.changed = changed;
         str = new StringBuilder();  // Initialize the StringBuilder
         drawString = new drawable[0];
+        this.controller=controller;
+        this.index=index;
     }
 
     public void ifKeyPressed(int e) {
 
         if (e <= KeyEvent.VK_Z && e >= KeyEvent.VK_A) {
             str.append((char) (e - 'A' + 'a'));
-        } else if (e == KeyEvent.VK_SPACE) {
-            str.append("space");
-        } else if (e == KeyEvent.VK_UP) {
-            str.append("up");
-        } else if (e == KeyEvent.VK_DOWN) {
-            str.append("down");
-        } else if (e == KeyEvent.VK_SHIFT) {
-            str.append("shift");
-        } else if (e == KeyEvent.VK_ENTER) {
-            str.append("enter");
-        } else if (e == KeyEvent.VK_TAB) {
-            str.append("tab");
-        } else if (e == KeyEvent.VK_ALT) {
-            str.append("alt");
-        } else if (e == KeyEvent.VK_CONTROL) {
-            str.append("ctrl");
-        } else if (e == KeyEvent.VK_LEFT) {
-            str.append("left");
-        } else if (e == KeyEvent.VK_RIGHT) {
-            str.append("right");
-        } else if (e == KeyEvent.VK_SLASH) {
-            str.append("slash");
-        } else if (e == KeyEvent.VK_MINUS) {
-            str.append("minus");
-        } else if (e == KeyEvent.VK_COMMA) {
-            str.append("comma");
-        } else if (e == KeyEvent.VK_PERIOD) {
-            str.append("period");
-        } else if (e == KeyEvent.VK_PLUS) {
-            str.append("plus");
-        } else if (e >= KeyEvent.VK_0 && e <= KeyEvent.VK_9) {
+            controller[index]=e;
+        }
+        else if (e >= KeyEvent.VK_0 && e <= KeyEvent.VK_9) {
             str.append((char)e);
+            controller[index]=e;
         }
         arr[changed] = str.toString();
 
@@ -76,9 +52,6 @@ public class ControllerBox extends drawable {
 
         keyReleased();
     }
-
-
-
     public void keyPressed(int e) {
         if (isSelect && !isController(e)) {
             ifKeyPressed(e);

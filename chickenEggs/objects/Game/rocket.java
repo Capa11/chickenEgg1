@@ -31,6 +31,7 @@ public class rocket extends singleGameObject {
 
     public void destroy() {
         if (sheildTimer <= 0) {
+            sounds[5].play();
             xBegining=0;
             start();
             player.health--;
@@ -95,6 +96,7 @@ public class rocket extends singleGameObject {
         if (player.health > 0&&reloadTimer<=0){
             player.bullets.add(new bullet1(x, y + bullet.defaultSize,player));
             reloadTimer=bulletReloadTimer;
+            sounds[3].play();
         }
     }
 

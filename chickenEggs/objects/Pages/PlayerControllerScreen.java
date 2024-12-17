@@ -18,7 +18,7 @@ public class PlayerControllerScreen extends Page {
     ControllerBox[] controllerBoxes = new ControllerBox[5];
     BitSet keyBits = new BitSet();
 
-    public PlayerControllerScreen(Page back){
+    public PlayerControllerScreen(Page back,int[] controllers){
         super(background[0]);
 
         int x = 80;
@@ -29,7 +29,7 @@ public class PlayerControllerScreen extends Page {
         int path = health[0];
 
         for (int i = 0; i < controllerBoxes.length; i++) {
-            controllerBoxes[i] = new ControllerBox(x, y, w, h, i , fontSize, path);
+            controllerBoxes[i] = new ControllerBox(x, y, w, h, i , fontSize, path,controllers,i);
             y -= 200;
         }
         buttons.add(new NavBtn((int)(-xaxis+150),(int)(yaxis-100),150,100,icons[8],back,"",0));
@@ -53,7 +53,6 @@ public class PlayerControllerScreen extends Page {
 
     @Override
     public void keyPressed(int e) {
-
         for (ControllerBox controllerBox : controllerBoxes) {
             controllerBox.keyPressed(e);
         }
