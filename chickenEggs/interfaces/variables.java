@@ -82,7 +82,9 @@ public abstract class variables implements GLEventListener {
     private static final String[] ihealth = {"HealthB.png", "Health.png"};
     //    private static String[] ibackgrounds= {"Back.png"};
     private static final String[] iegg = {"egg.png"};
-    private static final String[] ichicken = {"OrdinaryChicken.png", "UnordinaryChicken.png", "SuperChicken.png", "UltimateChicken.png"};
+    private static final String[] ichicken = {"OrdinaryChicken.png", "UnordinaryChicken.png", "SuperChicken.png", "UltimateChicken.png",
+            "SuperChicken.png","wingl.png","wingr.png","chickenblack.png",
+            "chickenblue.png", "chickengreen.png","chickenred.png"};
 
     private static final String[] iconsCustom = {"add1.png", "add2.png", "minus1.png", "play.png",
             "minus2.png", "right1.png", "right2.png", "left1.png",
@@ -410,5 +412,29 @@ public abstract class variables implements GLEventListener {
             gl.glVertex2d(x+r*Math.cos(Math.toRadians(i)),y+r*Math.sin(Math.toRadians(i)));
         }
         gl.glEnd();
+    }
+
+
+
+    public static void DrawSprite(int x, int y, int w, int h, int texture,int rotate) {
+        gl.glEnable(GL.GL_BLEND);
+        gl.glBindTexture(GL.GL_TEXTURE_2D, texture); // Turn Blending On
+
+        gl.glPushMatrix();
+        gl.glTranslated(x, y, 0);
+        gl.glRotated(rotate,0,0,1);
+        gl.glBegin(GL.GL_QUADS);
+        gl.glTexCoord2f(0.0f, 0.0f);
+        gl.glVertex3f(-w / 2.0f, -h / 2.0f, -1.0f);
+        gl.glTexCoord2f(1.0f, 0.0f);
+        gl.glVertex3f(w / 2.0f, -h / 2.0f, -1.0f);
+        gl.glTexCoord2f(1.0f, 1.0f);
+        gl.glVertex3f(w / 2.0f, h / 2.0f, -1.0f);
+        gl.glTexCoord2f(0.0f, 1.0f);
+        gl.glVertex3f(-w / 2.0f, h / 2.0f, -1.0f);
+
+        gl.glEnd();
+        gl.glPopMatrix();
+        gl.glDisable(GL.GL_BLEND);
     }
 }

@@ -36,5 +36,26 @@ public class HomeScreen extends Page {
     public void draw() {
         super.draw();
         DrawSprite(0 , 0 ,1200,500,background[1]);
+        wingAnimate(0.4);
+    }
+
+
+    boolean check = false;
+    public void wingAnimate(double speedL){
+        if(x<=30 && !check) x+=speedL;
+        if(y>=-30 &&!check)y-=speedL;
+        if(x >= 30){
+            check = true;
+        }
+        if(check){
+            x-=speedL;
+            y+=speedL;
+        }
+        if(x<=-20){
+            check = false;
+        }
+        DrawSprite(-170,-20,300,200,chicken[5], (int) y);
+        DrawSprite(160,-10,300,200,chicken[6], (int) x);
+        DrawSprite(0,0,500,500,chicken[10],0 );
     }
 }
