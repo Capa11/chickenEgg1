@@ -33,7 +33,7 @@ public class GameEnd extends drawable {
     int state;
     // it have two buttons one for back one for retry
     public GameEnd(Page backPage, ArrayList<Player> players, boolean isWin){
-        super(0,0,1300,700,background[0]);
+        super(0,0,1300,700,backgroundEnd[0]);
         this.isWin = isWin;
         this.backPage = backPage;
         this.players = players;
@@ -61,8 +61,8 @@ public class GameEnd extends drawable {
 //        drawArray(initwriteString("3",-600,-500,100-2*70,50,50,0));
 //        drawArray(initwriteString("Hassan",-500,500,100-2*70,50,50,0));
 //        drawArray(initwriteString("100",500,900,100-2*70,50,50,0));
-        DrawSprite(-100,-250,150,90,icons[8]);
-        DrawSprite(100,-250,250,90,icons[15]);
+        DrawSprite(-120,-250,150,90,icons[8]);
+        DrawSprite(120,-250,250,90,icons[15]);
         mouseClicked();
 //        mouseMotion();
     }

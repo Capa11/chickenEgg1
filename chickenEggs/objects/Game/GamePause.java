@@ -10,7 +10,7 @@ public class GamePause extends drawable {
     // it have three buttons one for back one for retry one for settings
     Page backPage;
     public GamePause(Page backPage){
-        super(0,0,1300,700,background[0]);
+        super(0,0,1300,700,backgroundEnd[0]);
         this.backPage = backPage;
 
     }

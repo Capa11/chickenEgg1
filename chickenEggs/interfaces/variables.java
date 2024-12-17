@@ -76,6 +76,7 @@ public abstract class variables implements GLEventListener {
 
     private static String folderbullets = "chickenEggs//Assets//bullets//";
     private static String folderRockets = "chickenEggs//Assets//Rockets//";
+    private static String folderBgEnd = "chickenEggs//Assets//Backgrounds//";
 
     private static final String[] inumbers = {"0.png", "1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "9.png"};
     private static final String[] iletters = {"a.png", "b.png", "c.png", "d.png", "e.png", "f.png", "g.png", "h.png", "i.png", "j.png", "k.png", "l.png", "m.png", "n.png", "o.png", "p.png", "q.png", "r.png", "s.png", "t.png", "u.png", "v.png", "w.png", "x.png", "y.png", "z.png", "blank.png"};
@@ -91,6 +92,7 @@ public abstract class variables implements GLEventListener {
             "left2.png", "RocketIcon.png", "instructions.png", "customIcon.png",
             "top3.png" , "settings.png","shield.png","reset.png","win.png","lose.png","scores.png"};
     private static final String[] ibackground = {"spacee.png", "kindpng_6159643.png"};
+    private static final String[] ibgend = {"background2.jpg"};
 
 
     //    private static String[] iconsCustom ={"add1.png","add2.png","minus1.png","minus2.png","right1.png","right2.png","left1.png","left2.png"};
@@ -107,6 +109,7 @@ public abstract class variables implements GLEventListener {
     public static int[] icons = new int[iconsCustom.length];
 
     public static int[] background = new int[ibackground.length];
+    public static int[] backgroundEnd = new int[ibgend.length];
 
 
     public static int[] bullets = new int[ibullets.length];
@@ -129,6 +132,7 @@ public abstract class variables implements GLEventListener {
         prepareimage(folderIcons, iconsCustom, icons, gl);
 
         prepareimage(folderchicken, ibackground, background, gl);
+        prepareimage(folderBgEnd, ibgend, backgroundEnd, gl);
 
 
         prepareimage(folderbullets, ibullets, bullets, gl);
