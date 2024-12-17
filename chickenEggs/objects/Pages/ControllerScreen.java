@@ -18,6 +18,8 @@ public class ControllerScreen extends Page {
     Button player2 = new NavBtn(0, -100, 350, 100, health[0], new PlayerControllerScreen(this,player2Controller), "player 2", 40);
     Button player3 = new NavBtn(-200, -300, 350, 100, health[0], new PlayerControllerScreen(this,player3Controller), "player 3", 40);
     Button player4 = new NavBtn(250, -300, 350, 100, health[0], new PlayerControllerScreen(this,player4Controller), "player 4", 40);
+
+
     drawable[] settings = initwriteString("settings", -220, 200, 600, 70, 70, 0);
     drawable[] volume = initwriteString("volume", -100, 400, 350, 40, 40, 0);
     drawable[] level = new drawable[10];
@@ -25,8 +27,10 @@ public class ControllerScreen extends Page {
     static ArrayList<Button> buttons = new ArrayList<>();
     int n=9;
     int i=0;
+    Button btnBack;
     public ControllerScreen(Page back) {
         super(background[0], buttons);
+        btnBack  = new NavBtn((int)(-xaxis+150),(int)(yaxis-100),150,100,icons[8],back,"",0);
         for (int i = 0; i < level.length-1; i++) {
             level[i] = new drawable();
             level[i].setPath(health[1]);
@@ -34,7 +38,7 @@ public class ControllerScreen extends Page {
         level[9] = new drawable();
         level[9].setPath(health[0]);
         initGrid(level, -950, 1000, 280, 50, 50, 10, 10);
-        buttons.add(new NavBtn((int)(-xaxis+150),(int)(yaxis-100),150,100,icons[8],back,"",0));
+        buttons.add(btnBack);
         buttons.add(player2);
         buttons.add(player3);
         buttons.add(player4);
