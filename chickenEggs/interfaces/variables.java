@@ -29,7 +29,7 @@ public abstract class variables implements GLEventListener {
     public static int[] player1Controller={KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.VK_SPACE};//only for single play death match
     public static int[] player2Controller={KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.VK_SPACE};
     public static int[] player3Controller={KeyEvent.VK_W,KeyEvent.VK_S,KeyEvent.VK_D,KeyEvent.VK_A,KeyEvent.VK_V};
-    public static int[] player4Controller={KeyEvent.VK_O,KeyEvent.VK_L,KeyEvent.VK_SEMICOLON,KeyEvent.VK_K,KeyEvent.VK_SPACE};
+    public static int[] player4Controller={KeyEvent.VK_O,KeyEvent.VK_L,KeyEvent.VK_SEMICOLON,KeyEvent.VK_K,KeyEvent.VK_M};
     public static String[] arr = new String[5];
     public static BitSet controllerBits = new BitSet(256);
     public static ArrayList<String[]> controllers=new ArrayList<>(4);
