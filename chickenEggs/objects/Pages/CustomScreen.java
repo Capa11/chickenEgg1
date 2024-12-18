@@ -88,9 +88,9 @@ public class CustomScreen extends Page {
     public void ifClicked(){
         if(lastMouseX<=startGame.x+startGame.w/2&&lastMouseX>=startGame.x-startGame.w/2&&lastMouseY<=startGame.y+startGame.h/2&&lastMouseY>=startGame.y-startGame.h/2){
             ArrayList<keyPlayer> keyPlayers = new ArrayList<>();
-            if(numHuman>1)keyPlayers.add(new keyPlayer(player2Controller,"FGSF"));
-            if(numHuman>2)keyPlayers.add(new keyPlayer(player3Controller,"FGSSFDG"));
-            if(numHuman>3)keyPlayers.add(new keyPlayer(player4Controller,"SFGFGG"));
+            if(numHuman>1)keyPlayers.add(new keyPlayer(player2Controller,"p2"));
+            if(numHuman>2)keyPlayers.add(new keyPlayer(player3Controller,"p3"));
+            if(numHuman>3)keyPlayers.add(new keyPlayer(player4Controller,"p4"));
             ArrayList<AiPlayer> aiPlayers = new ArrayList<>();
             for (int i = 1; i <= numPlayers-numHuman; i++) {
                 aiPlayers.add(new AiPlayer("Ai"+i));

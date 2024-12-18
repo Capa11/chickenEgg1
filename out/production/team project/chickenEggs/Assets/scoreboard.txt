@@ -1,1 +1,2 @@
-capa 8100
+capa 6300
+hazem 1000

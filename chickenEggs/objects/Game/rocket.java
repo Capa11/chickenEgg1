@@ -12,7 +12,7 @@ public class rocket extends singleGameObject {
     public static int wRocket = 200;
     public static int hRocket = 200;
     boolean bulletready = true;
-    public static int reloadTimer=20;
+    public static int reloadTimer=70;
     int bulletReloadTimer=reloadTimer;
     Player player;
     int xBegining=0;
