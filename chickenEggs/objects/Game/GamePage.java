@@ -25,8 +25,8 @@ public class GamePage extends Page {
     ArrayList<Integer>StartEnd = new ArrayList<>();;
     public mousePlayer mousePlayer;
     public static int oneMinute=60*60;//because animator is 60 fps
-    public static ArrayList<Egg> eggsArray =new ArrayList<>();
-    public static ArrayList<Chicken> chickens=new ArrayList<>();
+    public ArrayList<Egg> eggsArray =new ArrayList<>();
+    public ArrayList<Chicken> chickens=new ArrayList<>();
     public ArrayList<bullet> bullets=new ArrayList<>();
     public ArrayList<keyPlayer>  keyPlayers;
     public ArrayList<AiPlayer> AiPlayers;
@@ -142,7 +142,7 @@ public class GamePage extends Page {
         isGameRunning=false;
         winning=false;
         sounds[0].play();
-        gameEnd=new GameEnd(players,false);
+        runningPage = new GameEnd(players,false);
     }
     public void winning(){
         System.out.println("winning");
@@ -153,7 +153,7 @@ public class GamePage extends Page {
         if(isCustom){
             isGameRunning=false;
             winning=true;
-            gameEnd=new GameEnd(players,true);
+            runningPage = new GameEnd(players,false);
         }
         else{
             for (int i = 0; i < players.size(); i++) {
@@ -277,11 +277,13 @@ public class GamePage extends Page {
         }
     }
     public void generateChickenDistribution(int level) {
+        System.out.println(level);
         int targetPoints = level * 500;
         int[] chickenPoints = {20, 40, 60, 80};
 
         int currentTotal = 0;
         int rand;
+        System.out.println(targetPoints);
         while (currentTotal < targetPoints) {
             rand = (int) (Math.random() * 10);
             if (rand < 4) {
@@ -322,7 +324,6 @@ public class GamePage extends Page {
     }
     public void mouseClicked(){
         if(isClickInside()&&mousePlayer!=null) {
-            System.out.println("click");
             mousePlayer.mouseClicked();
         }
     }

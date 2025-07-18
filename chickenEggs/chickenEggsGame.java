@@ -11,10 +11,14 @@ import javax.media.opengl.GLCanvas;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.Scanner;
 
 
 public class chickenEggsGame extends JFrame {
         public static void main(String[] args) {
+
             new chickenEggsGame();
         }
         static Animator animator;

@@ -1,1 +1,6 @@
-hazem 1000
+player 640450
+hello 467850
+dfvfd 317300
+capa 2050
+htr 550
+dfas 100

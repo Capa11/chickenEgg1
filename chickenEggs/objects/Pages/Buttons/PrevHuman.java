@@ -2,11 +2,8 @@ package chickenEggs.objects.Pages.Buttons;
 
 import chickenEggs.interfaces.Pages.Button;
 import chickenEggs.interfaces.Pages.Page;
-import chickenEggs.interfaces.drawable;
-import chickenEggs.objects.Pages.Data.Humans;
 
 import static chickenEggs.interfaces.variables.*;
-import static chickenEggs.interfaces.variables.drawArray;
 
 public class PrevHuman extends Button {
     public PrevHuman(){}
@@ -19,9 +16,8 @@ public class PrevHuman extends Button {
 
     @Override
     public void ifClicked(){
-        if (numHuman>0){
-            new Humans(--numHuman);
-            numAi = numPlayers-numHuman;
+        if (numHuman>1){
+            numHuman--;
         }
         System.out.println("Number of players is "+numPlayers);
         System.out.println("Number of human is "+numHuman);

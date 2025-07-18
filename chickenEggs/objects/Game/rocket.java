@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import static chickenEggs.interfaces.variables.*;
 
 public class rocket extends singleGameObject {
+    public static int bulletReloadTimer=20;
     public boolean preparingRocket = true;
     int sheildTimer = 0;
     public static boolean[] rocketSkin = {true, true, true, true,true,true,true};
     public static int wRocket = 200;
     public static int hRocket = 200;
     boolean bulletready = true;
-    public static int reloadTimer=70;
-    int bulletReloadTimer=reloadTimer;
+    public int reloadTimer=bulletReloadTimer;
     Player player;
     int xBegining=0;
     public rocket(int x, int y, Player player) {

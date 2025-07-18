@@ -11,6 +11,7 @@ import chickenEggs.objects.Game.Players.keyPlayer;
 import chickenEggs.objects.Game.Players.mousePlayer;
 import chickenEggs.objects.Pages.Buttons.*;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import static chickenEggs.interfaces.variables.*;
@@ -36,11 +37,11 @@ public class ScoreBoard extends Page {
     ArrayList<Pair> scores = getScoreBoard();
     mousePlayer mousePlayer ;
     ArrayList<keyPlayer> keyPlayers = new ArrayList<>();
-
+    String name = "player";
     drawable playButton = new drawable(0, -450, 400, 200, icons[3]);
     public ScoreBoard(Page back) {
         super(background[0]);
-        mousePlayer= new mousePlayer("adf");
+        mousePlayer= new mousePlayer(name);
         /* arr.add(btnClearScoreBord);
         arr.add(play);*/
         buttons.add(new NavBtn((int)(-xaxis+150),(int)(yaxis-100),150,100,icons[8],back,"",0));
@@ -50,13 +51,14 @@ public class ScoreBoard extends Page {
     public void keyPressed(int e) {
         super.keyPressed(e);
         inputbox.keyPressed(e);
+        name = inputbox.getString();
     }
 
     @Override
     public void ifClicked() {
         inputbox.isClicked();
         if(lastMouseX<=playButton.x+playButton.w/2&&lastMouseX>=playButton.x-playButton.w/2&&lastMouseY<=playButton.y+playButton.h/2&&lastMouseY>=playButton.y-playButton.h/2){
-            runningPage =new GamePage(new mousePlayer(inputbox.getString()),keyPlayers,new ArrayList<>(),0,this);
+            runningPage =new GamePage(new mousePlayer(name),keyPlayers,new ArrayList<>(),0,this);
 
         }
     }
@@ -73,9 +75,9 @@ public class ScoreBoard extends Page {
     }
     public void drawScores(ArrayList<Pair> arr){
         for (int i = 0; i < arr.size() && i<3; i++) {
-            drawArray(initwriteString((i+1)+"",-400,-200,200-i*150,50,50,0));
-            drawArray(initwriteString(arr.get(i).getS(),-280,180,200-i*150,50,50,0));
-            drawArray(initwriteString(arr.get(i).getIn().toString(),100,300,200-i*150,50,50,0));
+            drawArray(initwriteString((i+1)+"",-400,-200,250-i*150,50,50,0));
+            drawArray(initwriteString(arr.get(i).getS(),-280,180,250-i*150,50,50,0));
+            drawArray(initwriteString(arr.get(i).getIn().toString(),100,300,300-i*150,50,50,0));
         }
     }
 

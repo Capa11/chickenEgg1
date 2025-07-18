@@ -3,10 +3,12 @@ package chickenEggs.objects.Game.Players;
 import chickenEggs.interfaces.Game.Chicken;
 import chickenEggs.interfaces.Game.Player;
 import  chickenEggs.interfaces.variables;
+import chickenEggs.objects.Game.GamePage;
 import  chickenEggs.objects.Game.eggs;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static chickenEggs.interfaces.variables.runningPage;
 import static chickenEggs.objects.Game.GamePage.*;
 
 public class AiPlayer extends Player {
@@ -18,11 +20,11 @@ public class AiPlayer extends Player {
     public eggs find_clstegg() {
         eggs minegg = new eggs(0,0) ;
         double minspace = Double.MAX_VALUE;
-        for (int i = 0; i < eggsArray.size(); i++) {
-            double currenteggspace = Math.sqrt(Math.pow((this.r.x - eggsArray.get(i).x),2) + (Math.pow((this.r.y - eggsArray.get(i).y),2)));
+        for (int i = 0; i < ((GamePage)runningPage).eggsArray.size(); i++) {
+            double currenteggspace = Math.sqrt(Math.pow((this.r.x - ((GamePage)runningPage).eggsArray.get(i).x),2) + (Math.pow((this.r.y - ((GamePage)runningPage).eggsArray.get(i).y),2)));
             if(currenteggspace < minspace) {
                 minspace = currenteggspace;
-                minegg = (eggs) eggsArray.get(i);
+                minegg = (eggs) ((GamePage)runningPage).eggsArray.get(i);
             }
         }
         return minegg;
@@ -32,12 +34,12 @@ public class AiPlayer extends Player {
         double minspace = Double.MAX_VALUE;
         double minhealth = Double.MAX_VALUE;
         ArrayList<Chicken> mostDamagedchickens = new ArrayList<>();
-        for (int i = 0; i < chickens.size(); i++) {
-            minhealth = Math.min(minhealth, chickens.get(i).health);
+        for (int i = 0; i < ((GamePage)runningPage).chickens.size(); i++) {
+            minhealth = Math.min(minhealth, ((GamePage)runningPage).chickens.get(i).health);
         }
-        for (int i = 0; i < chickens.size(); i++) {
-            if(chickens.get(i).health == minhealth) {
-                mostDamagedchickens.add(chickens.get(i));
+        for (int i = 0; i < ((GamePage)runningPage).chickens.size(); i++) {
+            if(((GamePage)runningPage).chickens.get(i).health == minhealth) {
+                mostDamagedchickens.add(((GamePage)runningPage).chickens.get(i));
             }
         }
         for (int i = 0; i < mostDamagedchickens.size(); i++) {

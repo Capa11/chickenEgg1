@@ -18,7 +18,6 @@ import static chickenEggs.interfaces.variables.*;
 public class CustomScreen extends Page {
 
     //Labels
-    drawable[] playersText = initwriteString("players",-850,-475,390,60,60,0);
     drawable[] humansText = initwriteString("human",-700,-475,200,65,65,0);
 //    drawable[] aiText = initwriteString("ai",-575,-475,0,70,70,0);
     drawable[] levelText = initwriteString("level",-745,-495,0,70,70,0);
@@ -27,8 +26,6 @@ public class CustomScreen extends Page {
     //settings
     NavBtn SettingButton = new NavBtn(900 , 520 , 200 , 180 , icons[13], new ControllerScreen(this) ,"",0 );
 //    Buttons
-    Button rightPlayers = new RightPlayers(300, (int)(yaxis-300), 130, 100, icons[1], null, "", 50);
-    Button leftPlayers = new LeftPlayers(-300, (int)(yaxis-300), 130, 100, icons[4], null, "", 50);
     Button leftHuman = new PrevHuman(-300, (int)(yaxis-500), 130, 100, icons[4], null, "", 50);
     Button rightHuman = new NextHuman(300, (int)(yaxis-500), 130, 100, icons[1], null, "", 50);
 //    Button rightAi = new NextAi(300, (int)(yaxis-700), 130, 100, icons[4], null, "", 50);
@@ -36,8 +33,6 @@ public class CustomScreen extends Page {
     Button rightLevels = new NextLevel(300, (int)(yaxis-700), 130, 100,icons[1], null, "", 50);
     Button leftLevels = new PrevLevel(-300, (int)(yaxis-700), 130, 100, icons[4], null, "", 50);
 //  Data
-    protected static Integer howManyPlayers = numPlayers;
-    protected static Integer howManyHumans = numHuman;
 //    protected static Integer howManyAis = numAi;
     protected static String whatIsLevel = level;
 
@@ -52,8 +47,7 @@ public class CustomScreen extends Page {
     public CustomScreen(Page back) {
         super(background[0],arr);
         arr.add(new NavBtn((int)(-xaxis+150),(int)(yaxis-100),150,100,icons[8],back,"",0));
-        arr.add(rightPlayers);
-        arr.add(leftPlayers);
+
         arr.add(rightHuman);
         arr.add(leftHuman);
 //        arr.add(rightAi);
@@ -68,12 +62,10 @@ public class CustomScreen extends Page {
     public void draw(){
         super.draw();
         startGame.draw();
-        drawArray(playersText);
         drawArray(humansText);
 //        drawArray(aiText);
         drawArray(levelText);
-        drawArray(initwriteString(howManyPlayers.toString(),-100,100,400,200,200,0));
-        drawArray(initwriteString(howManyHumans.toString(),-100,100,200,200,200,0));
+        drawArray(initwriteString(numHuman.toString(),-100,100,200,200,200,0));
 //        drawArray(initwriteString(howManyAis.toString(),-100,100,0,200,200,0));
         switch (whatIsLevel){
             case "easy": drawArray(initwriteString(whatIsLevel,-135,135,-70,60,60,0));
@@ -112,17 +104,6 @@ public class CustomScreen extends Page {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 

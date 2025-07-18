@@ -60,7 +60,7 @@ public abstract class variables implements GLEventListener {
     private static drawable[] youLose;
 
     public static int numPlayers =1;
-    public static int numHuman =1;
+    public static Integer numHuman =1;
     public static int numAi =0;
     public static String level ="easy";
 
