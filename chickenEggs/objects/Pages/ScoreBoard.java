@@ -75,9 +75,7 @@ public class ScoreBoard extends Page {
     }
     public void drawScores(ArrayList<Pair> arr){
         for (int i = 0; i < arr.size() && i<3; i++) {
-            drawArray(initwriteString((i+1)+"",-400,-200,250-i*150,50,50,0));
-            drawArray(initwriteString(arr.get(i).getS(),-280,180,250-i*150,50,50,0));
-            drawArray(initwriteString(arr.get(i).getIn().toString(),100,300,300-i*150,50,50,0));
+            drawArray(initwriteString(((i+1)+" "+arr.get(i).getS()+"    "+arr.get(i).getIn().toString()),-400,400,250-i*150,50,50,0));
         }
     }
 

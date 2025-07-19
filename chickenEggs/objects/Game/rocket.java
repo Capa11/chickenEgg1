@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import static chickenEggs.interfaces.variables.*;
 
 public class rocket extends singleGameObject {
-    public static int bulletReloadTimer=20;
+    public static int bulletReloadTimer=10;
     public boolean preparingRocket = true;
     int sheildTimer = 0;
     public static boolean[] rocketSkin = {true, true, true, true,true,true,true};

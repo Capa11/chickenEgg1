@@ -1,6 +1,4 @@
-player 640450
-hello 467850
-dfvfd 317300
-capa 2050
-htr 550
-dfas 100
+capa 11750
+ahmed 400
+hassan 300
+yousef 50
