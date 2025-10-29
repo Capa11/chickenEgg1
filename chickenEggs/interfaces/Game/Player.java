@@ -2,17 +2,21 @@ package chickenEggs.interfaces.Game;
 
 import chickenEggs.objects.Game.rocket;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import static chickenEggs.interfaces.variables.*;
 
 public abstract class Player {
     public rocket r;
     public String name;
-    public int health=5;
+    public int health=3;
     public ArrayList<bullet> bullets;
-    public int score=0;public Player(String name){
-        this.name=name;
+    public int score=0;
+    public Player(String name) {
+        this.name = name;
         int i=0;
         r=new rocket(this);
         while(i<rocket.rocketSkin.length){

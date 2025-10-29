@@ -1,3 +1,4 @@
-hazem 1100000
-capa  12132
-omar  165465484
+player 5650
+ahmed 400
+hassan 300
+yousef 50

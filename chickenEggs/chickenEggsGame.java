@@ -1,69 +1,35 @@
 package chickenEggs;
 
-import com.sun.opengl.util.Animator;
-import com.sun.opengl.util.FPSAnimator;
+
+import com.jogamp.opengl.*;
 import chickenEggs.keyboard.key;
 import chickenEggs.mouse.mouseWheel;
 import chickenEggs.mouse.mousebutton;
 import chickenEggs.mouse.mousemotion;
+import com.jogamp.opengl.awt.GLCanvas;
+import com.jogamp.opengl.util.Animator;
+import com.jogamp.opengl.util.FPSAnimator;
 
-import javax.media.opengl.GLCanvas;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.Scanner;
 
 
-    public class chickenEggsGame extends JFrame {
+public class chickenEggsGame extends JFrame {
         public static void main(String[] args) {
-            new chickenEggsGame();
 
+            new chickenEggsGame();
         }
-        public static void showOnScreen(int screen, JFrame frame ) throws RuntimeException {
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            GraphicsDevice[] gd = ge.getScreenDevices();
-            int width = 0, height = 0;
-            if( screen > -1 && screen < gd.length ) {
-                width = gd[screen].getDefaultConfiguration().getBounds().width;
-                height = gd[screen].getDefaultConfiguration().getBounds().height;
-                frame.setLocation(
-                        ((width / 2) - (frame.getSize().width / 2)) + gd[screen].getDefaultConfiguration().getBounds().x,
-                        ((height / 2) - (frame.getSize().height / 2)) + gd[screen].getDefaultConfiguration().getBounds().y
-                );
-                frame.setVisible(true);
-            } else {
-                throw new RuntimeException( "No Screens Found" );
-            }
-        }
-        static Animator animator;
         public chickenEggsGame() {
-            GLCanvas glcanvas;
-            SimpleGLEventListener listener = new SimpleGLEventListener();
-            glcanvas = new GLCanvas();
-            glcanvas.addGLEventListener(listener);
+            GLCapabilities caps = new GLCapabilities(GLProfile.getDefault());
+            GLCanvas glcanvas = new GLCanvas(caps);
+            glcanvas.addGLEventListener(new SimpleGLEventListener());
             getContentPane().add(glcanvas, BorderLayout.CENTER);
-            animator = new FPSAnimator(glcanvas,60);
+            FPSAnimator animator = new FPSAnimator(glcanvas,60);
             animator.start();
-//
-//        JPanel controlPanel = new JPanel();
-//        JButton toggleButton = new JButton("Start");
-//
-//        toggleButton.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                if (animator.isAnimating()) {
-//                    animator.stop();
-//                    listener.stopGame();
-//                    toggleButton.setText("Start");
-//                } else {
-//                    animator.start();
-//                    listener.startGame();
-//                    glcanvas.requestFocus();
-//                    toggleButton.setText("Stop");
-//                }
-//            }
-//        });
-//
-//        controlPanel.add(toggleButton);
-//        getContentPane().add(controlPanel, BorderLayout.SOUTH);
-            //animator.start();
             glcanvas.addKeyListener(new key());
             glcanvas.addMouseMotionListener(new mousemotion());
             glcanvas.addMouseListener(new mousebutton());

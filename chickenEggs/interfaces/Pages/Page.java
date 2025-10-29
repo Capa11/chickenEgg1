@@ -32,8 +32,8 @@ public class Page extends drawable {
         ifClicked();
     }
     public void mouseMoved(){
-        for (int i = 0; i < buttons.size(); i++) {
-            buttons.get(i).mouseMoved();
+        for (Button button : buttons) {
+            button.mouseMoved();
         }
         ifMouseMotion();
     }

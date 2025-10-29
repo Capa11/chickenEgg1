@@ -6,26 +6,33 @@ import java.util.ArrayList;
 import static chickenEggs.interfaces.variables.*;
 
 public class rocket extends singleGameObject {
+    public static int bulletReloadTimer=10;
     public boolean preparingRocket = true;
     int sheildTimer = 0;
-    public static boolean[] rocketSkin = {true, true, true, true};
+    public static boolean[] rocketSkin = {true, true, true, true,true,true,true};
     public static int wRocket = 200;
     public static int hRocket = 200;
     boolean bulletready = true;
+    public int reloadTimer=bulletReloadTimer;
     Player player;
-
+    int xBegining=0;
     public rocket(int x, int y, Player player) {
         super(x, y, wRocket, hRocket, rockets[0]);
         this.player = player;
+        speed=10;
     }
 
     public rocket(Player player) {
         super(0, (int) (-yaxis + 100), wRocket, hRocket);
         this.player = player;
+        speed=10;
+        start();
     }
 
     public void destroy() {
         if (sheildTimer <= 0) {
+            sounds[5].play();
+            xBegining=0;
             start();
             player.health--;
             preparingRocket = true;
@@ -35,7 +42,6 @@ public class rocket extends singleGameObject {
     public void start() {
         sheildTimer = 200;
         y = (int) (-yaxis - 100);
-        x=0;
     }
 
     public void draw() {
@@ -45,8 +51,16 @@ public class rocket extends singleGameObject {
 //        else preparingRocket =false;
 //        if(isInside())
         super.draw();
-        if (sheildTimer > 0) sheildTimer--;
-        if (preparingRocket && y < -yaxis + 100) y += 2;
+        if (sheildTimer > 0){
+            sheildTimer--;
+            DrawSprite(x,y,wRocket+50,hRocket+50,icons[14]);
+        }
+        if (reloadTimer > 0) reloadTimer--;
+
+        if (preparingRocket && y < -yaxis + 100) {
+            y += 2;
+            x=xBegining;
+        }
         else preparingRocket = false;
     }
 
@@ -79,7 +93,11 @@ public class rocket extends singleGameObject {
     }
 
     public void fire() {
-        if (player.health > 0) player.bullets.add(new bullet1(x, y + bullet.defaultSize,player));
+        if (player.health > 0&&reloadTimer<=0){
+            player.bullets.add(new bullet1(x, y + bullet.defaultSize,player));
+            reloadTimer=bulletReloadTimer;
+            sounds[3].play();
+        }
     }
 
 
