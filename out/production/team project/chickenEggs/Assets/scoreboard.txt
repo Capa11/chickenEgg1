@@ -1,4 +1,4 @@
-player 5650
+player 36300
 ahmed 400
 hassan 300
 yousef 50

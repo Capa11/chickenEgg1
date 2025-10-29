@@ -71,13 +71,13 @@ public class ControllerScreen extends Page {
         if(lastMouseX <= 375 && lastMouseX >= 325 && lastMouseY <= 280 && lastMouseY>=226 && n<10) {
             if (n < 0) n = 0;
             level[n++].path = health[1];
-            Sound.setGlobalVolume(n/10f);
+//            Sound.setGlobalVolume(n/10f);
             sounds[1].play();
         }
         if(lastMouseX>=-325 && lastMouseX <=-272 && lastMouseY <=280 && lastMouseY>=225 && n >=0) {
             if (n == 10) n = 9;
             level[n--].path = health[0];
-            Sound.setGlobalVolume(n/10f);
+//            Sound.setGlobalVolume(n/10f);
             sounds[1].play();
         }
         super.isClicked();

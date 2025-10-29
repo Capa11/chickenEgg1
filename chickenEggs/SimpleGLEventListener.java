@@ -1,18 +1,10 @@
 package chickenEggs;
 
-import com.jogamp.*;
-
-
 import chickenEggs.objects.Game.*;
 import chickenEggs.interfaces.*;
-import chickenEggs.objects.Game.Chickens.OrdinaryChicken;
-import chickenEggs.objects.Pages.ControllerScreen;
-import chickenEggs.objects.Pages.CustomScreen;
-
 import chickenEggs.interfaces.Pages.*;
 import chickenEggs.objects.Pages.HomeScreen;
-import chickenEggs.objects.Pages.PlayerControllerScreen;
-import com.jogamp.opengl.GL;
+
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLAutoDrawable;
 

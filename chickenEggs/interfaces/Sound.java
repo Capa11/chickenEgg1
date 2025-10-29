@@ -35,9 +35,14 @@ public class Sound {
         try {
             Clip c = (Clip) AudioSystem.getLine(mInfo);
             c.open(mFormat, mBytes, 0, mBytes.length);
-            setVolume(c, globalVolume); // Apply global volume
+            c.addLineListener(event -> {
+                if (event.getType() == LineEvent.Type.STOP) {
+                    c.close();
+                    playingClips.remove(c);
+                }
+            });
             c.start();
-            playingClips.add(c); // Add to the list of playing clips
+            playingClips.add(c);
             return c;
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -45,11 +50,12 @@ public class Sound {
         }
     }
 
+
     public Clip playLooping() {
         try {
             Clip c = (Clip) AudioSystem.getLine(mInfo);
             c.open(mFormat, mBytes, 0, mBytes.length);
-            setVolume(c, globalVolume); // Apply global volume
+//            setVolume(c, globalVolume); // Apply global volume
             c.loop(Clip.LOOP_CONTINUOUSLY);
             playingClips.add(c); // Add to the list of playing clips
             return c;

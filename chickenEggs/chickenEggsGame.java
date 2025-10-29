@@ -7,15 +7,10 @@ import chickenEggs.mouse.mouseWheel;
 import chickenEggs.mouse.mousebutton;
 import chickenEggs.mouse.mousemotion;
 import com.jogamp.opengl.awt.GLCanvas;
-import com.jogamp.opengl.util.Animator;
 import com.jogamp.opengl.util.FPSAnimator;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.util.Scanner;
 
 
 public class chickenEggsGame extends JFrame {
