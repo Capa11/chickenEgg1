@@ -242,7 +242,7 @@ public class GamePage extends Page {
                 for (int j = 0; j < eggsArray.size(); j++) {
                     if (players.get(i).r.iscollesion(eggsArray.get(j))) {
                         players.get(i).destroy();
-                        eggsArray.remove(j);
+                        eggsArray.set(j , null);
                         break;
                     }
                 }

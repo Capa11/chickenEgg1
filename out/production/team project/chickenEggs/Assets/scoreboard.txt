@@ -1,4 +1,4 @@
-capa 11750
+player 5650
 ahmed 400
 hassan 300
 yousef 50
